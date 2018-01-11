@@ -8,6 +8,7 @@
 
 #include "OI.h"
 #include "Subsystems/Drivetrain.h"
+#include "RobotMap.h"
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -20,8 +21,8 @@ public:
 	CommandBase(const std::string& name);
 	CommandBase() = default;
 
-	std::unique_ptr<OI> oi;
-	std::unique_ptr<Drivetrain> drivetrain;
+	static std::unique_ptr<OI> oi;
+	static std::unique_ptr<Drivetrain> drivetrain;
 
 };
 

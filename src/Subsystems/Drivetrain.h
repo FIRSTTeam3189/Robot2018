@@ -4,6 +4,7 @@
 #include <Commands/Subsystem.h>
 #include <ctrlib/CANTalon.h>
 #include "Commands/DrivetrainTankDrive.h"
+#include <RobotMap.h>
 
 class Drivetrain : public Subsystem {
 private:

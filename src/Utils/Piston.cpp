@@ -11,7 +11,7 @@ Piston::Piston(int extendID, int retractID, bool extended) {
 	this->extended = new Solenoid(extendID);
 	this->retracted = new Solenoid(retractID);
 	this->extended->Set(extended);
-	this->retracted->Set(!extented);
+	this->retracted->Set(!extended);
 }
 
  void Piston::Extend() {

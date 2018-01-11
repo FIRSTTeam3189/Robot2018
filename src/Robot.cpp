@@ -17,7 +17,7 @@ void Robot::RobotInit() {
 
 	c->SetClosedLoopControl(true);
 
-	CommandBase::drivetrain.InitHardware();
+	CommandBase::drivetrain->InitHardware();
 
 	chooser.AddDefault("Default Auto", new Autonomous());
 	frc::SmartDashboard::PutData("Auto Modes", &chooser);

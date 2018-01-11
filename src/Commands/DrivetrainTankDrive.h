@@ -1,7 +1,7 @@
 #ifndef DrivetrainTankDrive_H
 #define DrivetrainTankDrive_H
 
-#include "../CommandBase.h"
+#include <CommandBase.h>
 
 class DrivetrainTankDrive : public CommandBase {
 public:
