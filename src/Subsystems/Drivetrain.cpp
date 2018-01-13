@@ -7,7 +7,7 @@
 #include "RobotMap.h"
 
 Drivetrain::Drivetrain() :
-	frc::Subsystem("Drivetrain") {
+		frc::Subsystem("Drivetrain") {
 
 }
 
@@ -33,7 +33,7 @@ void Drivetrain::Drive(double left, double right) {
 	frontRight->Set(ControlMode::PercentOutput, right);
 }
 
-void Drivetrain::Stop(){
+void Drivetrain::Stop() {
 	Drive(0, 0);
 }
 
@@ -44,22 +44,22 @@ double Drivetrain::GetHeading() {
 
 void Drivetrain::Reset() {
 	/*gyro.Reset();
-	leftEncoder.Reset();
-	rightEncoder.Reset();*/
+	 leftEncoder.Reset();
+	 rightEncoder.Reset();*/
 }
 
 double Drivetrain::GetDistance() {
-	return 0.0;//(leftEncoder.GetDistance() + rightEncoder.GetDistance()) / 2;
+	return 0.0; //(leftEncoder.GetDistance() + rightEncoder.GetDistance()) / 2;
 }
 
 double Drivetrain::GetDistanceToObstacle() {
 	// Really meters in simulation since it's a rangefinder...
-	return 0.0;//rangefinder.GetAverageVoltage();
+	return 0.0; //rangefinder.GetAverageVoltage();
 }
-double Drivetrain::GetPotValue(){
+double Drivetrain::GetPotValue() {
 	return pot->Get();
 }
-void Drivetrain::InitHardware(){
+void Drivetrain::InitHardware() {
 	frontLeft = new CANTalon(DRIVE_LEFT_FRONT);
 	middleLeft = new CANTalon(DRIVE_LEFT_MIDDLE);
 	rearLeft = new CANTalon(DRIVE_LEFT_BACK);

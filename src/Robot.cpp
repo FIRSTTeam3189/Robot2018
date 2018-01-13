@@ -14,7 +14,6 @@
 void Robot::RobotInit() {
 	CommandBase::drivetrain.get()->InitHardware();
 
-
 	c = new Compressor(0);
 
 	c->SetClosedLoopControl(true);
@@ -35,7 +34,7 @@ void Robot::DisabledInit() {
 void Robot::DisabledPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
 //	disable periodic
-	CommandBase:: drivetrain->Log();
+	CommandBase::drivetrain->Log();
 }
 
 /**
@@ -51,12 +50,12 @@ void Robot::DisabledPeriodic() {
  */
 void Robot::AutonomousInit() {
 	/* std::string autoSelected = frc::SmartDashboard::GetString("Auto Selector", "Default");
-	if (autoSelected == "My Auto") {
-		autonomousCommand.reset(new MyAutoCommand());
-	}
-	else {
-		autonomousCommand.reset(new ExampleCommand());
-	} */
+	 if (autoSelected == "My Auto") {
+	 autonomousCommand.reset(new MyAutoCommand());
+	 }
+	 else {
+	 autonomousCommand.reset(new ExampleCommand());
+	 } */
 
 	autonomousCommand.reset(chooser.GetSelected());
 
@@ -89,6 +88,5 @@ void Robot::TeleopPeriodic() {
 void Robot::TestPeriodic() {
 	frc::LiveWindow::GetInstance()->Run();
 }
-
 
 START_ROBOT_CLASS(Robot)

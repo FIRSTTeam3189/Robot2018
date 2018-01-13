@@ -3,7 +3,7 @@
 
 #include "../CommandBase.h"
 
-class TankDriveWithLimit : public CommandBase {
+class TankDriveWithLimit: public CommandBase {
 public:
 	TankDriveWithLimit();
 	void Initialize();

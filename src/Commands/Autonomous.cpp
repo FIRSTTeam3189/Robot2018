@@ -2,7 +2,6 @@
 
 #include <iostream>
 
-
 Autonomous::Autonomous() :
 		frc::CommandGroup("Autonomous") {
 }

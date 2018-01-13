@@ -1,11 +1,11 @@
 #include "TankDriveWithJoystick.h"
 
 TankDriveWithJoystick::TankDriveWithJoystick() :
-	CommandBase("TankDriveWithJoystick") {
+		CommandBase("TankDriveWithJoystick") {
 	Requires(drivetrain.get());
 }
 
-void TankDriveWithJoystick::Initialize(){
+void TankDriveWithJoystick::Initialize() {
 
 }
 

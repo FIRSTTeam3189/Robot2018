@@ -10,15 +10,15 @@ TankDriveWithLimit::TankDriveWithLimit() {
 // Called just before this Command runs the first time
 void TankDriveWithLimit::Initialize() {
 	CommandBase::drivetrain->Stop();
-	//CommandBase::drivetrain->Drive(0,0)
 
 }
 
 // Called repeatedly when this Command is scheduled to run
 void TankDriveWithLimit::Execute() {
-	auto potValue=CommandBase::drivetrain->GetPotValue()/static_cast<double>(1023);
-	auto leftY=CommandBase::oi->GetLeftY()*potValue;
-	auto rightY=CommandBase::oi->GetRightY()*potValue;
+	auto potValue = CommandBase::drivetrain->GetPotValue()
+			/ static_cast<double>(1023);
+	auto leftY = CommandBase::oi->GetLeftY() * potValue;
+	auto rightY = CommandBase::oi->GetRightY() * potValue;
 	CommandBase::drivetrain->Drive(leftY, rightY);
 }
 

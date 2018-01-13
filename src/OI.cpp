@@ -9,14 +9,15 @@ OI::OI() {
 	copilot_3 = new JoystickButton(&copilot, 3);
 }
 
-double OI::GetLeftY(){
+double OI::GetLeftY() {
 	return left.GetY(frc::GenericHID::JoystickHand::kLeftHand);
 }
 
-double OI::GetRightY(){
+double OI::GetRightY() {
 	return right.GetY(frc::GenericHID::JoystickHand::kRightHand);
 }
 
-double OI::GetCoPilotY(){
-	return copilot.GetY(frc::GenericHID::JoystickHand::kRightHand) + copilot.GetY(frc::GenericHID::JoystickHand::kLeftHand);
+double OI::GetCoPilotY() {
+	return copilot.GetY(frc::GenericHID::JoystickHand::kRightHand)
+			+ copilot.GetY(frc::GenericHID::JoystickHand::kLeftHand);
 }
