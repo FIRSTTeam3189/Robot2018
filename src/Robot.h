@@ -11,6 +11,7 @@
 
 #include "Commands/Autonomous.h"
 #include "OI.h"
+#include "Subsystems/Drivetrain.h"
 #include "Compressor.h"
 
 class Robot: public frc::IterativeRobot {

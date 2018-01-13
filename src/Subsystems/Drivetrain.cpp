@@ -1,32 +1,79 @@
-#include "Drivetrain.h"
-#include "../RobotMap.h"
-Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
+#include <Joystick.h>
+#include <LiveWindow/LiveWindow.h>
+#include <Subsystems/Drivetrain.h>
+#include <SmartDashboard/SmartDashboard.h>
+
+#include "Commands/TankDriveWithJoystick.h"
+#include "RobotMap.h"
+
+Drivetrain::Drivetrain() :
+	frc::Subsystem("Drivetrain") {
 
 }
 
+/**
+ * When no other command is running let the operator drive around
+ * using the PS3 joystick.
+ */
 void Drivetrain::InitDefaultCommand() {
-	SetDefaultCommand(new DrivetrainTankDrive());
+	SetDefaultCommand(new TankDriveWithJoystick());
 }
 
-void Drivetrain::Drive(double right, double left) {
-	RightMotor->Set(right);
-	LeftMotor->Set(left);
+/**
+ * The log method puts interesting information to the SmartDashboard.
+ */
+void Drivetrain::Log() {
+//	SmartDashboard::PutNumber("Left Speed", leftEncoder.GetRate());
+//	SmartDashboard::PutNumber("Right Speed", rightEncoder.GetRate());
+	SmartDashboard::PutNumber("Pot Value", GetPotValue());
 }
 
-void Drivetrain::InitHardware() {
-	RightMotor = new CANTalon(RobotMap.DRIVE_RIGHT);
-	RightFollower = new CANTalon(RobotMap.DRIVE_RIGHT_FOLLOWER_1);
-	LeftMotor = new CANTalon(RobotMap.DRIVE_LEFT);
-	LeftFollower = new CANTalon(RobotMap.DRIVE_LEFT_FOLLOWER_1);
-	RightFollower2 = new CANTalon(RobotMap.DRIVE_RIGHT_FOLLOWER_2);
-	LeftFollower2 = new CANTalon(RobotMap.DRIVE_LEFT_FOLLOWER_2);
+void Drivetrain::Drive(double left, double right) {
+	frontLeft->Set(ControlMode::PercentOutput, left);
+	frontRight->Set(ControlMode::PercentOutput, right);
+}
 
-	LeftMotor->SetInverted(true);
-	LeftFollower->SetInverted(true);
-	LeftFollower2->SetInverted(true);
+void Drivetrain::Stop(){
+	Drive(0, 0);
+}
 
-	RightFollower->Set(RightMotor->GetDeviceID());
-	LeftFollower->Set(LeftMotor->GetDeviceID());
-    RightFollower2->Set(RightMotor->GetDeviceID());
-    LeftFollower2->Set(LeftMotor->GetDeviceID());
+//NOT INMPLEMENTED
+double Drivetrain::GetHeading() {
+	return 0.0;
+}
+
+void Drivetrain::Reset() {
+	/*gyro.Reset();
+	leftEncoder.Reset();
+	rightEncoder.Reset();*/
+}
+
+double Drivetrain::GetDistance() {
+	return 0.0;//(leftEncoder.GetDistance() + rightEncoder.GetDistance()) / 2;
+}
+
+double Drivetrain::GetDistanceToObstacle() {
+	// Really meters in simulation since it's a rangefinder...
+	return 0.0;//rangefinder.GetAverageVoltage();
+}
+double Drivetrain::GetPotValue(){
+	return pot->Get();
+}
+void Drivetrain::InitHardware(){
+	frontLeft = new CANTalon(DRIVE_LEFT_FRONT);
+	middleLeft = new CANTalon(DRIVE_LEFT_MIDDLE);
+	rearLeft = new CANTalon(DRIVE_LEFT_BACK);
+	frontRight = new CANTalon(DRIVE_RIGHT_FRONT);
+	middleRight = new CANTalon(DRIVE_RIGHT_MIDDLE);
+	rearRight = new CANTalon(DRIVE_RIGHT_BACK);
+
+	pot = new frc::AnalogPotentiometer(POT_CHANNEL);
+	frontLeft->SetInverted(true);
+	middleLeft->SetInverted(true);
+	rearLeft->SetInverted(true);
+
+	middleLeft->Set(ControlMode::Follower, frontLeft->GetDeviceID());
+	rearLeft->Set(ControlMode::Follower, frontLeft->GetDeviceID());
+	middleRight->Set(ControlMode::Follower, frontRight->GetDeviceID());
+	rearRight->Set(ControlMode::Follower, frontRight->GetDeviceID());
 }

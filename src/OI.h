@@ -9,10 +9,15 @@ public:
 	OI();
 	double GetLeftY();
 	double GetRightY();
-
+	double GetCoPilotY();
 
 private:
-	Joystick LeftJoi{0};
-	Joystick RightJoi{1};
+	frc::Joystick left { 0 };
+	frc::Joystick right { 1 };
+	frc::Joystick copilot { 2 };
+
+	frc::JoystickButton* copilot_2;
+	frc::JoystickButton* copilot_3;
 };
+
 #endif  // OI_H_
