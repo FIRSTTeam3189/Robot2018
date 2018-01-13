@@ -11,5 +11,5 @@ constexpr int DRIVE_LEFT_FRONT = 1;
 constexpr int DRIVE_LEFT_MIDDLE = 2;
 constexpr int DRIVE_LEFT_BACK = 3;
 constexpr int POT_CHANNEL = 0;
-
+constexpr int ARM_MOTOR = 7;
 #endif  // ROBOTMAP_H

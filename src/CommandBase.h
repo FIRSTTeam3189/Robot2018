@@ -8,6 +8,7 @@
 
 #include "OI.h"
 #include "Subsystems/Drivetrain.h"
+#include "Subsystems/Arm.h"
 
 class CommandBase: public frc::Command {
 public:
@@ -16,6 +17,7 @@ public:
 
 	static std::unique_ptr<Drivetrain> drivetrain;
 	static std::unique_ptr<OI> oi;
+	static std::unique_ptr<Arm> arm;
 };
 
 #endif  // COMMAND_BASE_H

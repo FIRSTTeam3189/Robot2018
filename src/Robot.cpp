@@ -12,7 +12,8 @@
 #include "CommandBase.h"
 
 void Robot::RobotInit() {
-	CommandBase::drivetrain.get()->InitHardware();
+	CommandBase::drivetrain->InitHardware();
+	CommandBase::arm->InitHardware();
 
 	c = new Compressor(0);
 
