@@ -28,6 +28,11 @@ void Drivetrain::Log() {
 	SmartDashboard::PutNumber("Pot Value", GetPotValue());
 }
 
+void Drivetrain::Drive(double power){
+	frontLeft->Set(ControlMode::PercentOutput, power);
+	frontRight->Set(ControlMode::PercentOutput, power);
+}
+
 void Drivetrain::Drive(double left, double right) {
 	frontLeft->Set(ControlMode::PercentOutput, left);
 	frontRight->Set(ControlMode::PercentOutput, right);

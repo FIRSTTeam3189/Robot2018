@@ -33,6 +33,11 @@ public:
 	 * The log method puts interesting information to the SmartDashboard.
 	 */
 	void Log();
+	/**
+	 *straight drive for drivetrain
+	 *@param power to run all motors at for the drivetrain
+	 */
+	void Drive(double power);
 
 	/**
 	 * Tank style driving for the DriveTrain.
