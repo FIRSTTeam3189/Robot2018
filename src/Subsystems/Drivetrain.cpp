@@ -61,9 +61,7 @@ double Drivetrain::GetDistanceToObstacle() {
 	// Really meters in simulation since it's a rangefinder...
 	return 0.0;//rangefinder.GetAverageVoltage();
 }
-double Drivetrain::GetPotValue(){
-	return pot->Get();
-}
+
 void Drivetrain::InitHardware(){
 	frontLeft = new CANTalon(DRIVE_LEFT_FRONT);
 	middleLeft = new CANTalon(DRIVE_LEFT_MIDDLE);
