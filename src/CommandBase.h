@@ -9,6 +9,7 @@
 #include "OI.h"
 #include "Subsystems/Drivetrain.h"
 #include "Subsystems/Arm.h"
+#include "Subsystems/Claw.h"
 
 class CommandBase: public frc::Command {
 public:
@@ -18,6 +19,7 @@ public:
 	static std::unique_ptr<Drivetrain> drivetrain;
 	static std::unique_ptr<OI> oi;
 	static std::unique_ptr<Arm> arm;
+	static std::unique_ptr<Claw> claw;
 };
 
 #endif  // COMMAND_BASE_H

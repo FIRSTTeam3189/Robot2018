@@ -18,6 +18,8 @@ private:
 
 	frc::JoystickButton* copilot_2;
 	frc::JoystickButton* copilot_3;
+
+	frc::JoystickButton* leftTrigger;
 };
 
 #endif  // OI_H_
