@@ -81,7 +81,6 @@ private:
 	CANTalon* middleRight;
 	CANTalon* rearRight;
 
-	frc::AnalogPotentiometer* pot;
 	//frc::Encoder rightEncoder { 3, 4 };
 	//frc::AnalogInput rangefinder { 6 };
 	//frc::AnalogGyro gyro { 1 };

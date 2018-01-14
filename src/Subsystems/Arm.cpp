@@ -14,10 +14,23 @@ void Arm::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void Arm::ControlArm(double power){
-	motor->Set(ControlMode::PercentOutput, power);
+void Arm::ControlShoulder(double power){
+	shoulderMotor->Set(ControlMode::PercentOutput, power);
 }
-
+void Arm::ControlElbow(double power){
+	elbowMotor->Set(ControlMode::PercentOutput, power);
+}
+double Arm::GetShoulderPot(){
+	shoulderPot->Get();
+}
+double Arm::GetElbowPot(){
+	elbowPot->Get();
+}
 void Arm::InitHardware(){
-	motor = new CANTalon(ARM_MOTOR);
+	shoulderMotor = new CANTalon(ARM_SHOULDER_MOTOR);
+	elbowMotor = new CANTalon(ARM_ELBOW_MOTOR);
+	shoulderPot = new Pot(SHOULDER_POT);
+	elbowPot = new Pot(ELBOW_POT);
+
+
 }
