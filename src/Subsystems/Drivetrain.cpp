@@ -67,7 +67,6 @@ void Drivetrain::InitHardware(){
 	middleRight = new CANTalon(DRIVE_RIGHT_MIDDLE);
 	rearRight = new CANTalon(DRIVE_RIGHT_BACK);
 
-	pot = new frc::AnalogPotentiometer(POT_CHANNEL);
 	frontLeft->SetInverted(true);
 	middleLeft->SetInverted(true);
 	rearLeft->SetInverted(true);

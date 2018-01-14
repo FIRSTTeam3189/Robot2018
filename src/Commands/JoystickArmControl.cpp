@@ -13,7 +13,7 @@ void JoystickArmControl::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void JoystickArmControl::Execute() {
-	CommandBase::arm->ControlArm(CommandBase::oi->GetCoPilotY());
+	CommandBase::arm->ControlShoulder(CommandBase::oi->GetCoPilotY());
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -23,7 +23,7 @@ bool JoystickArmControl::IsFinished() {
 
 // Called once after isFinished returns true
 void JoystickArmControl::End() {
-	CommandBase::arm->ControlArm(0);
+	CommandBase::arm->ControlShoulder(0);
 }
 
 // Called when another command which requires one or more of the same
