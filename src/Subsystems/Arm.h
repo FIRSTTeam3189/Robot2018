@@ -31,9 +31,25 @@ public:
 	 *Put methods for controlling this subsystem
 	 *here. Call these from Commands.
 	 */
+	/**
+	 * controls the shoulder motor of the arm
+	 * @param power in range from -1 to 1
+	 */
 	void ControlShoulder(double power);
+	/**
+	 * controls the elbow motor of the arm
+	 * @param power in range from -1 to 1
+	 */
 	void ControlElbow(double power);
+	/**
+	 * gets the value for the potentiometer on the shoulder motor
+	 * @returns value from 0 to 1023
+	 */
 	double GetShoulderPot();
+	/**
+	 * gets the value for the potentiometer on the elbow motor
+	 * @returns value from 0 to 1023
+	 */
 	double GetElbowPot();
 	void InitHardware();
 

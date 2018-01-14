@@ -72,7 +72,6 @@ public:
 	double GetDistanceToObstacle();
 
 	void InitHardware();
-	double GetPotValue();
 private:
 	CANTalon* frontLeft;
 	CANTalon* middleLeft;

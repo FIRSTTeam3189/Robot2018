@@ -25,7 +25,6 @@ void Drivetrain::InitDefaultCommand() {
 void Drivetrain::Log() {
 //	SmartDashboard::PutNumber("Left Speed", leftEncoder.GetRate());
 //	SmartDashboard::PutNumber("Right Speed", rightEncoder.GetRate());
-	SmartDashboard::PutNumber("Pot Value", GetPotValue());
 }
 
 void Drivetrain::Drive(double power){
