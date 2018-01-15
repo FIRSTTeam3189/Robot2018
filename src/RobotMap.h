@@ -16,4 +16,7 @@ constexpr int ARM_ELBOW_MOTOR = 8;
 
 constexpr int ELBOW_POT = 0;
 constexpr int SHOULDER_POT = 1;
+
+constexpr int PISTON_EXTEND = 0;
+constexpr int PISTON_RETRACT = 1;
 #endif  // ROBOTMAP_H
