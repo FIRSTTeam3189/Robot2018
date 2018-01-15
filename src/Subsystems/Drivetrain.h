@@ -10,6 +10,7 @@
 #include <ctre/phoenix/MotorControl/CAN/TalonSRX.h>
 #include <ctre/phoenix/MotorControl/ControlMode.h>
 #include "RobotMap.h"
+#include "Utils/Piston.h"
 
 using CANTalon = ctre::phoenix::motorcontrol::can::TalonSRX;
 using ControlMode = ctre::phoenix::motorcontrol::ControlMode;
@@ -46,6 +47,9 @@ public:
 	 */
 	void Drive(double left, double right);
 
+	void EngageWinch();
+
+	void EngageDrivetrain();
 	/**
 	 * Stops all motors
 	 */
@@ -79,6 +83,7 @@ private:
 	CANTalon* frontRight;
 	CANTalon* middleRight;
 	CANTalon* rearRight;
+	Piston* winchPiston;
 
 	//frc::Encoder rightEncoder { 3, 4 };
 	//frc::AnalogInput rangefinder { 6 };

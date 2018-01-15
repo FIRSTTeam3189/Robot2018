@@ -25,6 +25,7 @@ void Drivetrain::InitDefaultCommand() {
 void Drivetrain::Log() {
 //	SmartDashboard::PutNumber("Left Speed", leftEncoder.GetRate());
 //	SmartDashboard::PutNumber("Right Speed", rightEncoder.GetRate());
+
 }
 
 void Drivetrain::Drive(double power){
@@ -56,6 +57,14 @@ double Drivetrain::GetDistance() {
 	return 0.0;//(leftEncoder.GetDistance() + rightEncoder.GetDistance()) / 2;
 }
 
+void Drivetrain::EngageWinch(){
+	winchPiston->Extend();
+}
+
+void Drivetrain::EngageDrivetrain(){
+	winchPiston->Retract();
+}
+
 double Drivetrain::GetDistanceToObstacle() {
 	// Really meters in simulation since it's a rangefinder...
 	return 0.0;//rangefinder.GetAverageVoltage();
@@ -77,4 +86,6 @@ void Drivetrain::InitHardware(){
 	rearLeft->Set(ControlMode::Follower, frontLeft->GetDeviceID());
 	middleRight->Set(ControlMode::Follower, frontRight->GetDeviceID());
 	rearRight->Set(ControlMode::Follower, frontRight->GetDeviceID());
+
+	winchPiston = new Piston(PISTON_EXTEND,PISTON_RETRACT);
 }
