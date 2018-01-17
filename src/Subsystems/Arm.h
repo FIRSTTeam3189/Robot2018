@@ -15,6 +15,8 @@ private:
 
 	CANTalon* shoulderMotor;
 	CANTalon* elbowMotor;
+	CANTalon* wristMotor;
+	Pot* wristPot;
 	Pot* elbowPot;
 	Pot* shoulderPot;
 	// It's desirable that everything possible under private except
@@ -27,10 +29,6 @@ public:
 	 *
 	 */
 	void InitDefaultCommand();
-	/**
-	 *Put methods for controlling this subsystem
-	 *here. Call these from Commands.
-	 */
 	/**
 	 * controls the shoulder motor of the arm
 	 * @param power in range from -1 to 1
@@ -45,11 +43,15 @@ public:
 	 * gets the value for the potentiometer on the shoulder motor
 	 * @returns value from 0 to 1023
 	 */
+
+	void ControlWrist(double power);
 	double GetShoulderPot();
 	/**
 	 * gets the value for the potentiometer on the elbow motor
 	 * @returns value from 0 to 1023
 	 */
+
+	double GetWristPot();
 	double GetElbowPot();
 	void InitHardware();
 

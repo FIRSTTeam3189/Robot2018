@@ -11,11 +11,17 @@ void Claw::InitDefaultCommand() {
 }
 
 // Put methods for controlling this subsystem
-// here. Call these from Commands.
-void Claw::Toggle(){
-	piston->Toggle();
+// here. Call these from Commands
+
+void Claw::SetPower(double power){
+	Right->Set(ControlMode::PercentOutput, power);
 }
 
 void Claw::InitHardware(){
-	piston = new Piston(CLAW_EXTEND, CLAW_RETRACT);
+	Left= new CANTalon();
+	Right= new CANTalon();
+
+	Left->SetInverted(true);
+	Left->Set(ControlMode::Follower, Right->GetDeviceID());
+
 }

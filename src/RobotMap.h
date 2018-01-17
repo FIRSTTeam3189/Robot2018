@@ -13,9 +13,11 @@ constexpr int DRIVE_LEFT_BACK = 3;
 
 constexpr int ARM_SHOULDER_MOTOR = 7;
 constexpr int ARM_ELBOW_MOTOR = 8;
+constexpr int ARM_WRIST_MOTOR = 9;
 
 constexpr int ELBOW_POT = 0;
 constexpr int SHOULDER_POT = 1;
+constexpr int WRIST_POT = 2;
 
 constexpr int PISTON_EXTEND = 0;
 constexpr int PISTON_RETRACT = 1;

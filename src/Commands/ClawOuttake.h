@@ -1,11 +1,11 @@
-#ifndef ClawToggle_H
-#define ClawToggle_H
+#ifndef ClawOuttake_H
+#define ClawOuttake_H
 
 #include "../CommandBase.h"
 
-class ClawToggle : public CommandBase {
+class ClawOuttake : public CommandBase {
 public:
-	ClawToggle();
+	ClawOuttake();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -13,4 +13,4 @@ public:
 	void Interrupted();
 };
 
-#endif  // ClawToggle_H
+#endif  // ClawOuttake_H

@@ -20,15 +20,25 @@ void Arm::ControlShoulder(double power){
 void Arm::ControlElbow(double power){
 	elbowMotor->Set(ControlMode::PercentOutput, power);
 }
+
+void Arm::ControlWrist(double power) {
+	wristMotor->Set(ControlMode::PercentOutput, power);
+}
 double Arm::GetShoulderPot(){
-	shoulderPot->Get();
+	return shoulderPot->Get();
 }
 double Arm::GetElbowPot(){
-	elbowPot->Get();
+	return elbowPot->Get();
+}
+
+double Arm::GetWristPot() {
+	return wristPot->Get();
 }
 void Arm::InitHardware(){
 	shoulderMotor = new CANTalon(ARM_SHOULDER_MOTOR);
 	elbowMotor = new CANTalon(ARM_ELBOW_MOTOR);
+	wristMotor = new CANTalon(ARM_WRIST_MOTOR);
+	wristPot = new Pot(WRIST_POT);
 	shoulderPot = new Pot(SHOULDER_POT);
 	elbowPot = new Pot(ELBOW_POT);
 
