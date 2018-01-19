@@ -22,6 +22,8 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 
+	// It's desirable for you to kill yourself
+
 
 public:
 	Arm();
@@ -53,6 +55,15 @@ public:
 
 	double GetWristPot();
 	double GetElbowPot();
+	/**
+	 * get
+	 * finds percent of the total span from 0-1 then finds the potentiometer value for the given angle value
+	 * @param angle in radians of angle value
+	 * kill me
+	 * @return the equivalent potentiometer value for the given angle value
+	 */
+	double ShoulderToPot(double angle);
+	double ElbowToPot(double angle);
 	void InitHardware();
 
 };

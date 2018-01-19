@@ -1,5 +1,5 @@
 #include "Subsystems/Arm.h"
-
+#include "Constants.h"
 #include "../RobotMap.h"
 
 Arm::Arm() : Subsystem("arm") {
@@ -29,10 +29,18 @@ double Arm::GetShoulderPot(){
 }
 double Arm::GetElbowPot(){
 	return elbowPot->Get();
+
 }
 
 double Arm::GetWristPot() {
 	return wristPot->Get();
+}
+
+double Arm::ShoulderToPot(double angle){
+	return (((angle - SHOULDER_ANGLE_MIN)/(SHOULDER_ANGLE_MAX - SHOULDER_ANGLE_MIN))*(SHOULDER_POT_MAX - SHOULDER_ANGLE_MIN)+SHOULDER_POT_MIN);
+}
+double Arm::ElbowToPot(double angle){
+	return(((angle - ELBOW_ANGLE_MIN)/(ELBOW_ANGLE_MAX - ELBOW_ANGLE_MIN))*(ELBOW_POT_MAX - ELBOW_POT_MIN)+ELBOW_POT_MIN);
 }
 void Arm::InitHardware(){
 	shoulderMotor = new CANTalon(ARM_SHOULDER_MOTOR);
