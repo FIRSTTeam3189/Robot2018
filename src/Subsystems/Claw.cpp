@@ -18,8 +18,8 @@ void Claw::SetPower(double power){
 }
 
 void Claw::InitHardware(){
-	Left= new CANTalon();
-	Right= new CANTalon();
+	Left= new CANTalon(0);//TODO add robot map things
+	Right= new CANTalon(0);
 
 	Left->SetInverted(true);
 	Left->Set(ControlMode::Follower, Right->GetDeviceID());

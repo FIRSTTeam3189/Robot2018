@@ -11,11 +11,10 @@ ArmGoToPoint::ArmGoToPoint(double x, double y) {
 }
 
 // Called just before this Command runs the first time.
-//dev loves meth
 void ArmGoToPoint::Initialize() {
 
 }
-/
+
 // Called repeatedly when this Command is scheduled to run
 void ArmGoToPoint::Execute() {
 
