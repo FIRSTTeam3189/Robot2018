@@ -1,5 +1,6 @@
 #include <Commands/MoveForward.h>
 #include "OI.h"
+#include "Commands/ArmGoToPoint.h"
 
 #include <SmartDashboard/SmartDashboard.h>
 
@@ -11,6 +12,8 @@ OI::OI() {
 	leftTrigger = new JoystickButton(&left, 1);
 	leftTwo = new JoystickButton(&left, 2);
 	leftTwo->WhileHeld(new MoveForwardWhileHeld());
+	moveArm = new JoystickButton(&left, 3);
+
 }
 
 double OI::GetLeftY() {
@@ -25,4 +28,8 @@ double OI::GetCoPilotY() {
 	return copilot.GetY(frc::GenericHID::JoystickHand::kRightHand)
 			+ copilot.GetY(frc::GenericHID::JoystickHand::kLeftHand);
 
+}
+
+void OI::CheckMath() {
+	moveArm->WhenPressed(new ArmGoToPoint(15, 50));
 }

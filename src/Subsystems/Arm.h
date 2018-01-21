@@ -4,6 +4,7 @@
 #include <Commands/Subsystem.h>
 #include <ctre/phoenix/MotorControl/CAN/TalonSRX.h>
 #include <ctre/phoenix/MotorControl/ControlMode.h>
+#include <SmartDashboard/SmartDashboard.h>
 #include <AnalogPotentiometer.h>
 
 using CANTalon = ctre::phoenix::motorcontrol::can::TalonSRX;
@@ -19,6 +20,7 @@ private:
 	Pot* wristPot;
 	Pot* elbowPot;
 	Pot* shoulderPot;
+
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 
@@ -30,6 +32,9 @@ public:
 	/**
 	 *
 	 */
+
+	void armPosition(double x, double y, double angles[2]);
+
 	void InitDefaultCommand();
 	/**
 	 * controls the shoulder motor of the arm

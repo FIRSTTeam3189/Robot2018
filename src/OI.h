@@ -10,6 +10,8 @@ public:
 	double GetLeftY();
 	double GetRightY();
 	double GetCoPilotY();
+	void CheckMath();
+
 
 private:
 	frc::Joystick left { 0 };
@@ -21,6 +23,8 @@ private:
 
 	frc::JoystickButton* leftTrigger;
 	frc::JoystickButton* leftTwo;
+	frc::JoystickButton* moveArm;
+
 };
 
 #endif  // OI_H_

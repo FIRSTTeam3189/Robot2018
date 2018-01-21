@@ -1,13 +1,12 @@
 #include "ArmGoToPoint.h"
-#include <math.h>
 
 ArmGoToPoint::ArmGoToPoint(double x, double y) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-	Requires(CommandBase::arm.get());
-	double length = sqrt(pow(x,2)+pow(y,2));
-	this-> shoulderAngle = acos((pow(length,2) + pow(ARM_ONE_LENGTH,2) - pow(ARM_TWO_LENGTH,2))/2*length*ARM_ONE_LENGTH);
-	this-> elbowAngle = (length*sin(shoulderAngle))/ARM_TWO_LENGTH;
+	Requires(arm.get());
+
+	arm->armPosition(x,y,armAngle);
+
 }
 
 // Called just before this Command runs the first time.

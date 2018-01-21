@@ -14,8 +14,7 @@ public:
 	void Interrupted();
 
 private:
-	double shoulderAngle;
-	double elbowAngle;
+	double armAngle[2] {0,0};
 };
 
 
