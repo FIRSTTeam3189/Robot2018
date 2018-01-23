@@ -14,7 +14,7 @@ public:
 	void Interrupted();
 
 private:
-	double armAngle[2] {0,0};
+	double armAngle[3] {0,0,0};
 };
 
 

@@ -31,7 +31,7 @@ void ArmGoToPoint::End() {
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-//Hitler did nothing wrong, james agrees
+
 void ArmGoToPoint::Interrupted() {
 
 }

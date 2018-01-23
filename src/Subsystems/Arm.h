@@ -17,14 +17,14 @@ private:
 	CANTalon* shoulderMotor;
 	CANTalon* elbowMotor;
 	CANTalon* wristMotor;
-	Pot* wristPot;
-	Pot* elbowPot;
-	Pot* shoulderPot;
+	Pot* wristPot = Pot(WRIST_POT, 359, 0);
+	Pot* elbowPot = Pot(ELBOW_POT, 359, 0);
+	Pot* shoulderPot = Pot(SHOULDER_POT, 359, 0);
 
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 
-	// It's desirable for you to kill yourself
+
 
 
 public:
@@ -33,7 +33,7 @@ public:
 	 *
 	 */
 
-	void armPosition(double x, double y, double angles[2]);
+	void armPosition(double x, double y, double angles[3]);
 
 	void InitDefaultCommand();
 	/**
@@ -64,7 +64,6 @@ public:
 	 * get
 	 * finds percent of the total span from 0-1 then finds the potentiometer value for the given angle value
 	 * @param angle in radians of angle value
-	 * kill me
 	 * @return the equivalent potentiometer value for the given angle value
 	 */
 	double ShoulderToPot(double angle);
