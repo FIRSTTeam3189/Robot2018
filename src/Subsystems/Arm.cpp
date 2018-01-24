@@ -23,9 +23,6 @@ void Arm::ControlElbow(double power) {
 	elbowMotor->Set(ControlMode::PercentOutput, power);
 }
 
-void Arm::ControlWrist(double power) {
-	wristMotor->Set(ControlMode::PercentOutput, power);
-}
 double Arm::GetShoulderPot() {
 	return shoulderPot->Get();
 }
@@ -68,12 +65,9 @@ void Arm::armPosition(double x, double y, double angles[3]) {
 	frc::SmartDashboard::PutNumber("theta2: ", theta2);
 	frc::SmartDashboard::PutNumber("theta3: ", theta3);
 
-	wristPot->
 }
 
-double Arm::GetWristPot() {
-	return wristPot->Get();
-}
+
 
 double Arm::ShoulderToPot(double angle) {
 	return (((angle - SHOULDER_ANGLE_MIN)
@@ -87,8 +81,6 @@ double Arm::ElbowToPot(double angle) {
 void Arm::InitHardware() {
 	shoulderMotor = new CANTalon(ARM_SHOULDER_MOTOR);
 	elbowMotor = new CANTalon(ARM_ELBOW_MOTOR);
-	wristMotor = new CANTalon(ARM_WRIST_MOTOR);
-	wristPot = new Pot(WRIST_POT);
 	shoulderPot = new Pot(SHOULDER_POT);
 	elbowPot = new Pot(ELBOW_POT);
 

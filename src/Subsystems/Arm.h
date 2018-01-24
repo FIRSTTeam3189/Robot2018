@@ -6,6 +6,7 @@
 #include <ctre/phoenix/MotorControl/ControlMode.h>
 #include <SmartDashboard/SmartDashboard.h>
 #include <AnalogPotentiometer.h>
+#include "RobotMap.h"
 
 using CANTalon = ctre::phoenix::motorcontrol::can::TalonSRX;
 using ControlMode = ctre::phoenix::motorcontrol::ControlMode;
@@ -16,10 +17,8 @@ private:
 
 	CANTalon* shoulderMotor;
 	CANTalon* elbowMotor;
-	CANTalon* wristMotor;
-	Pot* wristPot = Pot(WRIST_POT, 359, 0);
-	Pot* elbowPot = Pot(ELBOW_POT, 359, 0);
-	Pot* shoulderPot = Pot(SHOULDER_POT, 359, 0);
+	Pot* elbowPot; //= Pot(ELBOW_POT, 359, 0);
+	Pot* shoulderPot;// = Pot(SHOULDER_POT, 359, 0);
 
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
@@ -30,7 +29,7 @@ private:
 public:
 	Arm();
 	/**
-	 *
+	 * #FootFetishDay
 	 */
 
 	void armPosition(double x, double y, double angles[3]);
@@ -51,14 +50,14 @@ public:
 	 * @returns value from 0 to 1023
 	 */
 
-	void ControlWrist(double power);
+
 	double GetShoulderPot();
 	/**
 	 * gets the value for the potentiometer on the elbow motor
 	 * @returns value from 0 to 1023
 	 */
 
-	double GetWristPot();
+
 	double GetElbowPot();
 	/**
 	 * get

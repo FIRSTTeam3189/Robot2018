@@ -15,6 +15,7 @@ void Robot::RobotInit() {
 	CommandBase::drivetrain->InitHardware();
 	CommandBase::arm->InitHardware();
 	CommandBase::claw->InitHardware();
+	CommandBase::wrist->InitHardware();
 
 	c = new Compressor(0);
 

@@ -12,7 +12,6 @@ constexpr int SHOULDER_POT_MAX = 0;
 constexpr int SHOULDER_POT_MIN = 0;
 constexpr int ELBOW_POT_MAX = 0;
 constexpr int ELBOW_POT_MIN = 0;
-constexpr int WRIST_POT = 0;
 constexpr int WRIST_POT_MIN = 0;
 constexpr int WRIST_POT_MAX = 0;
 
