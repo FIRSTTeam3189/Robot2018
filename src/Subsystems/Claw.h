@@ -15,13 +15,20 @@ private:
 	// for methods that implement subsystem capabilities
 	CANTalon* Left;
 	CANTalon* Right;
+	Piston* TheOneTheOnlyThePiston;
 
+
+
+	//"Make the robot do the thing, go" -Alex
 
 public:
 	Claw();
 	void InitDefaultCommand();
 	void SetPower(double power);
 	void InitHardware();
+	void ClawOpen();
+	void ClawClose();
+	void ClawToggle();
 };
 
 #endif  // Claw_H

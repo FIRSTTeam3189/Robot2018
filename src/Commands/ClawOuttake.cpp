@@ -8,7 +8,8 @@ ClawOuttake::ClawOuttake() {
 
 // Called just before this Command runs the first time
 void ClawOuttake::Initialize() {
-	CommandBase::claw->SetPower(-0.5);
+	claw->SetPower(CLAW_OUTAKE_POWER);
+	claw->ClawClose();
 
 }
 
@@ -20,11 +21,12 @@ void ClawOuttake::Execute() {
 // Make this return true when this Command no longer needs to run execute()
 bool ClawOuttake::IsFinished() {
 	return false;
+	//Expected to run while held.
 }
 
 // Called once after isFinished returns true
 void ClawOuttake::End() {
-	CommandBase::claw->SetPower(0);
+	claw->SetPower(0);
 }
 
 // Called when another command which requires one or more of the same

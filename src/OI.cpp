@@ -7,13 +7,18 @@
 #include "Commands/Autonomous.h"
 
 OI::OI() {
+
 	copilot_2 = new JoystickButton(&copilot, 2);
 	copilot_3 = new JoystickButton(&copilot, 3);
 	leftTrigger = new JoystickButton(&left, 1);
 	leftTwo = new JoystickButton(&left, 2);
 	leftTwo->WhileHeld(new MoveForwardWhileHeld());
 	moveArm = new JoystickButton(&left, 3);
+	intake = new JoystickButton(&copilot, 4);
+	outtake = new JoystickButton(&copilot, 5);
 
+	intake->WhileHeld(new ClawIntake());
+	outtake->WhileHeld(new ClawOuttake());
 }
 
 double OI::GetLeftY() {
@@ -33,3 +38,5 @@ double OI::GetCoPilotY() {
 void OI::CheckMath() {
 	moveArm->WhenPressed(new ArmGoToPoint(15, 50));
 }
+
+

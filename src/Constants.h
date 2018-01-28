@@ -29,5 +29,7 @@ constexpr double phi = 0; // It can be 0 to pi/2 (90)
 constexpr double ARM_ANGLE_RANGE = 0.052;
 constexpr double ARM_SWITCH = 25;
 
+constexpr double CLAW_INTAKE_POWER = 0.5;
+constexpr double CLAW_OUTAKE_POWER = -0.5;
 
 #endif /* SRC_CONSTANTS_H_ */
