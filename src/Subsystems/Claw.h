@@ -21,7 +21,7 @@ private:
 
 	//"Make the robot do the thing, go" -Alex
 
-public:
+public://TODO provide USEFULL comment documentation for this class
 	Claw();
 	void InitDefaultCommand();
 	void SetPower(double power);

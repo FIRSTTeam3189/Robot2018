@@ -12,19 +12,16 @@ using CANTalon = ctre::phoenix::motorcontrol::can::TalonSRX;
 using ControlMode = ctre::phoenix::motorcontrol::ControlMode;
 using Pot = AnalogPotentiometer;
 
-class Arm : public frc::Subsystem {
+class Arm: public frc::Subsystem {
 private:
 
 	CANTalon* shoulderMotor;
 	CANTalon* elbowMotor;
 	Pot* elbowPot; //= Pot(ELBOW_POT, 359, 0);
-	Pot* shoulderPot;// = Pot(SHOULDER_POT, 359, 0);
+	Pot* shoulderPot; // = Pot(SHOULDER_POT, 359, 0);
 
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-
-
-
 
 public:
 	Arm();
@@ -50,15 +47,14 @@ public:
 	 * @returns value from 0 to 1023
 	 */
 
-
 	double GetShoulderPot();
 	/**
 	 * gets the value for the potentiometer on the elbow motor
 	 * @returns value from 0 to 1023
 	 */
 
-
 	double GetElbowPot();
+	//TODO better comments downward
 	/**
 	 * get
 	 * finds percent of the total span from 0-1 then finds the potentiometer value for the given angle value

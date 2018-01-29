@@ -17,8 +17,7 @@ void Wrist::InitDefaultCommand() {
 double Wrist::GetWristPot() {
 	return wristPot->Get();
 }
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
+
 void Wrist::ControlWrist(double power) {
 	wristMotor->Set(ControlMode::PercentOutput, power);
 }

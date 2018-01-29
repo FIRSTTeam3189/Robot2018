@@ -22,7 +22,7 @@ private:
 	Pot* wristPot;
 
 public:
-	Wrist();
+	Wrist();//TODO docs?
 	void ControlWrist(double power);
 	double GetWristPot();
 	void InitDefaultCommand();
