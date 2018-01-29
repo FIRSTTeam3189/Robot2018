@@ -72,19 +72,14 @@ double Drivetrain::GetDistanceToObstacle() {
 
 void Drivetrain::InitHardware(){
 	frontLeft = new CANTalon(DRIVE_LEFT_FRONT);
-	middleLeft = new CANTalon(DRIVE_LEFT_MIDDLE);
 	rearLeft = new CANTalon(DRIVE_LEFT_BACK);
 	frontRight = new CANTalon(DRIVE_RIGHT_FRONT);
-	middleRight = new CANTalon(DRIVE_RIGHT_MIDDLE);
 	rearRight = new CANTalon(DRIVE_RIGHT_BACK);
 
 	frontLeft->SetInverted(true);
-	middleLeft->SetInverted(true);
 	rearLeft->SetInverted(true);
 
-	middleLeft->Set(ControlMode::Follower, frontLeft->GetDeviceID());
 	rearLeft->Set(ControlMode::Follower, frontLeft->GetDeviceID());
-	middleRight->Set(ControlMode::Follower, frontRight->GetDeviceID());
 	rearRight->Set(ControlMode::Follower, frontRight->GetDeviceID());
 
 	winchPiston = new Piston(PISTON_EXTEND,PISTON_RETRACT);

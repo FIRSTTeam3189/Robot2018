@@ -5,6 +5,8 @@
 #include <SmartDashboard/SmartDashboard.h>
 
 #include "Commands/Autonomous.h"
+#include "Commands/ClawIntake.h"
+#include "Commands/ClawOuttake.h"
 
 OI::OI() {
 
