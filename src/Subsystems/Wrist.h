@@ -22,8 +22,18 @@ private:
 	Pot* wristPot;
 
 public:
-	Wrist();//TODO docs?
+	/*
+	 *Provides control for the wrist of the robot.
+	 */
+	Wrist();
+	/*
+	 * Controls the power of the motors.
+	 * @param power percentage of total power to the motors.
+	 */
 	void ControlWrist(double power);
+	/*
+	 * Gets the potentiometer value from the wrist.
+	 */
 	double GetWristPot();
 	void InitDefaultCommand();
 	void InitHardware();

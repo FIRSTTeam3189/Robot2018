@@ -21,7 +21,13 @@ private:
 
 	//"Make the robot do the thing, go" -Alex
 
-public://TODO provide USEFULL comment documentation for this class
+public:
+	/*
+	 * Starts the claw movement
+	 * Sets the power and initializes the hardware
+	 * Three claw controls, opening, closing,
+	 * and toggling the state of the claw
+	 */
 	Claw();
 	void InitDefaultCommand();
 	void SetPower(double power);

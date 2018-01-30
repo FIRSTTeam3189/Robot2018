@@ -33,8 +33,8 @@ void Claw::ClawToggle(){
 
 }
 void Claw::InitHardware() {
-	Left = new CANTalon(5);	//TODO add robot map things.
-	Right = new CANTalon(6);
+	Left = new CANTalon(LEFT_CLAW_MOTOR);
+	Right = new CANTalon(RIGHT_CLAW_MOTOR);
 
 	TheOneTheOnlyThePiston = new Piston(CLAW_EXTEND, CLAW_RETRACT, false);
 

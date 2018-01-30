@@ -47,9 +47,10 @@ public:
 	 * @param right Speed in range [-1,1]
 	 */
 	void Drive(double left, double right);
-	//TODO document your code please
+	//starts the winch
 	void EngageWinch();
 
+	//starts the drivetrain
 	void EngageDrivetrain();
 	/**
 	 * Stops all motors

@@ -54,7 +54,7 @@ public:
 	 */
 
 	double GetElbowPot();
-	//TODO better comments downward
+	//
 	/**
 	 * get
 	 * finds percent of the total span from 0-1 then finds the potentiometer value for the given angle value
