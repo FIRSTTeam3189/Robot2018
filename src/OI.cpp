@@ -18,9 +18,12 @@ OI::OI() {
 	moveArm = new JoystickButton(&left, 3);
 	intake = new JoystickButton(&copilot, 4);
 	outtake = new JoystickButton(&copilot, 5);
+	visionProcessing = new JoystickButton(&copilot, 10);
 
 	intake->WhileHeld(new ClawIntake());
 	outtake->WhileHeld(new ClawOuttake());
+
+	visionProcessing->WhenPressed(new PingVision());
 }
 
 double OI::GetLeftY() {

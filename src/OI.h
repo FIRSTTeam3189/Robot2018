@@ -27,6 +27,8 @@ private:
 	frc::JoystickButton* leftTwo;
 	frc::JoystickButton* moveArm;
 
+	frc::JoystickButton* visionProcessing;
+
 };
 
 #endif  // OI_H_

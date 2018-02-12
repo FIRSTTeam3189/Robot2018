@@ -8,6 +8,7 @@ std::unique_ptr<Drivetrain> CommandBase::drivetrain = std::make_unique<
 std::unique_ptr<Arm> CommandBase::arm = std::make_unique<Arm>();
 std::unique_ptr<Claw> CommandBase::claw = std::make_unique<Claw>();
 std::unique_ptr<Wrist> CommandBase::wrist = std::make_unique<Wrist>();
+std::unique_ptr<Vision> CommandBase::vision = std::make_unique<Vision>();
 
 
 CommandBase::CommandBase(const std::string &name) :

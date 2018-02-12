@@ -32,4 +32,6 @@ constexpr double ARM_SWITCH = 25;
 constexpr double CLAW_INTAKE_POWER = 0.5;
 constexpr double CLAW_OUTAKE_POWER = -0.5;
 
+constexpr int UART_BAUD_RATE = 115200;
+
 #endif /* SRC_CONSTANTS_H_ */

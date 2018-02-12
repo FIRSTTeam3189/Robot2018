@@ -11,6 +11,7 @@
 #include "Subsystems/Arm.h"
 #include "Subsystems/Claw.h"
 #include "Subsystems/Wrist.h"
+#include "Subsystems/Vision.h"
 
 class CommandBase: public frc::Command {
 public:
@@ -22,6 +23,7 @@ public:
 	static std::unique_ptr<Arm> arm;
 	static std::unique_ptr<Claw> claw;
 	static std::unique_ptr<Wrist> wrist;
+	static std::unique_ptr<Vision> vision;
 };
 
 #endif  // COMMAND_BASE_H
