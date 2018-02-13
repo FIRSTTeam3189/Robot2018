@@ -12,8 +12,10 @@ private:
 
 public:
 	Vision();
+	void InitHardware();
 	void InitDefaultCommand();
 	void Ping();
+	void ReceiveData();
 };
 
 #endif  // Vision_H

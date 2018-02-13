@@ -16,6 +16,7 @@ void Robot::RobotInit() {
 	CommandBase::arm->InitHardware();
 	CommandBase::claw->InitHardware();
 	CommandBase::wrist->InitHardware();
+	CommandBase::vision->InitHardware();
 
 	c = new Compressor(0);
 
@@ -38,6 +39,8 @@ void Robot::DisabledPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
 //	disable periodic
 	CommandBase::drivetrain->Log();
+	CommandBase::vision->ReceiveData();
+
 }
 
 /**

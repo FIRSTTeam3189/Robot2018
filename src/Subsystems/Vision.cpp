@@ -3,10 +3,14 @@
 #include "Constants.h"
 #include "SmartDashboard/SmartDashboard.h"
 
-#define BUFFER_SIZE 32
+#define BUFFER_SIZE 128
 
 Vision::Vision() : frc::Subsystem("Vision") {
+}
+
+void Vision::InitHardware() {
 	uart = new frc::SerialPort(115200, frc::SerialPort::Port::kMXP);
+	uart->SetTimeout(0.1);
 }
 
 void Vision::InitDefaultCommand() {
@@ -30,3 +34,16 @@ void Vision::Ping() {
 	frc::SmartDashboard::PutString("Pong", buffer);
 
 }
+
+void Vision::ReceiveData() {
+	// Make a buffer and read in data.
+	char buffer[BUFFER_SIZE];
+	int data_read = uart->Read(buffer, BUFFER_SIZE);
+
+	// Print data to smart dashboard.
+	frc::SmartDashboard::PutNumber("Last Data Read Size", data_read);
+	std::string current_string = frc::SmartDashboard::GetString("Serial Output", "");
+	current_string.append(buffer);
+	frc::SmartDashboard::PutString("Serial Output", current_string.c_str());
+}
+

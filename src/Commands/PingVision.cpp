@@ -13,7 +13,7 @@ void PingVision::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void PingVision::Execute() {
-	CommandBase::vision->Ping();
+	CommandBase::vision->ReceiveData();
 }
 
 // Make this return true when this Command no longer needs to run execute()

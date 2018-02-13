@@ -7,6 +7,7 @@
 #include "Commands/Autonomous.h"
 #include "Commands/ClawIntake.h"
 #include "Commands/ClawOuttake.h"
+#include "Commands/PingVision.h"
 
 OI::OI() {
 
