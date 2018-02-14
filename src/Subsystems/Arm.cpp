@@ -14,7 +14,7 @@ void Arm::InitDefaultCommand() {
 	// SetDefaultCommand(new MySpecialCommand());
 }
 
-// Put methods for controlling this subsystem
+// Put functiom for controlling this subsystem
 // here. Call these from Commands.
 void Arm::ControlShoulder(double power) {
 	shoulderMotor->Set(ControlMode::PercentOutput, power);
@@ -30,6 +30,17 @@ double Arm::GetElbowPot() {
 	return elbowPot->Get();
 
 }
+
+Point Arm::GetCurrentLocation(){
+	return currentLocation->Get();
+}
+double Arm::GetShoulderAngle(){
+	return shoulderAngle->Get();
+}
+double Arm::GetElbowAngle(){
+
+}
+
 
 void Arm::GetAnglesForTarget(double x, double y, double angles[3]) {
 	//get the distance between the destination and the shoulder joint(origin)
