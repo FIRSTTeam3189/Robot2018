@@ -32,7 +32,6 @@ double Arm::GetElbowPot() {
 }
 
 void Arm::armPosition(double x, double y, double angles[3]) {
-	/* Useless old math.
 	double c = sqrt(x * x + y * y);
 	double alpha = acos(
 			((ARM_ONE_LENGTH * ARM_ONE_LENGTH)
@@ -47,24 +46,6 @@ void Arm::armPosition(double x, double y, double angles[3]) {
 	if (x >= ARM_SWITCH) -theta1;
 	angles[0] = theta1;
 	angles[1] = theta2;
-
-	frc::SmartDashboard::PutNumber("theta1", theta1);
-	frc::SmartDashboard::PutNumber("theta2", theta2);
-	*/
-	double wristX = x - ARM_THREE_LENGTH*cos(phi);
-	double wristY= y - ARM_THREE_LENGTH*sin(phi);
-	double c2 = ((wristX*wristX) + (wristY*wristY)-(ARM_ONE_LENGTH*ARM_ONE_LENGTH)-(ARM_TWO_LENGTH*ARM_TWO_LENGTH))/ (2*ARM_ONE_LENGTH)*(ARM_TWO_LENGTH);
-	double s2 = -sqrt(1-(c2*c2));
-	double s1 = ((((((ARM_ONE_LENGTH + ARM_TWO_LENGTH*c2)*wristY)-ARM_TWO_LENGTH)*s2)*wristX))/((wristX*wristX)+(wristY*wristY));
-	double c1 = ((((((ARM_ONE_LENGTH + ARM_TWO_LENGTH*c2)*wristX) + ARM_TWO_LENGTH)*s2)*wristY))/((wristX*wristX)+(wristY*wristY));
-	double theta1 = atan2(s1,c1);
-	double theta2 = atan2(s2,c2);
-	double theta3 = phi-theta1-theta2;
-
-	frc::SmartDashboard::PutNumber("theta1: ", theta1);
-	frc::SmartDashboard::PutNumber("theta2: ", theta2);
-	frc::SmartDashboard::PutNumber("theta3: ", theta3);
-
 }
 
 
