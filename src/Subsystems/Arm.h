@@ -30,7 +30,7 @@ public:
 	 */
 
 	void armPosition(double x, double y, double angles[3]);
-
+	void armPosition(double x, double y, double destination_x, double destination_y, double angles[3])
 	void InitDefaultCommand();
 	/**
 	 * controls the shoulder motor of the arm

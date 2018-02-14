@@ -23,6 +23,7 @@ constexpr double ELBOW_ANGLE_MAX = 0;
 constexpr double ARM_ONE_LENGTH = 40;
 constexpr double ARM_TWO_LENGTH = 40;
 constexpr double ARM_THREE_LENGTH = 10;
+constexpr double ARM_SWITCH = 15;
 constexpr double phi = 0; // It can be 0 to pi/2 (90)
 
 
