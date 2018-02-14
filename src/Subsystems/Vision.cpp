@@ -47,3 +47,7 @@ void Vision::ReceiveData() {
 	frc::SmartDashboard::PutString("Serial Output", current_string.c_str());
 }
 
+void Vision::SendData() {
+	const std::string data = "taco is a good comment ";
+	uart->Write(data.c_str());									//taco
+}

@@ -39,7 +39,7 @@ void Robot::DisabledPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
 //	disable periodic
 	CommandBase::drivetrain->Log();
-	CommandBase::vision->ReceiveData();
+//	CommandBase::vision->ReceiveData();
 
 }
 

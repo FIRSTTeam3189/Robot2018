@@ -16,6 +16,7 @@ public:
 	void InitDefaultCommand();
 	void Ping();
 	void ReceiveData();
+	void SendData();
 };
 
 #endif  // Vision_H
