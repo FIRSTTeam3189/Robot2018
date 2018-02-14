@@ -5,7 +5,7 @@ ArmGoToPoint::ArmGoToPoint(double x, double y) {
 	// eg. Requires(Robot::chassis.get());
 	Requires(arm.get());
 
-	arm->armPosition(x,y,armAngle);
+	arm->GetAnglesForTarget(x,y,armAngle);
 
 }
 

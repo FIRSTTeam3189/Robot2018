@@ -30,64 +30,23 @@ double Arm::GetElbowPot() {
 	return elbowPot->Get();
 
 }
-void Arm::armPosition(double x, double y, double destination_x, double destination_y, double angles[3]) {
-	double dis = Math.sqrt(Math.pow(x-current_x, 2)+Math.pow(y-current_y, 2));
-	double ux = ((x-current_x)/(dis))+current_x;
-	double uy = ((y-current_y)/(dis))+current_y;
 
+void Arm::GetAnglesForTarget(double x, double y, double angles[3]) {
 	//get the distance between the destination and the shoulder joint(origin)
-	double length = sqrt(Math.pow(ux, 2) + pow(uy, 2));
+	double length = sqrt(pow(x, 2) + pow(y, 2));
 	//calculate the inner elbow angle with law of cosines.
-	double inner_elbow_angle = Math.acos(
+	double inner_elbow_angle = acos(
 			(((ARM_TWO_LENGTH * ARM_TWO_LENGTH)
 					+ (ARM_ONE_LENGTH * ARM_ONE_LENGTH) - (length * length))
 					/ (2 * ARM_TWO_LENGTH * ARM_ONE_LENGTH)));
 	//PI - inner_angle to get the angle the arm needs to go to.
-	angles[1] = Math.PI - inner_elbow_angle;
-	// if the point is near the back of the bot negate the angle
-	if (ux >= ARM_SWITCH)
-		angles[1] = -angles[1];
-	//calcultae the angle between the line between shoulder(origin)
-	// and destination point to go to using the law of sines with the elbow angle.
-	inner_shoulder_angle = Math.asin(
-			((ARM_TWO_LENGTH * sin(inner_elbow_angle)) / length));
-
-	// get the unit vector of line between shoulder(origin) and destination point
-	// i only do the x because the y will be multiplied out when we dot product by
-	// the negitive x axis vector.
-	double unitx = ux / (length);
-	double unity = uy / (length);
-
-	// cos^-1((A * B)/|A||B|)
-	// A = unit vector of line between shoulder(origin) and destination point
-	// |A| = length of unit vector of line between shoulder(origin) and destination point(its 1)
-	// B = unit vector going down the negitive X axis
-	// |B| = length of unit vector going down the negitive X axis(its 1)
-	subangle = acos(ARM_SWITCH <= ux ? unitx : -unity);	// this is simplifies due to a lot of the values being 1 or zero
-	//substract PI by the angles we got above to find the angle between the Stage 1 arm and the positive X axis.
-	angles[0] = ((
-			uy < 0 && ux > ARM_SWITCH ?
-					-subangle : subangle) + inner_shoulder_angle);
-	if (x <= ARM_SWITCH)
-		angles[0] = (3 * Math.PI / 2)
-				- angles[0];
-}
-void Arm::armPosition(double x, double y, double angles[3]) {
-	//get the distance between the destination and the shoulder joint(origin)
-	double length = sqrt(Math.pow(x, 2) + pow(y, 2));
-	//calculate the inner elbow angle with law of cosines.
-	double inner_elbow_angle = Math.acos(
-			(((ARM_TWO_LENGTH * ARM_TWO_LENGTH)
-					+ (ARM_ONE_LENGTH * ARM_ONE_LENGTH) - (length * length))
-					/ (2 * ARM_TWO_LENGTH * ARM_ONE_LENGTH)));
-	//PI - inner_angle to get the angle the arm needs to go to.
-	angles[1] = Math.PI - inner_elbow_angle;
+	angles[1] = M_PI - inner_elbow_angle;
 	// if the point is near the back of the bot negate the angle
 	if (x >= ARM_SWITCH)
 		angles[1] = -angles[1];
 	//calcultae the angle between the line between shoulder(origin)
 	// and destination point to go to using the law of sines with the elbow angle.
-	inner_shoulder_angle = Math.asin(
+	double inner_shoulder_angle = asin(
 			((ARM_TWO_LENGTH * sin(inner_elbow_angle)) / length));
 
 	// get the unit vector of line between shoulder(origin) and destination point
@@ -101,13 +60,57 @@ void Arm::armPosition(double x, double y, double angles[3]) {
 	// |A| = length of unit vector of line between shoulder(origin) and destination point(its 1)
 	// B = unit vector going down the negitive X axis
 	// |B| = length of unit vector going down the negitive X axis(its 1)
-	subangle = acos(ARM_SWITCH <= x ? unitx : -unity);	// this is simplifies due to a lot of the values being 1 or zero
+	double subangle = acos(ARM_SWITCH <= x ? unitx : -unity);	// this is simplifies due to a lot of the values being 1 or zero
 	//substract PI by the angles we got above to find the angle between the Stage 1 arm and the positive X axis.
 	angles[0] = ((
 			y < 0 && x > ARM_SWITCH ?
 					-subangle : subangle) + inner_shoulder_angle);
 	if (x <= ARM_SWITCH)
-		angles[0] = (3 * Math.PI / 2)
+		angles[0] = (3 * M_PI / 2)
+				- angles[0];
+}
+
+void Arm::GetNewPointOnLine(double x, double y, double angles[3]) {
+	Point current_location = GetCurrentLocation();
+	double dis = sqrt(pow(x-current_location.x, 2) + pow(y-current_location.y, 2));
+	double ux = ((x-current_location.x)/(dis))+current_location.x;
+	double uy = ((y-current_location.y)/(dis))+current_location.y;
+
+	//get the distance between the destination and the shoulder joint(origin)
+	double length = sqrt(pow(ux, 2) + pow(uy, 2));
+	//calculate the inner elbow angle with law of cosines.
+	double inner_elbow_angle = acos(
+			(((ARM_TWO_LENGTH * ARM_TWO_LENGTH)
+					+ (ARM_ONE_LENGTH * ARM_ONE_LENGTH) - (length * length))
+					/ (2 * ARM_TWO_LENGTH * ARM_ONE_LENGTH)));
+	//PI - inner_angle to get the angle the arm needs to go to.
+	angles[1] = M_PI - inner_elbow_angle;
+	// if the point is near the back of the bot negate the angle
+	if (ux >= ARM_SWITCH)
+		angles[1] = -angles[1];
+	//calcultae the angle between the line between shoulder(origin)
+	// and destination point to go to using the law of sines with the elbow angle.
+	double inner_shoulder_angle = asin(
+			((ARM_TWO_LENGTH * sin(inner_elbow_angle)) / length));
+
+	// get the unit vector of line between shoulder(origin) and destination point
+	// i only do the x because the y will be multiplied out when we dot product by
+	// the negitive x axis vector.
+	double unitx = ux / (length);
+	double unity = uy / (length);
+
+	// cos^-1((A * B)/|A||B|)
+	// A = unit vector of line between shoulder(origin) and destination point
+	// |A| = length of unit vector of line between shoulder(origin) and destination point(its 1)
+	// B = unit vector going down the negitive X axis
+	// |B| = length of unit vector going down the negitive X axis(its 1)
+	double subangle = acos(ARM_SWITCH <= ux ? unitx : -unity);	// this is simplifies due to a lot of the values being 1 or zero
+	//substract PI by the angles we got above to find the angle between the Stage 1 arm and the positive X axis.
+	angles[0] = ((
+			uy < 0 && ux > ARM_SWITCH ?
+					-subangle : subangle) + inner_shoulder_angle);
+	if (x <= ARM_SWITCH)
+		angles[0] = (3 * M_PI / 2)
 				- angles[0];
 }
 
