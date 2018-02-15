@@ -8,6 +8,11 @@ Arm::Arm() :
 
 }
 
+Point::Point(double x_, double y_){
+	x = x_;
+	y = y_;
+}
+
 void Arm::InitDefaultCommand() {
 
 	// Set the default command for a subsystem here.
@@ -31,17 +36,6 @@ double Arm::GetElbowPot() {
 
 }
 
-Point Arm::GetCurrentLocation(){
-	return currentLocation->Get();
-}
-double Arm::GetShoulderAngle(){
-	return shoulderAngle->Get();
-}
-double Arm::GetElbowAngle(){
-
-}
-
-
 void Arm::GetAnglesForTarget(double x, double y, double angles[3]) {
 	//get the distance between the destination and the shoulder joint(origin)
 	double length = sqrt(pow(x, 2) + pow(y, 2));
@@ -55,30 +49,42 @@ void Arm::GetAnglesForTarget(double x, double y, double angles[3]) {
 	// if the point is near the back of the bot negate the angle
 	if (x >= ARM_SWITCH)
 		angles[1] = -angles[1];
-	//calcultae the angle between the line between shoulder(origin)
+	//Calculate the angle between the line between shoulder(origin)
 	// and destination point to go to using the law of sines with the elbow angle.
 	double inner_shoulder_angle = asin(
 			((ARM_TWO_LENGTH * sin(inner_elbow_angle)) / length));
 
 	// get the unit vector of line between shoulder(origin) and destination point
 	// i only do the x because the y will be multiplied out when we dot product by
-	// the negitive x axis vector.
+	// the negative x axis vector.
 	double unitx = x / (length);
 	double unity = y / (length);
 
 	// cos^-1((A * B)/|A||B|)
 	// A = unit vector of line between shoulder(origin) and destination point
 	// |A| = length of unit vector of line between shoulder(origin) and destination point(its 1)
-	// B = unit vector going down the negitive X axis
-	// |B| = length of unit vector going down the negitive X axis(its 1)
+	// B = unit vector going down the negative X axis
+	// |B| = length of unit vector going down the negative X axis(its 1)
 	double subangle = acos(ARM_SWITCH <= x ? unitx : -unity);	// this is simplifies due to a lot of the values being 1 or zero
-	//substract PI by the angles we got above to find the angle between the Stage 1 arm and the positive X axis.
+	//Subtract PI by the angles we got above to find the angle between the Stage 1 arm and the positive X axis.
 	angles[0] = ((
 			y < 0 && x > ARM_SWITCH ?
 					-subangle : subangle) + inner_shoulder_angle);
 	if (x <= ARM_SWITCH)
 		angles[0] = (3 * M_PI / 2)
 				- angles[0];
+}
+double Arm::GetShoulderAngle(){
+	return (((GetShoulderPot()-SHOULDER_POT_MIN)/(SHOULDER_POT_MAX-SHOULDER_POT_MIN))*(SHOULDER_ANGLE_MAX-SHOULDER_ANGLE_MIN)+SHOULDER_ANGLE_MIN);
+}
+
+double Arm::GetElbowAngle(){
+	return(((GetElbowPot()-ELBOW_POT_MIN)/(ELBOW_POT_MAX-ELBOW_ANGLE_MIN))*(ELBOW_ANGLE_MAX-ELBOW_ANGLE_MIN)+ELBOW_ANGLE_MIN);
+}
+
+Point Arm::GetCurrentLocation() {
+	return Point( ((cos(GetShoulderAngle()) * ARM_ONE_LENGTH)) + (cos(GetElbowAngle()) * ARM_TWO_LENGTH ),
+			((sin(GetShoulderAngle()) * ARM_ONE_LENGTH) + ((sin(GetElbowAngle()) * ARM_TWO_LENGTH))) );
 }
 
 void Arm::GetNewPointOnLine(double x, double y, double angles[3]) {
