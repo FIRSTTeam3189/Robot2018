@@ -12,8 +12,6 @@ public:
 	void End();
 	void Interrupted();
 
-private:
-	double seconds;
 };
 
 #endif  // SendData_H

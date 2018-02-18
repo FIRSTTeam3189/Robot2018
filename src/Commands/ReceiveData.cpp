@@ -2,7 +2,7 @@
 #include <Subsystems/Vision.h>
 #include <memory>
 
-ReceiveData::ReceiveData(double seconds_) {
+ReceiveData::ReceiveData() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(CommandBase::vision.get());

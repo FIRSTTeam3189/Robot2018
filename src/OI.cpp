@@ -27,7 +27,7 @@ OI::OI() {
 	outtake->WhileHeld(new ClawOuttake());
 
 	receiveData->WhenPressed(new ReceiveData());
-	//mAgIc NuMb3Rs
+	// mAgIc NuMb3Rs
 	sendData->WhenPressed(new SendData(0.1));
 }
 

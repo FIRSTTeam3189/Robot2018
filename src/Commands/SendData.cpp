@@ -4,7 +4,6 @@ SendData::SendData(double seconds) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(CommandBase::vision.get());
-	this->seconds = seconds;
 	SetTimeout(seconds);
 }
 
