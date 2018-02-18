@@ -1,16 +1,17 @@
-#ifndef PingVision_H
-#define PingVision_H
+#ifndef ReceiveData_H
+#define ReceiveData_H
 
 #include "../CommandBase.h"
 
-class PingVision : public CommandBase {
+class ReceiveData : public CommandBase {
 public:
-	PingVision();
+	ReceiveData();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
+
 };
 
-#endif  // PingVision_H
+#endif  // ReceiveData_H

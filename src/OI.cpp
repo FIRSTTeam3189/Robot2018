@@ -1,4 +1,6 @@
 #include <Commands/MoveForward.h>
+#include <Commands/ReceiveData.h>
+#include <Commands/SendData.h>
 #include "OI.h"
 #include "Commands/ArmGoToPoint.h"
 
@@ -7,7 +9,6 @@
 #include "Commands/Autonomous.h"
 #include "Commands/ClawIntake.h"
 #include "Commands/ClawOuttake.h"
-#include "Commands/PingVision.h"
 
 OI::OI() {
 
@@ -19,12 +20,15 @@ OI::OI() {
 	moveArm = new JoystickButton(&left, 3);
 	intake = new JoystickButton(&copilot, 4);
 	outtake = new JoystickButton(&copilot, 5);
-	visionProcessing = new JoystickButton(&copilot, 10);
+	receiveData = new JoystickButton(&copilot, 10);
+	sendData = new JoystickButton(&copilot, 11);
 
 	intake->WhileHeld(new ClawIntake());
 	outtake->WhileHeld(new ClawOuttake());
 
-	visionProcessing->WhenPressed(new PingVision());
+	receiveData->WhenPressed(new ReceiveData());
+	//mAgIc NuMb3Rs
+	sendData->WhenPressed(new SendData(0.1));
 }
 
 double OI::GetLeftY() {

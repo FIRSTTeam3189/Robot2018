@@ -1,7 +1,6 @@
-#include "Vision.h"
-#include "../RobotMap.h"
-#include "Constants.h"
-#include "SmartDashboard/SmartDashboard.h"
+#include <SmartDashboard/SmartDashboard.h>
+#include <Subsystems/Vision.h>
+#include <string>
 
 #define BUFFER_SIZE 128
 
@@ -48,6 +47,7 @@ void Vision::ReceiveData() {
 }
 
 void Vision::SendData() {
-	const std::string data = "taco is a good comment ";
+	const std::string data = "taco is a good comment";
 	uart->Write(data.c_str());									//taco
+	uart->Flush();
 }

@@ -27,7 +27,8 @@ private:
 	frc::JoystickButton* leftTwo;
 	frc::JoystickButton* moveArm;
 
-	frc::JoystickButton* visionProcessing;
+	frc::JoystickButton* receiveData;
+	frc::JoystickButton* sendData;
 
 };
 
