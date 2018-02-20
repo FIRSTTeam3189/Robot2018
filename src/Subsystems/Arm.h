@@ -84,6 +84,7 @@ public:
 	 */
 	double ShoulderToPot(double angle);
 	double ElbowToPot(double angle);
+	void stop();
 	void InitHardware();
 
 };

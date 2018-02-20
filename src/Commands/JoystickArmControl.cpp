@@ -4,6 +4,7 @@ JoystickArmControl::JoystickArmControl() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(CommandBase::arm.get());
+	Requires(drivetrain.get());
 }
 
 // Called just before this Command runs the first time
@@ -13,7 +14,8 @@ void JoystickArmControl::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void JoystickArmControl::Execute() {
-	CommandBase::arm->ControlShoulder(CommandBase::oi->GetCoPilotY());
+	arm->ControlShoulder(oi->GetLeftY());
+	arm->ControlElbow(oi->GetRightY());
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -23,7 +25,7 @@ bool JoystickArmControl::IsFinished() {
 
 // Called once after isFinished returns true
 void JoystickArmControl::End() {
-	CommandBase::arm->ControlShoulder(0);
+	arm->stop();
 }
 
 // Called when another command which requires one or more of the same

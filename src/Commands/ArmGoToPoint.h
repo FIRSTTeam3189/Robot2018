@@ -12,9 +12,9 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
-
 private:
-	double armAngle[3] {0,0,0};
+	double x, y;
+	Point last_position;
 };
 
 

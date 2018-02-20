@@ -24,6 +24,7 @@ constexpr double ARM_ONE_LENGTH = 40;
 constexpr double ARM_TWO_LENGTH = 40;
 constexpr double ARM_THREE_LENGTH = 10;
 constexpr double phi = 0; // It can be 0 to pi/2 (90)
+constexpr double ARM_POSITION_TOLERANCE = 3;
 
 
 constexpr double ARM_ANGLE_RANGE = 0.052;

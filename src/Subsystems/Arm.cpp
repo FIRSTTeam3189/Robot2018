@@ -86,7 +86,12 @@ Point Arm::GetCurrentLocation() {
 			((sin(GetShoulderAngle()) * ARM_ONE_LENGTH) + ((sin(GetElbowAngle()) * ARM_TWO_LENGTH))) );
 }
 
-void Arm::GetNewPointOnLine(double x, double y, double angles[3]) {
+/**
+ * @param x coordinate to goto.
+ * @param y coordinate to goto.
+ * @param angles angles of new target posistion. [0] = shoulder angle, [1] = elbow angle.
+ */
+void Arm::GetNewPointOnLine(double x, double y, double angles[2]) {
 	Point current_location = GetCurrentLocation();
 	double dis = sqrt(pow(x-current_location.x, 2) + pow(y-current_location.y, 2));
 	double ux = ((x-current_location.x)/(dis))+current_location.x;
@@ -139,6 +144,12 @@ double Arm::ElbowToPot(double angle) {
 	return (((angle - ELBOW_ANGLE_MIN) / (ELBOW_ANGLE_MAX - ELBOW_ANGLE_MIN))
 			* (ELBOW_POT_MAX - ELBOW_POT_MIN) + ELBOW_POT_MIN);
 }
+
+void Arm::stop(){
+	shoulderMotor->Set(ControlMode::PercentOutput, 0);
+	elbowMotor->Set(ControlMode::PercentOutput, 0);
+}
+
 void Arm::InitHardware() {
 	shoulderMotor = new CANTalon(ARM_SHOULDER_MOTOR);
 	elbowMotor = new CANTalon(ARM_ELBOW_MOTOR);
