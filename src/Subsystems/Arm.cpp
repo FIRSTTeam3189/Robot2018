@@ -28,7 +28,6 @@ double Arm::GetShoulderPot() {
 }
 double Arm::GetElbowPot() {
 	return elbowPot->Get();
-
 }
 
 Point Arm::GetCurrentLocation(){
