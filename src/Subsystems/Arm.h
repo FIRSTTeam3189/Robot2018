@@ -14,6 +14,7 @@ using Pot = AnalogPotentiometer;
 
 struct Point{
 public:
+	Point(double x, double y);
 	double x;
 	double y;
 };
