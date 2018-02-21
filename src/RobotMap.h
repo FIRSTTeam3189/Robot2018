@@ -22,4 +22,10 @@ constexpr int WRIST_POT = 2;
 
 constexpr int PISTON_EXTEND = 0;
 constexpr int PISTON_RETRACT = 1;
+
+constexpr int ELBOW_BRAKE_PISTON_EXTEND = 2;
+constexpr int ELBOW_BRAKE_PISTON_RETRACT = 3;
+constexpr int SHOULDER_BRAKE_PISTON_EXTEND = 2;
+constexpr int SHOULDER_BRAKE_PISTON_RETRACT = 3;
+
 #endif  // ROBOTMAP_H

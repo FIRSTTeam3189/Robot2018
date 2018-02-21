@@ -14,30 +14,68 @@
 class Piston {
 private:
 	Solenoid* extended;
-	Solenoid* retracted;
 public:
+
+	/**
+	 * Channels air into The extension of piston.
+	 */
+	virtual void Extend() = 0;
+
+	/**
+	 * Channels air into the Retraction of piston
+	 */
+	virtual void Retract() = 0;
+
+	/**
+	 * Toggles the state of the piston.f
+	 */
+	virtual void Toggle() = 0;
+};
+
+class PistonSingle: Piston {
+	PistonSingle(int extendID, bool extended = false);
+
+	/**
+	 * Channels air into The extension of piston.
+	 */
+	virtual void Extend();
+
+	/**
+	 * Channels air into the Retraction of piston
+	 */
+	virtual void Retract();
+
+	/**
+	 * Toggles the state of the piston.f
+	 */
+	virtual void Toggle();
+};
+class PistonDouble: Piston {
+private:
+	Solenoid* retracted;
+
 	/**
 	 * Provides interface for Pistons
 	 * @param extendID Device ID for extended solenoid
 	 * @param retractID Device ID for retracted solenoid
 	 * @param extended the default state of the piston
 	 */
-	Piston(int extendID, int retractID, bool extended = false);
+	PistonDouble(int extendID, int retractID, bool extended = false);
 
 	/**
 	 * Channels air into The extension of piston.
 	 */
-	void Extend();
+	virtual void Extend();
 
 	/**
 	 * Channels air into the Retraction of piston
 	 */
-	void Retract();
+	virtual void Retract();
 
 	/**
 	 * Toggles the state of the piston.f
 	 */
-	void Toggle();
+	virtual void Toggle();
 };
 
 #endif /* PISTON_H_ */

@@ -16,16 +16,17 @@ void ArmGoToPoint::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void ArmGoToPoint::Execute() {
 	double new_angles[2];
-	arm->GetNewPointOnLine(x, y, angles);
+	arm->GetNewPointOnLine(x, y, new_angles);
 
-	double sDif = new_angle[0] - arm->GetShoulderAngle();
-	double eDif = new_angle[1] - arm->GetElbowAngle();
+	double sDif = new_angles[0] - arm->GetShoulderAngle();
+	double eDif = new_angles[1] - arm->GetElbowAngle();
 
 	double shoulder_speed = 0;
 	double elbow_speed = 0;
 
-	double temp = Sdif < eDif ? eDif : sDif;
+	double temp = sDif < eDif ? eDif : sDif;
 
+	// TODO: Delete everything
 	shoulder_speed = (sDif / temp) * 0.75;
 	elbow_speed = (eDif / temp) * 0.75;
 }

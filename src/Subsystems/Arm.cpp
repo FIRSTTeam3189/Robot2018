@@ -148,6 +148,10 @@ double Arm::ElbowToPot(double angle) {
 void Arm::stop(){
 	shoulderMotor->Set(ControlMode::PercentOutput, 0);
 	elbowMotor->Set(ControlMode::PercentOutput, 0);
+	ElbowBrakePiston->Extend();
+#ifndef ONE_PORT
+	shoulderBrakePiston->Extend();
+#endif
 }
 
 void Arm::InitHardware() {
@@ -155,5 +159,34 @@ void Arm::InitHardware() {
 	elbowMotor = new CANTalon(ARM_ELBOW_MOTOR);
 	shoulderPot = new Pot(SHOULDER_POT);
 	elbowPot = new Pot(ELBOW_POT);
+# ifdef ONE_PORT
+	ElbowBrakePiston = new PistonDouble(ELBOW_BRAKE_PISTON_EXTEND,ELBOW_BRAKE_PISTON_RETRACT);
+# else
+	ElbowBrakePiston = new PistonSingle(ELBOW_BRAKE_PISTON_EXTEND);
+	shoulderBrakePiston = new PistonSingle(SHOULDER_BRAKE_PISTON_EXTEND);
+# endif
+}
 
+void Arm::ElbowBrake(){
+	ElbowBrakePiston->Extend();
+}
+
+void Arm::ElbowRelease(){
+	ElbowBrakePiston->Retract();
+}
+
+void Arm::ShoulderBrake(){
+# ifdef ONE_PORT
+	ElbowBrakePiston->Extend();
+#else
+	shoulderBrakePiston->Extend();
+#endif
+}
+
+void Arm::ShoulderRelease(){
+#ifdef ONE_PORT
+	ElbowBrakePiston->Retract();
+#else
+	shoulderBrakePiston->Retract();
+#endif
 }

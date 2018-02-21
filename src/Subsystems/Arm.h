@@ -1,5 +1,6 @@
 #ifndef Arm_H
 #define Arm_H
+//#define ONE_PORT
 
 #include <Commands/Subsystem.h>
 #include <ctre/phoenix/MotorControl/CAN/TalonSRX.h>
@@ -26,10 +27,15 @@ private:
 	CANTalon* elbowMotor;
 	Pot* elbowPot; //= Pot(ELBOW_POT, 359, 0);
 	Pot* shoulderPot; // = Pot(SHOULDER_POT, 359, 0);
+	Piston* ElbowBrakePiston;
+#ifndef ONE_PORT
+	Piston* shoulderBrakePiston;
+#endif
+
 
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-
+	// TODO kill myself
 public:
 	Arm();
 	/**
@@ -87,6 +93,16 @@ public:
 	void stop();
 	void InitHardware();
 
+
+	void ElbowBrake();
+
+	void ElbowRelease();
+
+	void ShoulderBrake();
+
+	void ShoulderRelease();
 };
+
+
 
 #endif  // Arm_H

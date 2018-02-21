@@ -61,10 +61,6 @@ void Drivetrain::EngageWinch(){
 	winchPiston->Extend();
 }
 
-void Drivetrain::EngageDrivetrain(){
-	winchPiston->Retract();
-}
-
 double Drivetrain::GetDistanceToObstacle() {
 	// Really meters in simulation since it's a rangefinder...
 	return 0.0;//rangefinder.GetAverageVoltage();
@@ -82,5 +78,5 @@ void Drivetrain::InitHardware(){
 	rearLeft->Set(ControlMode::Follower, frontLeft->GetDeviceID());
 	rearRight->Set(ControlMode::Follower, frontRight->GetDeviceID());
 
-	winchPiston = new Piston(PISTON_EXTEND,PISTON_RETRACT);
+	winchPiston = new PistonDouble(PISTON_EXTEND,PISTON_RETRACT);
 }
