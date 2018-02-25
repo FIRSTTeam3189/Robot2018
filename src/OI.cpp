@@ -6,7 +6,8 @@
 
 #include "Commands/Autonomous.h"
 #include "Commands/ClawIntake.h"
-#include "Commands/ClawOuttake.h"
+#include "Commands/ClawOpen.h"
+#include "Commands/ClawClose.h"
 
 OI::OI() {
 
@@ -14,13 +15,15 @@ OI::OI() {
 	copilot_3 = new JoystickButton(&copilot, 3);
 	leftTrigger = new JoystickButton(&left, 1);
 	leftTwo = new JoystickButton(&left, 2);
-	leftTwo->WhileHeld(new MoveForwardWhileHeld());
 	moveArm = new JoystickButton(&left, 3);
 	intake = new JoystickButton(&copilot, 4);
 	outtake = new JoystickButton(&copilot, 5);
 
-	intake->WhileHeld(new ClawIntake());
-	outtake->WhileHeld(new ClawOuttake());
+	leftTwo->WhileHeld(new MoveForwardWhileHeld());
+	intake->WhenPressed(new ClawOpen());
+	outtake->WhenPressed(new ClawClose());
+	copilot_2->WhenPressed(new WristLift());
+	copilot_3->WhenPressed(new WristLower());
 }
 
 double OI::GetLeftY() {
