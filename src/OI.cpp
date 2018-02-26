@@ -8,6 +8,8 @@
 #include "Commands/ClawIntake.h"
 #include "Commands/ClawOpen.h"
 #include "Commands/ClawClose.h"
+#include "Commands/WristLift.h"
+#include "Commands/WristLower.h"
 
 OI::OI() {
 
@@ -20,8 +22,8 @@ OI::OI() {
 	outtake = new JoystickButton(&copilot, 5);
 
 	leftTwo->WhileHeld(new MoveForwardWhileHeld());
-	intake->WhenPressed(new ClawOpen());
-	outtake->WhenPressed(new ClawClose());
+	intake->WhileHeld(new ClawIntake());
+	outtake->WhileHeld(new ClawIntake());
 	copilot_2->WhenPressed(new WristLift());
 	copilot_3->WhenPressed(new WristLower());
 }

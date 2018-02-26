@@ -49,9 +49,6 @@ public:
 	void Drive(double left, double right);
 	//starts the winch
 	void EngageWinch();
-
-	//starts the drivetrain
-	void EngageDrivetrain();
 	/**
 	 * Stops all motors
 	 */

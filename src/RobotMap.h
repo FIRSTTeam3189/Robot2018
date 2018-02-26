@@ -4,11 +4,11 @@
 constexpr int CLAW_EXTEND = 2;
 constexpr int CLAW_RETRACT = 3;
 
-constexpr int LEFT_CLAW_MOTOR = 5;
-constexpr int RIGHT_CLAW_MOTOR = 6;
+constexpr int LEFT_CLAW_MOTOR = 3;
+constexpr int RIGHT_CLAW_MOTOR = 4;
 
-constexpr int DRIVE_RIGHT_FRONT = 4;
-constexpr int DRIVE_RIGHT_BACK = 3;
+constexpr int DRIVE_RIGHT_FRONT = 5;
+constexpr int DRIVE_RIGHT_BACK = 6;
 constexpr int DRIVE_LEFT_FRONT = 1;
 constexpr int DRIVE_LEFT_BACK = 2;
 
@@ -28,4 +28,5 @@ constexpr int ELBOW_BRAKE_PISTON_RETRACT = 3;
 constexpr int SHOULDER_BRAKE_PISTON_EXTEND = 2;
 constexpr int SHOULDER_BRAKE_PISTON_RETRACT = 3;
 
+constexpr int LIMIT_SWITCH = 0;
 #endif  // ROBOTMAP_H

@@ -78,5 +78,5 @@ void Drivetrain::InitHardware(){
 	rearLeft->Set(ControlMode::Follower, frontLeft->GetDeviceID());
 	rearRight->Set(ControlMode::Follower, frontRight->GetDeviceID());
 
-	winchPiston = new PistonDouble(PISTON_EXTEND,PISTON_RETRACT);
+	winchPiston = new PistonDouble(PISTON_EXTEND,PISTON_RETRACT,false);
 }

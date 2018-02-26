@@ -8,7 +8,7 @@
 #include <SmartDashboard/SmartDashboard.h>
 #include <AnalogPotentiometer.h>
 #include "RobotMap.h"
-#include "Piston.h"
+#include "Utils/Piston.h"
 
 
 
