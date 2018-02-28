@@ -21,9 +21,9 @@ OI::OI() {
 	intake = new JoystickButton(&copilot, 4);
 	outtake = new JoystickButton(&copilot, 5);
 
-	leftTwo->WhileHeld(new MoveForwardWhileHeld());
+	//leftTwo->WhileHeld(new MoveForwardWhileHeld());
 	intake->WhileHeld(new ClawIntake());
-	outtake->WhileHeld(new ClawOpen());
+	outtake->WhileHeld(new ClawOuttake());
 	copilot_2->WhenPressed(new WristLift());
 	copilot_3->WhenPressed(new WristLower());
 }
