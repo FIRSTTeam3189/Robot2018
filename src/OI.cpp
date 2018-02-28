@@ -23,7 +23,7 @@ OI::OI() {
 
 	leftTwo->WhileHeld(new MoveForwardWhileHeld());
 	intake->WhileHeld(new ClawIntake());
-	outtake->WhileHeld(new ClawIntake());
+	outtake->WhileHeld(new ClawOpen());
 	copilot_2->WhenPressed(new WristLift());
 	copilot_3->WhenPressed(new WristLower());
 }

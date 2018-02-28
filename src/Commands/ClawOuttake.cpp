@@ -9,7 +9,7 @@ ClawOuttake::ClawOuttake() {
 
 // Called just before this Command runs the first time
 void ClawOuttake::Initialize() {
-	claw->SetPower(CLAW_OUTAKE_POWER);
+	claw->SetPower(-CLAW_OUTAKE_POWER);
 	claw->ClawClose();
 
 }

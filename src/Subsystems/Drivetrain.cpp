@@ -61,6 +61,10 @@ void Drivetrain::EngageWinch(){
 	winchPiston->Extend();
 }
 
+/*void Drivetrain::EngageDrivetrain(){
+	winchPiston->Retract()
+}
+*/
 double Drivetrain::GetDistanceToObstacle() {
 	// Really meters in simulation since it's a rangefinder...
 	return 0.0;//rangefinder.GetAverageVoltage();
@@ -75,8 +79,13 @@ void Drivetrain::InitHardware(){
 	frontLeft->SetInverted(true);
 	rearLeft->SetInverted(true);
 
+	frontLeft->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
+	frontRight->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
+	rearLeft->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
+	rearRight->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
+
 	rearLeft->Set(ControlMode::Follower, frontLeft->GetDeviceID());
 	rearRight->Set(ControlMode::Follower, frontRight->GetDeviceID());
 
-	winchPiston = new PistonDouble(PISTON_EXTEND,PISTON_RETRACT,false);
+	winchPiston = new PistonDouble(GEARBOX_EXTEND, GEARBOX_RETRACT,false);
 }
