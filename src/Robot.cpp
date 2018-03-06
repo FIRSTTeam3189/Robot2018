@@ -16,6 +16,7 @@ void Robot::RobotInit() {
 	CommandBase::arm->InitHardware();
 	CommandBase::claw->InitHardware();
 	CommandBase::wrist->InitHardware();
+	CommandBase::oi->InitilizeOI();
 
 	c = new Compressor(0);
 

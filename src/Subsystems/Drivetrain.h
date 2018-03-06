@@ -81,6 +81,8 @@ private:
 	CANTalon* frontRight;
 	CANTalon* rearRight;
 	Piston* winchPiston;
+	Encoder* leftEncoder;
+	Encoder* rightEncoder;
 
 	//frc::Encoder rightEncoder { 3, 4 };
 	//frc::AnalogInput rangefinder { 6 };

@@ -15,11 +15,11 @@ constexpr int ARM_ELBOW_MOTOR = 8;
 constexpr int ARM_WRIST_MOTOR = 9;
 
 //Pistons
-constexpr int DRIVETRAIN_GEARBOX_EXTEND = 0;
-constexpr int DRIVETRAIN_GEARBOX_RETRACT = 1;
+constexpr int DRIVETRAIN_GEARBOX_EXTEND = 2;
+constexpr int DRIVETRAIN_GEARBOX_RETRACT = 3;
 //for presentation
-constexpr int PISTON_EXTEND = 2;//up
-constexpr int PISTON_RETRACT = 3;//down
+constexpr int PISTON_EXTEND = 0;//up
+constexpr int PISTON_RETRACT = 1;//down
 
 constexpr int CLAW_EXTEND = 4;//closed
 constexpr int CLAW_RETRACT = 5;//open
@@ -35,4 +35,10 @@ constexpr int LIMIT_SWITCH = 0;
 constexpr int ELBOW_POT = 0;
 constexpr int SHOULDER_POT = 1;
 constexpr int WRIST_POT = 2;
+
+constexpr int RIGHT_ENCODER1 = 3;
+constexpr int RIGHT_ENCODER2 = 4;
+constexpr int LEFT_ENCODER1 = 5;
+constexpr int LEFT_ENCODER2 = 6;
+
 #endif  // ROBOTMAP_H

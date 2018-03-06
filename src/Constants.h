@@ -33,4 +33,9 @@ constexpr double ARM_SWITCH = 15;
 constexpr double CLAW_INTAKE_POWER = 0.5;
 constexpr double CLAW_OUTAKE_POWER = -0.5;
 
+constexpr double WHEEL_CIRCUMFERENCE= 0;
+constexpr int SIGNALS_PER_REVOLUTION = 2;
+
+constexpr double AUTO_SPEED = 0.5;
+
 #endif /* SRC_CONSTANTS_H_ */

@@ -11,6 +11,7 @@ public:
 	double GetRightY();
 	double GetCoPilotY();
 	void CheckMath();
+	void InitilizeOI();
 
 
 private:
