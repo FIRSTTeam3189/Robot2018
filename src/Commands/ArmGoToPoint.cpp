@@ -26,7 +26,6 @@ void ArmGoToPoint::Execute() {
 
 	double temp = sDif < eDif ? eDif : sDif;
 
-	// TODO: Delete everything
 	shoulder_speed = (sDif / temp) * 0.75;
 	elbow_speed = (eDif / temp) * 0.75;
 }
