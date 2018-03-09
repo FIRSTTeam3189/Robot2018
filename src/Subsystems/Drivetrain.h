@@ -49,9 +49,6 @@ public:
 	void Drive(double left, double right);
 	//starts the winch
 	void EngageWinch();
-
-	//starts the drivetrain
-	void EngageDrivetrain();
 	/**
 	 * Stops all motors
 	 */
@@ -84,6 +81,8 @@ private:
 	CANTalon* frontRight;
 	CANTalon* rearRight;
 	Piston* winchPiston;
+	Encoder* leftEncoder;
+	Encoder* rightEncoder;
 
 	//frc::Encoder rightEncoder { 3, 4 };
 	//frc::AnalogInput rangefinder { 6 };

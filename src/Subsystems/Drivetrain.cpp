@@ -54,13 +54,17 @@ void Drivetrain::Reset() {
 }
 
 double Drivetrain::GetDistance() {
-	return 0.0;//(leftEncoder.GetDistance() + rightEncoder.GetDistance()) / 2;
+	return (leftEncoder->GetDistance() + rightEncoder->GetDistance()) / 2;
 }
 
 void Drivetrain::EngageWinch(){
 	winchPiston->Extend();
 }
 
+/*void Drivetrain::EngageDrivetrain(){
+	winchPiston->Retract()
+}
+*/
 double Drivetrain::GetDistanceToObstacle() {
 	// Really meters in simulation since it's a rangefinder...
 	return 0.0;//rangefinder.GetAverageVoltage();
@@ -72,11 +76,19 @@ void Drivetrain::InitHardware(){
 	frontRight = new CANTalon(DRIVE_RIGHT_FRONT);
 	rearRight = new CANTalon(DRIVE_RIGHT_BACK);
 
-	frontLeft->SetInverted(true);
-	rearLeft->SetInverted(true);
+	frontRight->SetInverted(true);
+	rearRight->SetInverted(true);
+
+	frontLeft->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
+	frontRight->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
+	rearLeft->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
+	rearRight->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
 
 	rearLeft->Set(ControlMode::Follower, frontLeft->GetDeviceID());
 	rearRight->Set(ControlMode::Follower, frontRight->GetDeviceID());
 
-	winchPiston = new PistonDouble(PISTON_EXTEND,PISTON_RETRACT);
+	winchPiston = new PistonDouble(DRIVETRAIN_GEARBOX_EXTEND, DRIVETRAIN_GEARBOX_RETRACT,false);
+
+	leftEncoder = new Encoder(LEFT_ENCODER1,LEFT_ENCODER2);
+	rightEncoder = new Encoder(RIGHT_ENCODER1, RIGHT_ENCODER2);
 }

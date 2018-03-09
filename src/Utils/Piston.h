@@ -12,7 +12,7 @@
 #include <Solenoid.h>
 
 class Piston {
-private:
+protected:
 	Solenoid* extended;
 public:
 
@@ -32,7 +32,8 @@ public:
 	virtual void Toggle() = 0;
 };
 
-class PistonSingle: Piston {
+class PistonSingle: public Piston {
+public:
 	PistonSingle(int extendID, bool extended = false);
 
 	/**
@@ -50,10 +51,10 @@ class PistonSingle: Piston {
 	 */
 	virtual void Toggle();
 };
-class PistonDouble: Piston {
-private:
+class PistonDouble: public Piston {
+protected:
 	Solenoid* retracted;
-
+public:
 	/**
 	 * Provides interface for Pistons
 	 * @param extendID Device ID for extended solenoid

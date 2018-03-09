@@ -7,18 +7,15 @@
 #include <ctre/phoenix/MotorControl/ControlMode.h>
 #include <SmartDashboard/SmartDashboard.h>
 #include <AnalogPotentiometer.h>
+#include "Utils/Piston.h"
 #include "RobotMap.h"
+#include "Utils/Point.h"
 
 using CANTalon = ctre::phoenix::motorcontrol::can::TalonSRX;
 using ControlMode = ctre::phoenix::motorcontrol::ControlMode;
 using Pot = AnalogPotentiometer;
 
-struct Point{
-public:
-	Point(double x, double y);
-	double x;
-	double y;
-};
+
 
 class Arm: public frc::Subsystem {
 private:
@@ -27,9 +24,11 @@ private:
 	CANTalon* elbowMotor;
 	Pot* elbowPot; //= Pot(ELBOW_POT, 359, 0);
 	Pot* shoulderPot; // = Pot(SHOULDER_POT, 359, 0);
-	Piston* ElbowBrakePiston;
-#ifndef ONE_PORT
-	Piston* shoulderBrakePiston;
+#ifdef ONE_PORT
+	PistonDouble* ElbowBrakePiston;
+#else ONE_PORT
+	PistonSingle* ElbowBrakePiston;
+	PistonSingle* shoulderBrakePiston;
 #endif
 
 

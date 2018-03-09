@@ -5,7 +5,7 @@ ClawIntake::ClawIntake() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 
-	Requires(claw.get()); //Woah we did it, now we have SOMETHING that does NOTHING .
+	Requires(CommandBase::claw.get()); //Woah we did it, now we have SOMETHING that does NOTHING .
 }
 
 // Called just before this Command runs the first time

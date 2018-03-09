@@ -4,6 +4,7 @@
 #include <Commands/Subsystem.h>
 #include"Utils/Piston.h"
 #include<ctre/phoenix/MotorControl/CAN/TalonSRX.h>
+#include "DigitalInput.h"
 
 using CANTalon = ctre::phoenix::motorcontrol::can::TalonSRX;
 using ControlMode = ctre::phoenix::motorcontrol::ControlMode;
@@ -16,8 +17,8 @@ private:
 	CANTalon* Left;
 	CANTalon* Right;
 	Piston* TheOneTheOnlyThePiston;
-
-
+	DigitalInput* limitSwitch;
+//meme
 
 	//"Make the robot do the thing, go" -Alex
 
@@ -35,6 +36,7 @@ public:
 	void ClawOpen();
 	void ClawClose();
 	void ClawToggle();
+	bool IsBoxIn();
 };
 
 #endif  // Claw_H

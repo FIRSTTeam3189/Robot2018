@@ -8,6 +8,9 @@
 #include <SmartDashboard/SmartDashboard.h>
 #include <AnalogPotentiometer.h>
 #include "RobotMap.h"
+#include "Utils/Piston.h"
+
+
 
 using CANTalon = ctre::phoenix::motorcontrol::can::TalonSRX;
 using ControlMode = ctre::phoenix::motorcontrol::ControlMode;
@@ -20,7 +23,7 @@ private:
 
 	CANTalon* wristMotor;
 	Pot* wristPot;
-
+	PistonDouble* wristPiston;
 public:
 	/*
 	 *Provides control for the wrist of the robot.
@@ -37,6 +40,12 @@ public:
 	double GetWristPot();
 	void InitDefaultCommand();
 	void InitHardware();
+	void PistonThingyExtend();
+	void PistonThingyRetract();
+	void PistonThingyToggle();
+
+
+
 };
 
 #endif  // Wrist_H

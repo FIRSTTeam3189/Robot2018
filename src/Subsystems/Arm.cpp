@@ -8,11 +8,6 @@ Arm::Arm() :
 
 }
 
-Point::Point(double x_, double y_){
-	x = x_;
-	y = y_;
-}
-
 void Arm::InitDefaultCommand() {
 
 	// Set the default command for a subsystem here.

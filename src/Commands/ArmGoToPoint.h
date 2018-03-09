@@ -3,6 +3,7 @@
 
 #include "../CommandBase.h"
 #include "Constants.h"
+#include "Utils/Point.h"
 
 class ArmGoToPoint : public CommandBase {
 public:

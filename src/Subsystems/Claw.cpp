@@ -32,13 +32,19 @@ void Claw::ClawToggle(){
 	TheOneTheOnlyThePiston->Toggle();
 
 }
+bool Claw::IsBoxIn(){
+	return limitSwitch->Get();
+}
 void Claw::InitHardware() {
 	Left = new CANTalon(LEFT_CLAW_MOTOR);
 	Right = new CANTalon(RIGHT_CLAW_MOTOR);
 
-	TheOneTheOnlyThePiston = new Piston(CLAW_EXTEND, CLAW_RETRACT, false);
+	TheOneTheOnlyThePiston = new PistonDouble(CLAW_EXTEND, CLAW_RETRACT, false);
 
 	Left->SetInverted(true);
 	Left->Set(ControlMode::Follower, Right->GetDeviceID());
-
+	limitSwitch = new DigitalInput(LIMIT_SWITCH);
 }
+
+
+
