@@ -100,6 +100,7 @@ public:
 	void ShoulderBrake();
 
 	void ShoulderRelease();
+	void UpdateStatus();
 };
 
 

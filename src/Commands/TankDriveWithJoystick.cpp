@@ -11,7 +11,7 @@ void TankDriveWithJoystick::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void TankDriveWithJoystick::Execute() {
-	drivetrain->Drive(oi->GetLeftY(), oi->GetRightY());
+	drivetrain->Drive((oi->GetLeftY()*0.5), (oi->GetRightY()*0.5));
 }
 
 // Make this return true when this Command no longer needs to run execute()

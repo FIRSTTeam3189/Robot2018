@@ -3,15 +3,15 @@
 #include "../RobotMap.h"
 #include <math.h>
 #include <SmartDashboard/SmartDashboard.h>
+#include <Commands/JoystickArmControl.h>
+
 Arm::Arm() :
 		Subsystem("arm") {
 
 }
 
 void Arm::InitDefaultCommand() {
-
-	// Set the default command for a subsystem here.
-	// SetDefaultCommand(new MySpecialCommand());
+	SetDefaultCommand(new JoystickArmControl());
 }
 
 // Put functiom for controlling this subsystem
@@ -184,4 +184,11 @@ void Arm::ShoulderRelease(){
 #else
 	shoulderBrakePiston->Retract();
 #endif
+}
+
+void Arm::UpdateStatus(){
+	SmartDashboard::PutNumber("Elbow", elbowPot->Get());
+	SmartDashboard::PutNumber("Shoulder" , shoulderPot->Get());
+	SmartDashboard::PutNumber("Elbow Power", elbowMotor->Get());
+	SmartDashboard::PutNumber("Shoulder Power", shoulderMotor->Get());
 }
