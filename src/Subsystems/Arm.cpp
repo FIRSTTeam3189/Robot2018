@@ -190,6 +190,6 @@ void Arm::ShoulderRelease(){
 void Arm::UpdateStatus(){
 	SmartDashboard::PutNumber("Elbow", elbowPot->Get());
 	SmartDashboard::PutNumber("Shoulder" , shoulderPot->Get());
-	SmartDashboard::PutNumber("Elbow Power", elbowMotor->Get());
-	SmartDashboard::PutNumber("Shoulder Power", shoulderMotor->Get());
+	SmartDashboard::PutNumber("Elbow Power", elbowMotor->GetMotorOutputPercent());
+	SmartDashboard::PutNumber("Shoulder Power", shoulderMotor->GetMotorOutputPercent());
 }
