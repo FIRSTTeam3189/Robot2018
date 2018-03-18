@@ -48,6 +48,8 @@ public:
 
 	void TestPeriodic();
 
+	void UpdateStatus();
+
 private:
 	std::unique_ptr<frc::Command> autonomousCommand;
 	frc::SendableChooser<frc::Command*> chooser;

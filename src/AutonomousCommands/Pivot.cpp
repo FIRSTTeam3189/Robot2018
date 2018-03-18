@@ -1,6 +1,6 @@
 #include <AutonomousCommands/Pivot.h>
 
-Pivot::Pivot() {
+Pivot::Pivot(double r) {
 	Requires(CommandBase::drivetrain.get());
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());

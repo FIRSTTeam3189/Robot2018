@@ -5,8 +5,8 @@
 
 class Pivot : public CommandBase {
 public:
-	Pivot();
-	void Initialize(double radians);
+	Pivot(double r);
+	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();

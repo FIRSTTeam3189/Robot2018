@@ -39,6 +39,7 @@ void Robot::DisabledPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
 //	disable periodic
 	CommandBase::drivetrain->Log();
+	UpdateStatus();
 }
 
 /**
@@ -85,12 +86,17 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
 	CommandBase::drivetrain->Log();
+	UpdateStatus();
 }
 /**
  * Hacked
  */
 void Robot::TestPeriodic() {
 	frc::LiveWindow::GetInstance()->Run();
+}
+
+void Robot::UpdateStatus(){
+	CommandBase::arm->UpdateStatus();
 }
 
 START_ROBOT_CLASS(Robot)
