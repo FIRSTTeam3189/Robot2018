@@ -2,6 +2,7 @@
 #include "Constants.h"
 #include "../RobotMap.h"
 #include <math.h>
+#include "Commands/JoystickArmControl.h"
 #include <SmartDashboard/SmartDashboard.h>
 Arm::Arm() :
 		Subsystem("arm") {
@@ -9,9 +10,7 @@ Arm::Arm() :
 }
 
 void Arm::InitDefaultCommand() {
-
-	// Set the default command for a subsystem here.
-	// SetDefaultCommand(new MySpecialCommand());
+	SetDefaultCommand(new JoystickArmControl());
 }
 
 // Put functiom for controlling this subsystem

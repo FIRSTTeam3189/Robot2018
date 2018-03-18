@@ -1,10 +1,10 @@
+#include <AutonomousCommands/Autonomous.h>
 #include <Commands/MoveForward.h>
 #include "OI.h"
 #include "Commands/ArmGoToPoint.h"
 
 #include <SmartDashboard/SmartDashboard.h>
 
-#include "Commands/Autonomous.h"
 #include "Commands/ClawIntake.h"
 #include "Commands/ClawOuttake.h"
 #include "Commands/ClawOpen.h"

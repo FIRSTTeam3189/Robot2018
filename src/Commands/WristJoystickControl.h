@@ -3,9 +3,9 @@
 
 #include "../CommandBase.h"
 
-class ControlWinchwithJoystick : public CommandBase {
+class WinchJoystickControl : public CommandBase {
 public:
-	ControlWinchwithJoystick();
+	WinchJoystickControl();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

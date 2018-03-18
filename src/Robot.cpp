@@ -1,3 +1,4 @@
+#include <AutonomousCommands/Autonomous.h>
 #include <memory>
 
 #include <Commands/Command.h>
@@ -7,7 +8,6 @@
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
 
-#include "Commands/Autonomous.h"
 #include "Robot.h"
 #include "CommandBase.h"
 
