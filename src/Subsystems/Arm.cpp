@@ -12,7 +12,7 @@ Arm::Arm() :
 }
 
 void Arm::InitDefaultCommand() {
-	SetDefaultCommand(new JoystickArmControl());
+	//SetDefaultCommand(new JoystickArmControl());
 }
 
 // Put functiom for controlling this subsystem
@@ -153,8 +153,8 @@ void Arm::InitHardware() {
 	shoulderMotor = new CANTalon(ARM_SHOULDER_MOTOR);
 	shoulderMotor2 = new CANTalon(ARM_SHOULDER_MOTOR_2);
 	elbowMotor = new CANTalon(ARM_ELBOW_MOTOR);
-	shoulderPot = new Pot(SHOULDER_POT);
-	elbowPot = new Pot(ELBOW_POT);
+	shoulderPot = new Pot(SHOULDER_POT, 1000);
+	elbowPot = new Pot(ELBOW_POT, 1000);
 	ElbowBrakePiston = new PistonSingle(BRAKES_PISTON);
 }
 

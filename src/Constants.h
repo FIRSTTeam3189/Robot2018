@@ -8,9 +8,9 @@
 #ifndef SRC_CONSTANTS_H_
 #define SRC_CONSTANTS_H_
 
-constexpr int SHOULDER_POT_MAX = 0;
+constexpr int SHOULDER_POT_MAX = 984;
 constexpr int SHOULDER_POT_MIN = 0;
-constexpr int ELBOW_POT_MAX = 0;
+constexpr int ELBOW_POT_MAX = 991;
 constexpr int ELBOW_POT_MIN = 0;
 constexpr int WRIST_POT_MIN = 0;
 constexpr int WRIST_POT_MAX = 0;
