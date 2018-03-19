@@ -2,6 +2,7 @@
 #include "../RobotMap.h"
 #include "Constants.h"
 #include "../RobotMap.h"
+#include "Commands/WristJoystickControl.h"
 #include <math.h>
 #include <SmartDashboard/SmartDashboard.h>
 
@@ -10,6 +11,7 @@ Wrist::Wrist() : Subsystem("wrist") {
 }
 
 void Wrist::InitDefaultCommand() {
+	SetDefaultCommand(new WinchJoystickControl());
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
 }

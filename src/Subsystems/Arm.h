@@ -21,6 +21,7 @@ class Arm: public frc::Subsystem {
 private:
 
 	CANTalon* shoulderMotor;
+	CANTalon* shoulderMotor2;
 	CANTalon* elbowMotor;
 	Pot* elbowPot; //= Pot(ELBOW_POT, 359, 0);
 	Pot* shoulderPot; // = Pot(SHOULDER_POT, 359, 0);

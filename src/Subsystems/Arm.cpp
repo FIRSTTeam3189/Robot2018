@@ -19,6 +19,7 @@ void Arm::InitDefaultCommand() {
 // here. Call these from Commands.
 void Arm::ControlShoulder(double power) {
 	shoulderMotor->Set(ControlMode::PercentOutput, power);
+	shoulderMotor2->Set(ControlMode::PercentOutput, power);
 }
 void Arm::ControlElbow(double power) {
 	elbowMotor->Set(ControlMode::PercentOutput, power);
@@ -143,6 +144,7 @@ double Arm::ElbowToPot(double angle) {
 
 void Arm::stop(){
 	shoulderMotor->Set(ControlMode::PercentOutput, 0);
+	shoulderMotor2->Set(ControlMode::PercentOutput, 0);
 	elbowMotor->Set(ControlMode::PercentOutput, 0);
 	ElbowBrakePiston->Extend();
 #ifndef ONE_PORT
@@ -152,6 +154,7 @@ void Arm::stop(){
 
 void Arm::InitHardware() {
 	shoulderMotor = new CANTalon(ARM_SHOULDER_MOTOR);
+	shoulderMotor2 = new CANTalon(ARM_SHOULDER_MOTOR_2);
 	elbowMotor = new CANTalon(ARM_ELBOW_MOTOR);
 	shoulderPot = new Pot(SHOULDER_POT);
 	elbowPot = new Pot(ELBOW_POT);

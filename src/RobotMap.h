@@ -2,17 +2,18 @@
 #define ROBOTMAP_H
 
 //Motors
-constexpr int LEFT_CLAW_MOTOR = 3;
-constexpr int RIGHT_CLAW_MOTOR = 4;
+constexpr int LEFT_CLAW_MOTOR = 0;
+constexpr int RIGHT_CLAW_MOTOR = 1;
 
 constexpr int DRIVE_RIGHT_FRONT = 6;
 constexpr int DRIVE_RIGHT_BACK = 5;
 constexpr int DRIVE_LEFT_FRONT = 1;
 constexpr int DRIVE_LEFT_BACK = 2;
 
-constexpr int ARM_SHOULDER_MOTOR = 7;
-constexpr int ARM_ELBOW_MOTOR = 8;
-constexpr int ARM_WRIST_MOTOR = 9;
+constexpr int ARM_SHOULDER_MOTOR = 3;
+constexpr int ARM_SHOULDER_MOTOR_2 = 4;
+constexpr int ARM_ELBOW_MOTOR = 7;
+constexpr int ARM_WRIST_MOTOR = 8;
 
 //Pistons
 constexpr int DRIVETRAIN_GEARBOX_EXTEND = 2;
