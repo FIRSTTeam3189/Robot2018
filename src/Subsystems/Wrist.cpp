@@ -26,7 +26,7 @@ void Wrist::ControlWrist(double power) {
 void Wrist::InitHardware(){
 	wristMotor = new CANTalon(ARM_WRIST_MOTOR);
 	wristPot = new Pot(WRIST_POT);
-	wristPiston = new PistonDouble(PISTON_EXTEND, PISTON_RETRACT, false);
+	wristPiston = new PistonDouble(PISTON_PISTON);
 }
 
 void Wrist::PistonThingyExtend(){

@@ -60,10 +60,10 @@ void PistonSingle::Toggle() {
 
 }
 
-PistonData::PistonData(int extendID_, int retractID_, int deviceID_, bool extended_ = false){
-	extendID = extendID_;
-	retractID = retractID_;
-	deviceID = deviceID_;
-	extendedByDefault = extended_;
+PistonData::PistonData(int extendID, int retractID, int deviceID, bool extended){
+	this->extendID = extendID;
+	this->retractID = retractID;
+	this->deviceID = deviceID;
+	this->extendedByDefault = extended;
 }
 

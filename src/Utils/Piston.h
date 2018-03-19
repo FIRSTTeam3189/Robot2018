@@ -16,7 +16,7 @@ struct PistonData{
 	int retractID;
 	int extendID;
 	int extendedByDefault;
-	PistonData(int extendID, int retractID, int deviceID, bool extended = false);
+	PistonData(int extendID, int retractID, int deviceID = 0, bool extended = false);
 };
 
 class Piston {

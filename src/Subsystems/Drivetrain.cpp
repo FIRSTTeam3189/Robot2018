@@ -87,7 +87,7 @@ void Drivetrain::InitHardware(){
 	rearLeft->Set(ControlMode::Follower, frontLeft->GetDeviceID());
 	rearRight->Set(ControlMode::Follower, frontRight->GetDeviceID());
 
-	winchPiston = new PistonDouble(DRIVETRAIN_GEARBOX_PISTON);
+	winchPiston = new PistonDouble(DRIVETRAIN_PISTON);
 
 	leftEncoder = new Encoder(LEFT_ENCODER1,LEFT_ENCODER2);
 	rightEncoder = new Encoder(RIGHT_ENCODER1, RIGHT_ENCODER2);

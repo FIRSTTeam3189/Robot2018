@@ -18,13 +18,13 @@ constexpr int ARM_ELBOW_MOTOR = 7;
 constexpr int ARM_WRIST_MOTOR = 8;
 
 //Pistons
-constexpr int DRIVETRAIN_PISTON = PistonData(2, 3, 0, false);
+const PistonData DRIVETRAIN_PISTON = PistonData(2, 3, 0, false);
 //for presentation
-constexpr int PISTON_PISTON = PistonData(0, 1, 0, false);
+const PistonData PISTON_PISTON = PistonData(0, 1, 0, false);
 
-constexpr int CLAW_PISTON = PistonData(0, 7, 1, false);
+const PistonData CLAW_PISTON = PistonData(0, 7, 1, false);
 
-constexpr int BRAKES_PISTON = PistonData(4, 5, 1, false);
+const PistonData BRAKES_PISTON = PistonData(4, 5, 1, false);
 //constexpr int SHOULDER_BRAKE_PISTON = PistonData(7, 8, 1, false);
 
 //inputs
