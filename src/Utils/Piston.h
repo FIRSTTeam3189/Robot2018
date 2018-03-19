@@ -11,6 +11,14 @@
 #include <WPILib.h>
 #include <Solenoid.h>
 
+struct PistonData{
+	int deviceID;
+	int retractID;
+	int extendID;
+	int extendedByDefault;
+	PistonData(int extendID, int retractID, int deviceID, bool extended = false);
+};
+
 class Piston {
 protected:
 	Solenoid* extended;
@@ -34,7 +42,8 @@ public:
 
 class PistonSingle: public Piston {
 public:
-	PistonSingle(int extendID, bool extended = false);
+	PistonSingle(int extendID, int deviceID, bool extended = false);
+	PistonSingle(PistonData init);
 
 	/**
 	 * Channels air into The extension of piston.
@@ -51,6 +60,7 @@ public:
 	 */
 	virtual void Toggle();
 };
+
 class PistonDouble: public Piston {
 protected:
 	Solenoid* retracted;
@@ -61,7 +71,8 @@ public:
 	 * @param retractID Device ID for retracted solenoid
 	 * @param extended the default state of the piston
 	 */
-	PistonDouble(int extendID, int retractID, bool extended = false);
+	PistonDouble(int extendID, int retractID, int deviceID,bool extended = false);
+	PistonDouble(PistonData init);
 
 	/**
 	 * Channels air into The extension of piston.

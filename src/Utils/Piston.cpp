@@ -2,14 +2,21 @@
  * Piston.cpp
  *
  *  Created on: Jan 9, 2018
- *      Author: scroo
+ *      Author: not dev
  */
 
 #include "Piston.h"
 
-PistonDouble::PistonDouble(int extendID, int retractID, bool extended) {
-	this->extended = new Solenoid(extendID);
-	this->retracted = new Solenoid(retractID);
+PistonDouble::PistonDouble(int extendID, int retractID, int deviceID, bool extended) {
+	this->extended = new Solenoid(deviceID, extendID);
+	this->retracted = new Solenoid(deviceID, retractID);
+	this->extended->Set(extended);
+	this->retracted->Set(!extended);
+}
+
+PistonDouble::PistonDouble(PistonData init) {
+	this->extended = new Solenoid(init.deviceID, init.extendID);
+	this->retracted = new Solenoid(init.deviceID, init.retractID);
 	this->extended->Set(extended);
 	this->retracted->Set(!extended);
 }
@@ -30,9 +37,14 @@ void PistonDouble::Toggle() {
 
 }
 
-PistonSingle::PistonSingle(int extendID, bool extended) {
-	this->extended = new Solenoid(extendID);
+PistonSingle::PistonSingle(int extendID, int deviceID, bool extended) {
+	this->extended = new Solenoid(deviceID, extendID);
 	this->extended->Set(extended);
+}
+
+PistonSingle::PistonSingle(PistonData init) {
+	this->extended = new Solenoid(init.deviceID, init.extendID);
+	this->extended->Set(init.extendedByDefault);
 }
 
 void PistonSingle::Extend() {
@@ -48,5 +60,10 @@ void PistonSingle::Toggle() {
 
 }
 
-
+PistonData::PistonData(int extendID_, int retractID_, int deviceID_, bool extended_ = false){
+	extendID = extendID_;
+	retractID = retractID_;
+	deviceID = deviceID_;
+	extendedByDefault = extended_;
+}
 

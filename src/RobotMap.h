@@ -1,6 +1,8 @@
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 
+#include <Utils/Piston.h>
+
 //Motors
 constexpr int LEFT_CLAW_MOTOR = 3;
 constexpr int RIGHT_CLAW_MOTOR = 4;
@@ -15,19 +17,14 @@ constexpr int ARM_ELBOW_MOTOR = 8;
 constexpr int ARM_WRIST_MOTOR = 9;
 
 //Pistons
-constexpr int DRIVETRAIN_GEARBOX_EXTEND = 2;
-constexpr int DRIVETRAIN_GEARBOX_RETRACT = 3;
+constexpr int DRIVETRAIN_PISTON = PistonData(2, 3, 0, false);
 //for presentation
-constexpr int PISTON_EXTEND = 0;//up
-constexpr int PISTON_RETRACT = 1;//down
+constexpr int PISTON_PISTON = PistonData(0, 1, 0, false);
 
-constexpr int CLAW_EXTEND = 4;//closed
-constexpr int CLAW_RETRACT = 5;//open
+constexpr int CLAW_PISTON = PistonData(0, 7, 1, false);
 
-constexpr int ELBOW_BRAKE_PISTON_EXTEND = 6;
-constexpr int ELBOW_BRAKE_PISTON_RETRACT = 7;
-constexpr int SHOULDER_BRAKE_PISTON_EXTEND = 8;
-constexpr int SHOULDER_BRAKE_PISTON_RETRACT = 9;
+constexpr int BRAKES_PISTON = PistonData(4, 5, 1, false);
+//constexpr int SHOULDER_BRAKE_PISTON = PistonData(7, 8, 1, false);
 
 //inputs
 constexpr int LIMIT_SWITCH = 0;
