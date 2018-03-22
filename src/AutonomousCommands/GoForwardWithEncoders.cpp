@@ -1,4 +1,4 @@
-#include "GoForwardWithEncoders.h"
+#include <AutonomousCommands/GoForwardWithEncoders.h>
 
 GoForwardWithEncoders::GoForwardWithEncoders(double distance_) {
 	Requires(drivetrain.get());

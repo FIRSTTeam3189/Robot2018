@@ -23,6 +23,8 @@ private:
 	frc::JoystickButton* copilot_3;
 	frc::JoystickButton* intake;
 	frc::JoystickButton* outtake;
+	frc::JoystickButton* right_8;
+	frc::JoystickButton* right_9;
 
 	frc::JoystickButton* leftTrigger;
 	frc::JoystickButton* leftTwo;

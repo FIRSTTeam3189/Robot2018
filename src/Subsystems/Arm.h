@@ -21,15 +21,11 @@ class Arm: public frc::Subsystem {
 private:
 
 	CANTalon* shoulderMotor;
+	CANTalon* shoulderMotor2;
 	CANTalon* elbowMotor;
 	Pot* elbowPot; //= Pot(ELBOW_POT, 359, 0);
 	Pot* shoulderPot; // = Pot(SHOULDER_POT, 359, 0);
-#ifdef ONE_PORT
-	PistonDouble* ElbowBrakePiston;
-#else ONE_PORT
 	PistonSingle* ElbowBrakePiston;
-	PistonSingle* shoulderBrakePiston;
-#endif
 
 
 	// It's desirable that everything possible under private except
@@ -100,6 +96,7 @@ public:
 	void ShoulderBrake();
 
 	void ShoulderRelease();
+	void UpdateStatus();
 };
 
 

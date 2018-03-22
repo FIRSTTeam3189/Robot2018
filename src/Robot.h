@@ -1,5 +1,6 @@
 #ifndef ROBOT_H
 #define ROBOT_H
+#include <AutonomousCommands/Autonomous.h>
 #include <memory>
 
 #include <Commands/Command.h>
@@ -9,7 +10,6 @@
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
 
-#include "Commands/Autonomous.h"
 #include "OI.h"
 #include "Subsystems/Drivetrain.h"
 #include "Compressor.h"
@@ -47,6 +47,8 @@ public:
 	void TeleopPeriodic();
 
 	void TestPeriodic();
+
+	void UpdateStatus();
 
 private:
 	std::unique_ptr<frc::Command> autonomousCommand;

@@ -39,7 +39,7 @@ void Claw::InitHardware() {
 	Left = new CANTalon(LEFT_CLAW_MOTOR);
 	Right = new CANTalon(RIGHT_CLAW_MOTOR);
 
-	TheOneTheOnlyThePiston = new PistonDouble(CLAW_EXTEND, CLAW_RETRACT, false);
+	TheOneTheOnlyThePiston = new PistonDouble(CLAW_PISTON);
 
 	Left->SetInverted(true);
 	Left->Set(ControlMode::Follower, Right->GetDeviceID());

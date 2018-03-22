@@ -2,22 +2,24 @@
 #include "Constants.h"
 #include "../RobotMap.h"
 #include <math.h>
+#include "Commands/JoystickArmControl.h"
 #include <SmartDashboard/SmartDashboard.h>
+#include <Commands/JoystickArmControl.h>
+
 Arm::Arm() :
 		Subsystem("arm") {
 
 }
 
 void Arm::InitDefaultCommand() {
-
-	// Set the default command for a subsystem here.
-	// SetDefaultCommand(new MySpecialCommand());
+	//SetDefaultCommand(new JoystickArmControl());
 }
 
 // Put functiom for controlling this subsystem
 // here. Call these from Commands.
 void Arm::ControlShoulder(double power) {
 	shoulderMotor->Set(ControlMode::PercentOutput, power);
+	shoulderMotor2->Set(ControlMode::PercentOutput, power);
 }
 void Arm::ControlElbow(double power) {
 	elbowMotor->Set(ControlMode::PercentOutput, power);
@@ -142,24 +144,18 @@ double Arm::ElbowToPot(double angle) {
 
 void Arm::stop(){
 	shoulderMotor->Set(ControlMode::PercentOutput, 0);
+	shoulderMotor2->Set(ControlMode::PercentOutput, 0);
 	elbowMotor->Set(ControlMode::PercentOutput, 0);
 	ElbowBrakePiston->Extend();
-#ifndef ONE_PORT
-	shoulderBrakePiston->Extend();
-#endif
 }
 
 void Arm::InitHardware() {
 	shoulderMotor = new CANTalon(ARM_SHOULDER_MOTOR);
+	shoulderMotor2 = new CANTalon(ARM_SHOULDER_MOTOR_2);
 	elbowMotor = new CANTalon(ARM_ELBOW_MOTOR);
-	shoulderPot = new Pot(SHOULDER_POT);
-	elbowPot = new Pot(ELBOW_POT);
-# ifdef ONE_PORT
-	ElbowBrakePiston = new PistonDouble(ELBOW_BRAKE_PISTON_EXTEND,ELBOW_BRAKE_PISTON_RETRACT);
-# else
-	ElbowBrakePiston = new PistonSingle(ELBOW_BRAKE_PISTON_EXTEND);
-	shoulderBrakePiston = new PistonSingle(SHOULDER_BRAKE_PISTON_EXTEND);
-# endif
+	shoulderPot = new Pot(SHOULDER_POT, 1000);
+	elbowPot = new Pot(ELBOW_POT, 1000);
+	ElbowBrakePiston = new PistonSingle(BRAKES_PISTON);
 }
 
 void Arm::ElbowBrake(){
@@ -171,17 +167,16 @@ void Arm::ElbowRelease(){
 }
 
 void Arm::ShoulderBrake(){
-# ifdef ONE_PORT
 	ElbowBrakePiston->Extend();
-#else
-	shoulderBrakePiston->Extend();
-#endif
 }
 
 void Arm::ShoulderRelease(){
-#ifdef ONE_PORT
 	ElbowBrakePiston->Retract();
-#else
-	shoulderBrakePiston->Retract();
-#endif
+}
+
+void Arm::UpdateStatus(){
+	SmartDashboard::PutNumber("Elbow", elbowPot->Get());
+	SmartDashboard::PutNumber("Shoulder" , shoulderPot->Get());
+	SmartDashboard::PutNumber("Elbow Power", elbowMotor->GetMotorOutputPercent());
+	SmartDashboard::PutNumber("Shoulder Power", shoulderMotor->GetMotorOutputPercent());
 }

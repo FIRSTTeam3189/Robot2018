@@ -1,3 +1,4 @@
+#include <AutonomousCommands/Autonomous.h>
 #include <memory>
 
 #include <Commands/Command.h>
@@ -7,7 +8,6 @@
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
 
-#include "Commands/Autonomous.h"
 #include "Robot.h"
 #include "CommandBase.h"
 
@@ -39,6 +39,7 @@ void Robot::DisabledPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
 //	disable periodic
 	CommandBase::drivetrain->Log();
+	UpdateStatus();
 }
 
 /**
@@ -85,12 +86,17 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
 	CommandBase::drivetrain->Log();
+	UpdateStatus();
 }
 /**
  * Hacked
  */
 void Robot::TestPeriodic() {
 	frc::LiveWindow::GetInstance()->Run();
+}
+
+void Robot::UpdateStatus(){
+	CommandBase::arm->UpdateStatus();
 }
 
 START_ROBOT_CLASS(Robot)

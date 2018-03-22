@@ -1,16 +1,18 @@
-#include <Commands/MoveForward.h>
 #include "OI.h"
-#include "Commands/ArmGoToPoint.h"
 
 #include <SmartDashboard/SmartDashboard.h>
 
-#include "Commands/Autonomous.h"
+#include <AutonomousCommands/Autonomous.h>
 #include "Commands/ClawIntake.h"
 #include "Commands/ClawOuttake.h"
 #include "Commands/ClawOpen.h"
 #include "Commands/ClawClose.h"
 #include "Commands/WristLift.h"
 #include "Commands/WristLower.h"
+#include "Commands/ArmGoToPoint.h"
+#include "Commands/JoystickArmControl.h"
+#include "Commands/TankDriveWithJoystick.h"
+#include <Commands/MoveForward.h>
 
 OI::OI() {
 
@@ -38,12 +40,17 @@ void OI::InitilizeOI(){
 	moveArm = new JoystickButton(&left, 3);
 	intake = new JoystickButton(&copilot, 4);
 	outtake = new JoystickButton(&copilot, 5);
+	right_8 = new JoystickButton(&right, 8);
+	right_9 = new JoystickButton(&right, 9);
 
 	//leftTwo->WhileHeld(new MoveForwardWhileHeld());
 	intake->WhileHeld(new ClawIntake());
 	outtake->WhileHeld(new ClawOuttake());
 	copilot_2->WhenPressed(new WristLift());
 	copilot_3->WhenPressed(new WristLower());
+
+	right_8->WhenPressed(new JoystickArmControl());
+	right_9->WhenPressed(new TankDriveWithJoystick());
 }
 
 void OI::CheckMath() {

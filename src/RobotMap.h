@@ -1,33 +1,31 @@
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 
+#include <Utils/Piston.h>
+
 //Motors
-constexpr int LEFT_CLAW_MOTOR = 3;
-constexpr int RIGHT_CLAW_MOTOR = 4;
+constexpr int LEFT_CLAW_MOTOR = 0;
+constexpr int RIGHT_CLAW_MOTOR = 1;
 
 constexpr int DRIVE_RIGHT_FRONT = 6;
 constexpr int DRIVE_RIGHT_BACK = 5;
 constexpr int DRIVE_LEFT_FRONT = 1;
 constexpr int DRIVE_LEFT_BACK = 2;
 
-constexpr int ARM_SHOULDER_MOTOR = 7;
-constexpr int ARM_ELBOW_MOTOR = 8;
-constexpr int ARM_WRIST_MOTOR = 9;
+constexpr int ARM_SHOULDER_MOTOR = 3;
+constexpr int ARM_SHOULDER_MOTOR_2 = 4;
+constexpr int ARM_ELBOW_MOTOR = 7;
+constexpr int ARM_WRIST_MOTOR = 8;
 
 //Pistons
-constexpr int DRIVETRAIN_GEARBOX_EXTEND = 2;
-constexpr int DRIVETRAIN_GEARBOX_RETRACT = 3;
+const PistonData DRIVETRAIN_PISTON = PistonData(2, 3, 0, false);
 //for presentation
-constexpr int PISTON_EXTEND = 0;//up
-constexpr int PISTON_RETRACT = 1;//down
+const PistonData PISTON_PISTON = PistonData(0, 1, 0, false);
 
-constexpr int CLAW_EXTEND = 4;//closed
-constexpr int CLAW_RETRACT = 5;//open
+const PistonData CLAW_PISTON = PistonData(0, 7, 1, false);
 
-constexpr int ELBOW_BRAKE_PISTON_EXTEND = 6;
-constexpr int ELBOW_BRAKE_PISTON_RETRACT = 7;
-constexpr int SHOULDER_BRAKE_PISTON_EXTEND = 8;
-constexpr int SHOULDER_BRAKE_PISTON_RETRACT = 9;
+const PistonData BRAKES_PISTON = PistonData(4, 5, 1, false);
+//constexpr int SHOULDER_BRAKE_PISTON = PistonData(7, 8, 1, false);
 
 //inputs
 constexpr int LIMIT_SWITCH = 0;
