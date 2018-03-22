@@ -16,7 +16,7 @@ Drivetrain::Drivetrain() :
  * using the PS3 joystick.
  */
 void Drivetrain::InitDefaultCommand() {
-	//SetDefaultCommand(new TankDriveWithJoystick());
+	SetDefaultCommand(new TankDriveWithJoystick());
 }
 
 /**

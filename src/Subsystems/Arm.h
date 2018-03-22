@@ -97,6 +97,8 @@ public:
 
 	void ShoulderRelease();
 	void UpdateStatus();
+	bool isNearPot(double position);
+	bool GotoPot(double pot);
 };
 
 

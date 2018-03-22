@@ -152,10 +152,10 @@ void Arm::stop(){
 void Arm::InitHardware() {
 	shoulderMotor = new CANTalon(ARM_SHOULDER_MOTOR);
 	shoulderMotor2 = new CANTalon(ARM_SHOULDER_MOTOR_2);
-	elbowMotor = new CANTalon(ARM_ELBOW_MOTOR);
-	shoulderPot = new Pot(SHOULDER_POT, 1000);
-	elbowPot = new Pot(ELBOW_POT, 1000);
-	ElbowBrakePiston = new PistonSingle(BRAKES_PISTON);
+	//elbowMotor = new CANTalon(ARM_ELBOW_MOTOR);
+	shoulderPot = new Pot(SHOULDER_POT, POT_RANGE);
+	//elbowPot = new Pot(ELBOW_POT, POT_RANGE);
+	//ElbowBrakePiston = new PistonSingle(BRAKES_PISTON);
 }
 
 void Arm::ElbowBrake(){
@@ -179,4 +179,27 @@ void Arm::UpdateStatus(){
 	SmartDashboard::PutNumber("Shoulder" , shoulderPot->Get());
 	SmartDashboard::PutNumber("Elbow Power", elbowMotor->GetMotorOutputPercent());
 	SmartDashboard::PutNumber("Shoulder Power", shoulderMotor->GetMotorOutputPercent());
+}
+
+bool Arm::isNearPot(double position){
+	double pot = GetShoulderPot();
+	return pot < position + SHOULDER_POT_RANGE && pot > position + SHOULDER_POT_RANGE;
+}
+
+bool Arm::GotoPot(double position){
+	double pot = GetShoulderPot();
+	//These magic numbers are the Lowest and highest values of the AnalogPotentiometer
+	if(pot < 0 || pot > POT_RANGE)
+		ControlShoulder(0);
+		return true;
+	if (pot > position + SHOULDER_POT_RANGE) {
+		ControlShoulder(ARM_SHOULDER_SPEED);
+		return false;
+	} else if (pot < position - SHOULDER_POT_RANGE) {
+		ControlShoulder(-ARM_SHOULDER_SPEED);
+		return false;
+	} else {
+		ControlShoulder(0);
+		return true;
+	}
 }

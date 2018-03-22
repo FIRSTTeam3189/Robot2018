@@ -29,6 +29,7 @@ bool ClawIntake::IsFinished() {
 // Called once after isFinished returns true
 void ClawIntake::End() {
 	(claw->SetPower(0)); //we considered going way faster. Can't stop won't stop
+	claw->ClawClose();
 }
 
 // Called when another command which requires one or more of the same

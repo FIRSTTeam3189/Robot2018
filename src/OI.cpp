@@ -35,22 +35,21 @@ double OI::GetCoPilotY() {
 void OI::InitilizeOI(){
 	copilot_2 = new JoystickButton(&copilot, 2);
 	copilot_3 = new JoystickButton(&copilot, 3);
-	leftTrigger = new JoystickButton(&left, 1);
-	leftTwo = new JoystickButton(&left, 2);
-	moveArm = new JoystickButton(&left, 3);
-	intake = new JoystickButton(&copilot, 4);
-	outtake = new JoystickButton(&copilot, 5);
+	copilot_1 = new JoystickButton(&copilot, 1);
+	copilot_4 = new JoystickButton(&copilot, 4);
+	copilot_5 = new JoystickButton(&copilot, 5);
+	copilot_6 = new JoystickButton(&copilot, 6);
+	copilot_7 = new JoystickButton(&copilot, 7);
+	copilot_8 = new JoystickButton(&copilot, 8);
+	copilot_9 = new JoystickButton(&copilot, 9);
+	copilot_10 = new JoystickButton(&copilot, 10);
+	copilot_11 = new JoystickButton(&copilot, 11);
 	right_8 = new JoystickButton(&right, 8);
 	right_9 = new JoystickButton(&right, 9);
 
-	//leftTwo->WhileHeld(new MoveForwardWhileHeld());
-	intake->WhileHeld(new ClawIntake());
-	outtake->WhileHeld(new ClawOuttake());
-	copilot_2->WhenPressed(new WristLift());
-	copilot_3->WhenPressed(new WristLower());
 
-	right_8->WhenPressed(new JoystickArmControl());
-	right_9->WhenPressed(new TankDriveWithJoystick());
+	copilot_5->WhileHeld(new ClawIntake());
+	copilot_1->WhileHeld(new ClawOuttake());
 }
 
 void OI::CheckMath() {

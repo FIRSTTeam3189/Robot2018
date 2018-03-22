@@ -19,14 +19,21 @@ private:
 	frc::Joystick right { 1 };
 	frc::Joystick copilot { 2 };
 
+	frc::JoystickButton* copilot_1;
 	frc::JoystickButton* copilot_2;
 	frc::JoystickButton* copilot_3;
-	frc::JoystickButton* intake;
-	frc::JoystickButton* outtake;
+	frc::JoystickButton* copilot_4;
+	frc::JoystickButton* copilot_5;
+	frc::JoystickButton* copilot_6;
+	frc::JoystickButton* copilot_7;
+	frc::JoystickButton* copilot_8;
+	frc::JoystickButton* copilot_9;
+	frc::JoystickButton* copilot_10;
+	frc::JoystickButton* copilot_11;
 	frc::JoystickButton* right_8;
 	frc::JoystickButton* right_9;
 
-	frc::JoystickButton* leftTrigger;
+	frc::JoystickButton* copilot_1;
 	frc::JoystickButton* leftTwo;
 	frc::JoystickButton* moveArm;
 
