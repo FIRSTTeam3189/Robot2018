@@ -12,24 +12,24 @@ Arm::Arm() :
 }
 
 void Arm::InitDefaultCommand() {
-	//SetDefaultCommand(new JoystickArmControl());
+	SetDefaultCommand(new JoystickArmControl());
 }
 
 // Put functiom for controlling this subsystem
 // here. Call these from Commands.
 void Arm::ControlShoulder(double power) {
 	shoulderMotor->Set(ControlMode::PercentOutput, power);
-	shoulderMotor2->Set(ControlMode::PercentOutput, power);
+	//shoulderMotor2->Set(ControlMode::PercentOutput, power);
 }
 void Arm::ControlElbow(double power) {
-	elbowMotor->Set(ControlMode::PercentOutput, power);
+	//elbowMotor->Set(ControlMode::PercentOutput, power);
 }
 
 double Arm::GetShoulderPot() {
-	return shoulderPot->Get();
+	return ((shoulderPot->GetAverageVoltage() - VOLTAGE_LOW) / VOLTAGE_RANGE) * POT_RANGE;
 }
 double Arm::GetElbowPot() {
-	return elbowPot->Get();
+	//return elbowPot->Get();
 }
 
 void Arm::GetAnglesForTarget(double x, double y, double angles[3]) {
@@ -144,40 +144,40 @@ double Arm::ElbowToPot(double angle) {
 
 void Arm::stop(){
 	shoulderMotor->Set(ControlMode::PercentOutput, 0);
-	shoulderMotor2->Set(ControlMode::PercentOutput, 0);
-	elbowMotor->Set(ControlMode::PercentOutput, 0);
-	ElbowBrakePiston->Extend();
+	//shoulderMotor2->Set(ControlMode::PercentOutput, 0);
+	//elbowMotor->Set(ControlMode::PercentOutput, 0);
+	//ElbowBrakePiston->Extend();
 }
 
 void Arm::InitHardware() {
 	shoulderMotor = new CANTalon(ARM_SHOULDER_MOTOR);
-	shoulderMotor2 = new CANTalon(ARM_SHOULDER_MOTOR_2);
+	//shoulderMotor2 = new CANTalon(ARM_SHOULDER_MOTOR_2);
 	//elbowMotor = new CANTalon(ARM_ELBOW_MOTOR);
-	shoulderPot = new Pot(SHOULDER_POT, POT_RANGE);
+	shoulderPot = new AnalogInput(SHOULDER_POT);
 	//elbowPot = new Pot(ELBOW_POT, POT_RANGE);
 	//ElbowBrakePiston = new PistonSingle(BRAKES_PISTON);
 }
 
 void Arm::ElbowBrake(){
-	ElbowBrakePiston->Extend();
+	//ElbowBrakePiston->Extend();
 }
 
 void Arm::ElbowRelease(){
-	ElbowBrakePiston->Retract();
+	//ElbowBrakePiston->Retract();
 }
 
 void Arm::ShoulderBrake(){
-	ElbowBrakePiston->Extend();
+	//ElbowBrakePiston->Extend();
 }
 
 void Arm::ShoulderRelease(){
-	ElbowBrakePiston->Retract();
+	//ElbowBrakePiston->Retract();
 }
 
 void Arm::UpdateStatus(){
-	SmartDashboard::PutNumber("Elbow", elbowPot->Get());
-	SmartDashboard::PutNumber("Shoulder" , shoulderPot->Get());
-	SmartDashboard::PutNumber("Elbow Power", elbowMotor->GetMotorOutputPercent());
+	//SmartDashboard::PutNumber("Elbow", elbowPot->Get());
+	SmartDashboard::PutNumber("Shoulder" , GetShoulderPot());
+	//SmartDashboard::PutNumber("Elbow Power", elbowMotor->GetMotorOutputPercent());
 	SmartDashboard::PutNumber("Shoulder Power", shoulderMotor->GetMotorOutputPercent());
 }
 

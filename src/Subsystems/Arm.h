@@ -7,6 +7,7 @@
 #include <ctre/phoenix/MotorControl/ControlMode.h>
 #include <SmartDashboard/SmartDashboard.h>
 #include <AnalogPotentiometer.h>
+#include <AnalogInput.h>
 #include "Utils/Piston.h"
 #include "RobotMap.h"
 #include "Utils/Point.h"
@@ -21,11 +22,11 @@ class Arm: public frc::Subsystem {
 private:
 
 	CANTalon* shoulderMotor;
-	CANTalon* shoulderMotor2;
-	CANTalon* elbowMotor;
-	Pot* elbowPot; //= Pot(ELBOW_POT, 359, 0);
-	Pot* shoulderPot; // = Pot(SHOULDER_POT, 359, 0);
-	PistonSingle* ElbowBrakePiston;
+	//CANTalon* shoulderMotor2;
+	//CANTalon* elbowMotor;
+	//Pot* elbowPot; //= Pot(ELBOW_POT, 359, 0);
+	AnalogInput* shoulderPot; // = Pot(SHOULDER_POT, 359, 0);
+	//PistonSingle* ElbowBrakePiston;
 
 
 	// It's desirable that everything possible under private except

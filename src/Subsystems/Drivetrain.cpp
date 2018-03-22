@@ -51,12 +51,21 @@ void Drivetrain::Reset() {
 	/*gyro.Reset();
 	leftEncoder.Reset();
 	rightEncoder.Reset();*/
+	leftEncoder->Reset();
+	rightEncoder->Reset();
 }
 
 double Drivetrain::GetDistance() {
 	return (leftEncoder->GetDistance() + rightEncoder->GetDistance()) / 2;
 }
 
+double Drivetrain::GetRightEncoderDistance(){
+	return rightEncoder->GetDistance();
+}
+
+double Drivetrain::GetLeftEncoderDistance(){
+	return leftEncoder->GetDistance();
+}
 void Drivetrain::EngageWinch(){
 	winchPiston->Extend();
 }

@@ -12,12 +12,14 @@ ClawIntake::ClawIntake() {
 void ClawIntake::Initialize() {
 	claw->SetPower(CLAW_INTAKE_POWER);
 	claw->ClawOpen();
-
+	SetTimeout(1);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ClawIntake::Execute() {
-
+	if(IsTimedOut()){
+		claw->ClawClose();
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
