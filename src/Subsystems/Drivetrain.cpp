@@ -23,8 +23,8 @@ void Drivetrain::InitDefaultCommand() {
  * The log method puts interesting information to the SmartDashboard.
  */
 void Drivetrain::Log() {
-//	SmartDashboard::PutNumber("Left Speed", leftEncoder.GetRate());
-//	SmartDashboard::PutNumber("Right Speed", rightEncoder.GetRate());
+	SmartDashboard::PutNumber("Left Speed", frontLeft->GetMotorOutputPercent());
+	SmartDashboard::PutNumber("Right Speed", frontRight->GetMotorOutputPercent());
 
 }
 
