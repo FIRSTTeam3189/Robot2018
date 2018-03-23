@@ -7,7 +7,7 @@
 
 #ifndef SRC_CONSTANTS_H_
 #define SRC_CONSTANTS_H_
-
+//70.7
 constexpr int SHOULDER_POT_MAX = 984;
 constexpr int SHOULDER_POT_MIN = 0;
 constexpr int SHOULDER_POT_RANGE = 15;//------------------------

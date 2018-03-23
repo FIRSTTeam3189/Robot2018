@@ -11,9 +11,9 @@ AutoCenter::AutoCenter() {
 	int side = state[0] = 'L' ? -1 :1;
 
 	AddSequential(new GoForwardWithEncoders(12));
-	AddSequential(new AutoEncoderTurn(16*side));
+	AddSequential(new AutoEncoderTurn(17.7*side));
 	AddSequential(new GoForwardWithEncoders(90));
-	AddSequential(new AutoEncoderTurn(-16*side));
+	AddSequential(new AutoEncoderTurn(-17.7*side));
 	AddSequential(new GoForwardWithEncoders(90.5));
 	AddSequential(new TRexArmGotoPosition(TREX_ARM_HIGH));
 	AddSequential(new ClawOuttake());
