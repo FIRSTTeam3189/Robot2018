@@ -3,7 +3,7 @@
 
 #include <Commands/CommandGroup.h>
 
-class AutoSides : public CommandGroup {
+class AutoSides : public frc::CommandGroup {
 public:
 	AutoSides();
 };

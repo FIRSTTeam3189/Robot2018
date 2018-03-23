@@ -26,7 +26,8 @@ void Arm::ControlElbow(double power) {
 }
 
 double Arm::GetShoulderPot() {
-	return ((shoulderPot->GetAverageVoltage() - VOLTAGE_LOW) / VOLTAGE_RANGE) * POT_RANGE;
+//	return ((shoulderPot->GetAverageVoltage() - VOLTAGE_LOW) / VOLTAGE_RANGE) * POT_RANGE;
+	return shoulderPot->Get();
 }
 double Arm::GetElbowPot() {
 	//return elbowPot->Get();
@@ -153,7 +154,7 @@ void Arm::InitHardware() {
 	shoulderMotor = new CANTalon(ARM_SHOULDER_MOTOR);
 	//shoulderMotor2 = new CANTalon(ARM_SHOULDER_MOTOR_2);
 	//elbowMotor = new CANTalon(ARM_ELBOW_MOTOR);
-	shoulderPot = new AnalogInput(SHOULDER_POT);
+	shoulderPot = new Pot(SHOULDER_POT, 180);
 	//elbowPot = new Pot(ELBOW_POT, POT_RANGE);
 	//ElbowBrakePiston = new PistonSingle(BRAKES_PISTON);
 }

@@ -7,6 +7,9 @@
 
 #ifndef SRC_CONSTANTS_H_
 #define SRC_CONSTANTS_H_
+// AUTONOMOUS VARIABLES
+constexpr double FORWARD_TIME  = 5;
+constexpr double FORWARD_POWER = .5;
 //70.7
 constexpr int SHOULDER_POT_MAX = 984;
 constexpr int SHOULDER_POT_MIN = 0;

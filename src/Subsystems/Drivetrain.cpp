@@ -56,15 +56,18 @@ void Drivetrain::Reset() {
 }
 
 double Drivetrain::GetDistance() {
-	return (leftEncoder->GetDistance() + rightEncoder->GetDistance()) / 2;
+	return 0;
+	//return (leftEncoder->GetDistance() + rightEncoder->GetDistance()) / 2;
 }
 
 double Drivetrain::GetRightEncoderDistance(){
-	return rightEncoder->GetDistance();
+	return 0;
+	//return rightEncoder->GetDistance();
 }
 
 double Drivetrain::GetLeftEncoderDistance(){
-	return leftEncoder->GetDistance();
+	return 0;
+	//return leftEncoder->GetDistance();
 }
 void Drivetrain::EngageWinch(){
 	winchPiston->Extend();
@@ -98,6 +101,7 @@ void Drivetrain::InitHardware(){
 
 	winchPiston = new PistonDouble(DRIVETRAIN_PISTON);
 
-	leftEncoder = new Encoder(LEFT_ENCODER1,LEFT_ENCODER2);
-	rightEncoder = new Encoder(RIGHT_ENCODER1, RIGHT_ENCODER2);
+
+	//leftEncoder = new Encoder(LEFT_ENCODER1);
+	//rightEncoder = new Encoder(RIGHT_ENCODER1);
 }

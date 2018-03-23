@@ -3,7 +3,7 @@
 
 #include <Commands/CommandGroup.h>
 
-class AutoCenter : public CommandGroup {
+class AutoCenter : public frc::CommandGroup {
 public:
 	AutoCenter();
 };

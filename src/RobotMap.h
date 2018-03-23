@@ -34,9 +34,9 @@ constexpr int ELBOW_POT = 1;
 constexpr int SHOULDER_POT = 0;
 constexpr int WRIST_POT = 2;
 
-constexpr int RIGHT_ENCODER1 = 3;
+constexpr int RIGHT_ENCODER1 = 5;
 constexpr int RIGHT_ENCODER2 = 4;
-constexpr int LEFT_ENCODER1 = 5;
+constexpr int LEFT_ENCODER1 = 1;
 constexpr int LEFT_ENCODER2 = 6;
 
 #endif  // ROBOTMAP_H

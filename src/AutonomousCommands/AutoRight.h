@@ -3,7 +3,7 @@
 
 #include <Commands/CommandGroup.h>
 
-class AutoRight : public CommandGroup {
+class AutoRight : public frc::CommandGroup {
 public:
 	AutoRight();
 };

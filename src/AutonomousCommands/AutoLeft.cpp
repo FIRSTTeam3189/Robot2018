@@ -24,13 +24,13 @@ AutoLeft::AutoLeft() {
 
 		}else{
 			AddSequential(new GoForwardWithEncoders(24));
-			AddSequential(new AutoEncoderTurn(16));
+			AddSequential(new AutoEncoderTurn(17.7));
 			AddSequential(new GoForwardWithEncoders(40));
-			AddSequential(new AutoEncoderTurn(-16));
+			AddSequential(new AutoEncoderTurn(-17.7));
 			AddSequential(new GoForwardWithEncoders(221.5));
-			AddSequential(new AutoEncoderTurn(-16));
+			AddSequential(new AutoEncoderTurn(-17.7));
 			AddSequential(new GoForwardWithEncoders(126));
-			AddSequential(new AutoEncoderTurn(-16));
+			AddSequential(new AutoEncoderTurn(-17.7));
 			AddSequential(new GoForwardWithEncoders(12));		}
 			AddSequential(new TRexArmGotoPosition(TREX_ARM_HIGH));
 			AddSequential(new ClawOuttake());
