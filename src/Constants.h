@@ -16,10 +16,10 @@ constexpr int ELBOW_POT_MIN = 0;
 constexpr int WRIST_POT_MIN = 0;
 constexpr int WRIST_POT_MAX = 0;
 
-constexpr int TREX_ARM_START = 694;
-constexpr int TREX_ARM_HIGH = 679;
-constexpr int TREX_ARM_MIDDLE = 671;
-constexpr int TREX_ARM_LOW = 664;
+constexpr int TREX_ARM_START = 633;
+constexpr int TREX_ARM_HIGH = 618;
+constexpr int TREX_ARM_MIDDLE = 603;
+constexpr int TREX_ARM_LOW = 595;
 
 constexpr double SHOULDER_ANGLE_MIN = 0;
 constexpr double SHOULDER_ANGLE_MAX = 0;
