@@ -7,15 +7,17 @@
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
-
+#include "AutonomousCommands/AutoGoForwardAndStop.h"
+#include "AutonomousCommands/AutoCenter.h"
+#include "AutonomousCommands/AutoRight.h"
 #include "Robot.h"
 #include "CommandBase.h"
-
+#include "AutonomousCommands/AutoLeft.h"
 void Robot::RobotInit() {
 	CommandBase::drivetrain->InitHardware();
 	CommandBase::arm->InitHardware();
 	CommandBase::claw->InitHardware();
-	CommandBase::wrist->InitHardware();
+	//CommandBase::wrist->InitHardware();
 	CommandBase::oi->InitilizeOI();
 
 	c = new Compressor(0);
@@ -23,6 +25,11 @@ void Robot::RobotInit() {
 	c->SetClosedLoopControl(true);
 
 	chooser.AddDefault("Default Auto", new Autonomous());
+	chooser.AddObject("center", new AutoCenter());
+	chooser.AddObject("left", new AutoLeft());
+	chooser.AddObject("right",new AutoRight());
+//	chooser.AddObject("right", new AutoSides());
+	chooser.AddObject("Forward and stop", new AutoGoForwardAndStop());
 	// chooser.AddObject("My Auto", new MyAutoCommand());
 	frc::SmartDashboard::PutData("Auto Modes", &chooser);
 }

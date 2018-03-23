@@ -69,6 +69,10 @@ public:
 	 */
 	double GetDistance();
 
+	double GetRightEncoderDistance();
+
+	double GetLeftEncoderDistance();
+
 	/**
 	 * @return The distance to the obstacle detected by the rangefinder.
 	 */

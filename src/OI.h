@@ -10,6 +10,7 @@ public:
 	double GetLeftY();
 	double GetRightY();
 	double GetCoPilotY();
+	bool GetRight1Button();
 	void CheckMath();
 	void InitilizeOI();
 
@@ -30,6 +31,7 @@ private:
 	frc::JoystickButton* copilot_9;
 	frc::JoystickButton* copilot_10;
 	frc::JoystickButton* copilot_11;
+	frc::JoystickButton* right_1;
 	frc::JoystickButton* right_8;
 	frc::JoystickButton* right_9;
 

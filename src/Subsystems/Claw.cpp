@@ -41,7 +41,10 @@ void Claw::InitHardware() {
 
 	TheOneTheOnlyThePiston = new PistonDouble(CLAW_PISTON);
 
-	Left->SetInverted(true);
+	Right->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
+	Left->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
+
+	Left->SetInverted(false);
 	Left->Set(ControlMode::Follower, Right->GetDeviceID());
 	limitSwitch = new DigitalInput(LIMIT_SWITCH);
 }
