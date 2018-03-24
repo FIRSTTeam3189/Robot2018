@@ -9,6 +9,7 @@
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
+#include <CameraServer.h>
 
 #include "OI.h"
 #include "Subsystems/Drivetrain.h"

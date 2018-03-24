@@ -24,6 +24,8 @@ void Robot::RobotInit() {
 
 	c->SetClosedLoopControl(true);
 
+	CameraServer::GetInstance()->StartAutomaticCapture(0);
+
 	chooser.AddDefault("Default Auto", new Autonomous());
 	//chooser.AddObject("center", new AutoCenter());
 	//chooser.AddObject("left", new AutoLeft());
@@ -104,6 +106,7 @@ void Robot::TestPeriodic() {
 
 void Robot::UpdateStatus(){
 	CommandBase::arm->UpdateStatus();
+	SmartDashboard::PutData("claw", CommandBase::arm.get());
 }
 
 START_ROBOT_CLASS(Robot)

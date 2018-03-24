@@ -1,11 +1,11 @@
-#ifndef AutoForwardTime_H
-#define AutoForwardTime_H
+#ifndef AutoRightTime_H
+#define AutoRightTime_H
 
 #include "../CommandBase.h"
 
-class AutoForwardTime : public CommandBase {
+class AutoRightTime : public CommandBase {
 public:
-	AutoForwardTime(double seconds, double speed);
+	AutoRightTime(double seconds, double speed_);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -17,4 +17,4 @@ private:
 	double speed_;
 };
 
-#endif  // AutoForwardTime_H
+#endif  // AutoRightTime_H

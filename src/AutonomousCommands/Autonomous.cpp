@@ -1,13 +1,12 @@
 #include <AutonomousCommands/Autonomous.h>
 #include <iostream>
 #include <DriverStation.h>
+#include "AutoForwardTime.h"
 #include "../Constants.h"
 
-Autonomous::Autonomous() :
-		frc::CommandGroup("Autonomous") {
+Autonomous::Autonomous() : frc::CommandGroup("Autonomous") {
 
 	AddSequential(new AutoForwardTime(FORWARD_TIME, FORWARD_POWER));
-
 
 	// the data is three chars defining side of objects from you perspective
 	// (L = Left, R = Right, CAPS ARE IMPORTANT) Going closest to farthest
@@ -18,6 +17,5 @@ Autonomous::Autonomous() :
 
 	}else{
 
-	}
-*/
+	}*/
 }

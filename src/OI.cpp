@@ -14,6 +14,8 @@
 #include "Commands/TankDriveWithJoystick.h"
 #include <Commands/MoveForward.h>
 #include "Commands/TRexArmGotoPosition.h"
+#include "Commands/TRexArmGotoPositionLock.h"
+#include "Commands/ClawIntakeClosed.h"
 #include "Constants.h"
 
 OI::OI() {
@@ -51,7 +53,8 @@ void OI::InitilizeOI(){
 	right_8 = new JoystickButton(&right, 8);
 	right_9 = new JoystickButton(&right, 9);
 
-	copilot_5->WhileHeld(new ClawIntake());
+	copilot_3->WhileHeld(new ClawIntake());
+	copilot_2->WhileHeld(new ClawIntakeClosed());
 	copilot_1->WhileHeld(new ClawOuttake());
 
 	copilot_6->WhenPressed(new ClawOpen());
@@ -59,8 +62,9 @@ void OI::InitilizeOI(){
 
 	copilot_7->WhenPressed(new TRexArmGotoPosition(TREX_ARM_LOW));
 	copilot_8->WhenPressed(new TRexArmGotoPosition(TREX_ARM_MIDDLE));
-	copilot_9->WhenPressed(new TRexArmGotoPosition(TREX_ARM_HIGH));
+	copilot_9->WhenPressed(new TRexArmGotoPositionLock(TREX_ARM_HIGH));
 	copilot_10->WhenPressed(new TRexArmGotoPosition(TREX_ARM_START));
+	//copilot_4->WhenPressed(new JoystickArmControl());
 
 }
 bool OI::GetRight1Button(){

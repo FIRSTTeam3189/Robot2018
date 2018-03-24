@@ -17,8 +17,8 @@ PistonDouble::PistonDouble(int extendID, int retractID, int deviceID, bool exten
 PistonDouble::PistonDouble(PistonData init) {
 	this->extended = new Solenoid(init.deviceID, init.extendID);
 	this->retracted = new Solenoid(init.deviceID, init.retractID);
-	this->extended->Set(extended);
-	this->retracted->Set(!extended);
+	this->extended->Set(init.extendedByDefault);
+	this->retracted->Set(!init.extendedByDefault);
 }
 
 void PistonDouble::Extend() {

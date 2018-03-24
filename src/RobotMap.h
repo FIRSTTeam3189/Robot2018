@@ -18,7 +18,7 @@ constexpr int ARM_ELBOW_MOTOR = 9;
 constexpr int ARM_WRIST_MOTOR = 0;
 
 //Pistons
-const PistonData DRIVETRAIN_PISTON = PistonData(0, 1, 0, false);
+const PistonData DRIVETRAIN_PISTON = PistonData(0, 1, 0, true);
 //for presentation
 const PistonData PISTON_PISTON = PistonData(4, 5, 0, false);
 

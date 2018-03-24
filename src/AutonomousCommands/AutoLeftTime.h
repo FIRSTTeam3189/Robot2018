@@ -1,11 +1,11 @@
-#ifndef AutoForwardTime_H
-#define AutoForwardTime_H
+#ifndef AutoLeftTime_H
+#define AutoLeftTime_H
 
 #include "../CommandBase.h"
 
-class AutoForwardTime : public CommandBase {
+class AutoLeftTime : public CommandBase {
 public:
-	AutoForwardTime(double seconds, double speed);
+	AutoLeftTime(double seconds, double speed);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -17,4 +17,4 @@ private:
 	double speed_;
 };
 
-#endif  // AutoForwardTime_H
+#endif  // AutoLeftTime_H

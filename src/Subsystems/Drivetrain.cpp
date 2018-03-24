@@ -2,7 +2,7 @@
 #include <LiveWindow/LiveWindow.h>
 #include <Subsystems/Drivetrain.h>
 #include <SmartDashboard/SmartDashboard.h>
-
+#include "ctre/phoenix/MotorControl/FeedbackDevice.h"
 #include "Commands/TankDriveWithJoystick.h"
 #include "RobotMap.h"
 
@@ -20,7 +20,7 @@ void Drivetrain::InitDefaultCommand() {
 }
 
 /**
- * The log method puts interesting information to the SmartDashboard.
+ * The log method puts interesting information to the SmartDashboard
  */
 void Drivetrain::Log() {
 	SmartDashboard::PutNumber("Left Speed", frontLeft->GetMotorOutputPercent());
@@ -51,12 +51,13 @@ void Drivetrain::Reset() {
 	/*gyro.Reset();
 	leftEncoder.Reset();
 	rightEncoder.Reset();*/
-	leftEncoder->Reset();
-	rightEncoder->Reset();
+	//leftEncoder->Reset();
+	//rightEncoder->Reset();
 }
 
 double Drivetrain::GetDistance() {
-	return 0;
+
+	return (rearRight->GetSelectedSensorPosition(0) + frontLeft->GetSelectedSensorPosition(0)) / 2;
 	//return (leftEncoder->GetDistance() + rightEncoder->GetDistance()) / 2;
 }
 
@@ -101,6 +102,10 @@ void Drivetrain::InitHardware(){
 
 	winchPiston = new PistonDouble(DRIVETRAIN_PISTON);
 
+	rearRight->ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::QuadEncoder, 0, 0);
+	rearRight->SetSensorPhase(false);
+	frontLeft->ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::QuadEncoder, 0, 0);
+	frontLeft->SetSensorPhase(false);
 
 	//leftEncoder = new Encoder(LEFT_ENCODER1);
 	//rightEncoder = new Encoder(RIGHT_ENCODER1);

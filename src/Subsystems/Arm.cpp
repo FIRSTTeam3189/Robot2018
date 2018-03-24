@@ -2,6 +2,7 @@
 #include "Constants.h"
 #include "../RobotMap.h"
 #include <math.h>
+#include <iostream>
 #include "Commands/JoystickArmControl.h"
 #include <SmartDashboard/SmartDashboard.h>
 #include <Commands/JoystickArmControl.h>
@@ -12,7 +13,7 @@ Arm::Arm() :
 }
 
 void Arm::InitDefaultCommand() {
-	SetDefaultCommand(new JoystickArmControl());
+	//SetDefaultCommand(new JoystickArmControl());
 }
 
 // Put functiom for controlling this subsystem
@@ -184,20 +185,25 @@ void Arm::UpdateStatus(){
 
 bool Arm::isNearPot(double position){
 	double pot = GetShoulderPot();
+	//std::cout <<  (pot < position + SHOULDER_POT_RANGE && pot > position + SHOULDER_POT_RANGE) << "\n";
 	return pot < position + SHOULDER_POT_RANGE && pot > position + SHOULDER_POT_RANGE;
 }
 
 bool Arm::GotoPot(double position){
 	double pot = GetShoulderPot();
+	auto high = position + SHOULDER_POT_RANGE;
+	auto low = position - SHOULDER_POT_RANGE;
+
+	//std::cout << "High: " << high << " Low: " << low << " pot: " << pot << "\n";
 	//These magic numbers are the Lowest and highest values of the AnalogPotentiometer
-	if(pot < 0 || pot > POT_RANGE)
+	if(pot < 0 || pot > POT_RANGE) {
 		ControlShoulder(0);
 		return true;
-	if (pot > position + SHOULDER_POT_RANGE) {
-		ControlShoulder(ARM_SHOULDER_SPEED);
+	}  else if (pot > position + SHOULDER_POT_RANGE) {
+		ControlShoulder(pot > TREX_ARM_HIGH ? -ARM_SHOULDER_SPEED: -ARM_SHOULDER_SPEED * 0.5);
 		return false;
 	} else if (pot < position - SHOULDER_POT_RANGE) {
-		ControlShoulder(-ARM_SHOULDER_SPEED);
+		ControlShoulder(ARM_SHOULDER_SPEED);
 		return false;
 	} else {
 		ControlShoulder(0);
