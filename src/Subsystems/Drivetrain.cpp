@@ -58,26 +58,19 @@ void Drivetrain::Reset() {
 double Drivetrain::GetDistance() {
 
 	return (rearRight->GetSelectedSensorPosition(0) + frontLeft->GetSelectedSensorPosition(0)) / 2;
-	//return (leftEncoder->GetDistance() + rightEncoder->GetDistance()) / 2;
 }
 
 double Drivetrain::GetRightEncoderDistance(){
-	return 0;
-	//return rightEncoder->GetDistance();
+	return rearRight->GetSelectedSensorPosition(0);
 }
 
 double Drivetrain::GetLeftEncoderDistance(){
-	return 0;
-	//return leftEncoder->GetDistance();
+	return frontLeft->GetSelectedSensorPosition(0);
 }
 void Drivetrain::EngageWinch(){
 	winchPiston->Extend();
 }
 
-/*void Drivetrain::EngageDrivetrain(){
-	winchPiston->Retract()
-}
-*/
 double Drivetrain::GetDistanceToObstacle() {
 	// Really meters in simulation since it's a rangefinder...
 	return 0.0;//rangefinder.GetAverageVoltage();
@@ -86,8 +79,8 @@ double Drivetrain::GetDistanceToObstacle() {
 void Drivetrain::InitHardware(){
 	frontLeft = new CANTalon(DRIVE_LEFT_FRONT);
 	rearLeft = new CANTalon(DRIVE_LEFT_BACK);
-	frontRight = new CANTalon(DRIVE_RIGHT_FRONT);
-	rearRight = new CANTalon(DRIVE_RIGHT_BACK);
+	frontRight = new CANTalon(DRIVE_RIGHT_BACK);
+	rearRight = new CANTalon(DRIVE_RIGHT_FRONT);//TODO fix this on real bot(the rights are reversed)
 
 	frontRight->SetInverted(true);
 	rearRight->SetInverted(true);

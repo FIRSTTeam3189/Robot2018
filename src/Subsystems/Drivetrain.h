@@ -16,6 +16,13 @@
 using CANTalon = ctre::phoenix::motorcontrol::can::TalonSRX;
 using ControlMode = ctre::phoenix::motorcontrol::ControlMode;
 
+enum DriveDirection{
+	Forward,
+	Left,
+	Right,
+	Backward
+};
+
 /**
  * The DriveTrain subsystem incorporates the sensors and actuators attached to
  * the robots chassis. These include four drive motors, a left and right encoder
@@ -47,6 +54,9 @@ public:
 	 * @param right Speed in range [-1,1]
 	 */
 	void Drive(double left, double right);
+
+	//TODO make this a thing, it should correct driving to preform straight driving.
+	void DriveEncoders(double power, DriveDirection dir);
 	//starts the winch
 	void EngageWinch();
 	/**

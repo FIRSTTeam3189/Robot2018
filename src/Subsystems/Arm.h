@@ -31,21 +31,20 @@ private:
 
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	// TODO kill myself
 public:
 	Arm();
 	/**
 	 * returns the Current location for the wrist in x y coordinates
 	 */
-	Point GetCurrentLocation();//TODO make this.
+	Point GetCurrentLocation();
 	/**
 	 * returns the current angles of the shoulder
 	 */
-	double GetShoulderAngle();//TODO make this
+	double GetShoulderAngle();
 	/**
 	 * returns the current angles of the elbow
 	 */
-	double GetElbowAngle();//TODO make this
+	double GetElbowAngle();
 	/**
 	 * returns angles required for the x y coordinates given returns angles in given double array
 	 */
