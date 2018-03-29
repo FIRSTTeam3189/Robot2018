@@ -79,6 +79,8 @@ public:
 	 */
 	double GetDistance();
 
+	double GetDistanceInInches();
+
 	double GetRightEncoderDistance();
 
 	double GetLeftEncoderDistance();

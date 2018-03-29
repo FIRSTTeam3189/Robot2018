@@ -6,10 +6,19 @@
 #include "Commands/TRexArmGotoPosition.h"
 #include "Commands/ClawOuttake.h"
 #include "Constants.h"
+#include "DriveEncoders.h"
 AutoCenter::AutoCenter() {
 	std::string state = DriverStation::GetInstance().GetGameSpecificMessage();
-	int side = state[0] = 'L' ? -1 :1;
+	DriveDirection side = state[0] == 'L' ? Left : Right;
 
+	AddSequential(new DriveEncoders(AUTO_SPEED,Forward,12));
+	AddSequential(new DriveEncoders(AUTO_SPEED,side,17.7));
+	AddSequential(new DriveEncoders(AUTO_SPEED,Forward,90));
+	AddSequential(new DriveEncoders(AUTO_SPEED,side,-17.7));
+	AddSequential(new DriveEncoders(AUTO_SPEED,Forward,90.5));
+	AddParallel(new TRexArmGotoPosition(TREX_ARM_HIGH));
+	AddSequential(new ClawOuttake());
+/*
 	AddSequential(new GoForwardWithEncoders(12));
 	AddSequential(new AutoEncoderTurn(17.7*side));
 	AddSequential(new GoForwardWithEncoders(90));
@@ -17,7 +26,6 @@ AutoCenter::AutoCenter() {
 	AddSequential(new GoForwardWithEncoders(90.5));
 	AddSequential(new TRexArmGotoPosition(TREX_ARM_HIGH));
 	AddSequential(new ClawOuttake());
-	AddSequential(new GoForwardWithEncoders(-1));
 
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
@@ -35,4 +43,6 @@ AutoCenter::AutoCenter() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
+	 */
+
 }
