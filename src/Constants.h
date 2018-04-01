@@ -25,10 +25,10 @@ constexpr int ELBOW_POT_MIN = 0;
 constexpr int WRIST_POT_MIN = 0;
 constexpr int WRIST_POT_MAX = 0;
 
-constexpr int TREX_ARM_START = 1;
-constexpr int TREX_ARM_HIGH = 51;
-constexpr int TREX_ARM_MIDDLE = 99;
-constexpr int TREX_ARM_LOW = 105;
+constexpr int TREX_ARM_START = 80;
+constexpr int TREX_ARM_HIGH = 140;
+constexpr int TREX_ARM_MIDDLE = 180;
+constexpr int TREX_ARM_LOW = 180;
 
 constexpr double SHOULDER_ANGLE_MIN = 0;
 constexpr double SHOULDER_ANGLE_MAX = 0;
@@ -44,7 +44,7 @@ constexpr double ARM_SHOULDER_SPEED = 0.4;
 constexpr double ARM_EBLOW_START_AT_ZERO_SPEED = 0;
 
 //----------------------------------------------------------------------
-constexpr double POT_RANGE = 112;
+constexpr double POT_RANGE = 185;
 constexpr double VOLTAGE_LOW = 4.733886234;
 constexpr double VOLTAGE_HIGH = 4.893798327;
 constexpr double VOLTAGE_RANGE = VOLTAGE_HIGH - VOLTAGE_LOW;

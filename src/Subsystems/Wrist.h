@@ -43,7 +43,7 @@ public:
 	void PistonThingyExtend();
 	void PistonThingyRetract();
 	void PistonThingyToggle();
-
+	void UpdateStatus();
 
 
 };

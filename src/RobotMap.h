@@ -12,7 +12,7 @@ constexpr int DRIVE_RIGHT_BACK = 5;
 constexpr int DRIVE_LEFT_FRONT = 1;
 constexpr int DRIVE_LEFT_BACK = 2;
 
-constexpr int ARM_SHOULDER_MOTOR = 8;
+constexpr int ARM_SHOULDER_MOTOR = 8 ;
 constexpr int ARM_SHOULDER_MOTOR_2 = 4;
 constexpr int ARM_ELBOW_MOTOR = 9;
 constexpr int ARM_WRIST_MOTOR = 0;

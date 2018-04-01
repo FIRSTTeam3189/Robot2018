@@ -196,14 +196,14 @@ bool Arm::GotoPot(double position){
 
 	//std::cout << "High: " << high << " Low: " << low << " pot: " << pot << "\n";
 	//These magic numbers are the Lowest and highest values of the AnalogPotentiometer
-	if(pot < 0 || pot > POT_RANGE) {
+	if(pot < 70 || pot > POT_RANGE) {
 		ControlShoulder(0);
 		return true;
 	}  else if (pot > position + SHOULDER_POT_RANGE) {
-		ControlShoulder(pot > TREX_ARM_HIGH ? -ARM_SHOULDER_SPEED: -ARM_SHOULDER_SPEED * 0.5);
+		ControlShoulder(pot > TREX_ARM_HIGH ? ARM_SHOULDER_SPEED : ARM_SHOULDER_SPEED * 0.5);
 		return false;
 	} else if (pot < position - SHOULDER_POT_RANGE) {
-		ControlShoulder(ARM_SHOULDER_SPEED);
+		ControlShoulder(-ARM_SHOULDER_SPEED);
 		return false;
 	} else {
 		ControlShoulder(0);

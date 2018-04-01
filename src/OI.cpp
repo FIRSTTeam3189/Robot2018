@@ -16,6 +16,7 @@
 #include "Commands/TRexArmGotoPosition.h"
 #include "Commands/TRexArmGotoPositionLock.h"
 #include "Commands/ClawIntakeClosed.h"
+#include "Commands/WristJoystickControl.h"
 #include "Constants.h"
 
 OI::OI() {
@@ -57,8 +58,10 @@ void OI::InitilizeOI(){
 	copilot_2->WhileHeld(new ClawIntakeClosed());
 	copilot_1->WhileHeld(new ClawOuttake());
 
-	copilot_6->WhenPressed(new ClawOpen());
-	copilot_11->WhenPressed(new ClawClose());
+	//copilot_6->WhenPressed(new ClawOpen());
+	//copilot_11->WhenPressed(new ClawClose());
+	copilot_11->WhileHeld(new WinchJoystickControl());
+	//copilot_6->WhileHeld(new JoystickArmControl());
 
 	copilot_7->WhenPressed(new TRexArmGotoPosition(TREX_ARM_LOW));
 	copilot_8->WhenPressed(new TRexArmGotoPosition(TREX_ARM_MIDDLE));
