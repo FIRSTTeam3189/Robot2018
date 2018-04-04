@@ -6,28 +6,30 @@
 #include "Commands/ClawOuttake.h"
 #include "AutonomousCommands/GoForwardWithEncoders.h"
 #include "AutonomousCommands/AutoEncoderTurn.h"
+#include "DriveEncoders.h"
 AutoRight::AutoRight() {
 
 	std::string state = DriverStation::GetInstance().GetGameSpecificMessage();
+	if(state[0] == 'R'){
+		AddSequential(new DriveEncoders(AUTO_SPEED,Forward,102.5));
+		AddParallel(new TRexArmGotoPosition(TREX_ARM_HIGH));
+		AddSequential(new ClawOuttake());
 
-		if(state[0] == 'L'){
-			AddSequential(new GoForwardWithEncoders(102.5));
-			AddSequential(new TRexArmGotoPosition(TREX_ARM_HIGH));
-			AddSequential(new ClawOuttake());
 
+	}else{
 
-		}else{
-			AddSequential(new GoForwardWithEncoders(24));
-			AddSequential(new AutoEncoderTurn(-16));
-			AddSequential(new GoForwardWithEncoders(40));
-			AddSequential(new AutoEncoderTurn(16));
-			AddSequential(new GoForwardWithEncoders(221.5));
-			AddSequential(new AutoEncoderTurn(16));
-			AddSequential(new GoForwardWithEncoders(126));
-			AddSequential(new AutoEncoderTurn(16));
-			AddSequential(new GoForwardWithEncoders(12));		}
-			AddSequential(new TRexArmGotoPosition(TREX_ARM_HIGH));
-			AddSequential(new ClawOuttake());
+		AddSequential(new DriveEncoders(AUTO_SPEED,Forward,24));
+		AddSequential(new DriveEncoders(AUTO_SPEED,Right,17.7));
+		AddSequential(new DriveEncoders(AUTO_SPEED,Forward,40));
+		AddSequential(new DriveEncoders(AUTO_SPEED,Left,17.7));
+		AddSequential(new DriveEncoders(AUTO_SPEED,Forward,221.5));
+		AddSequential(new DriveEncoders(AUTO_SPEED,Left,17.7));
+		AddSequential(new DriveEncoders(AUTO_SPEED,Forward,126));
+		AddSequential(new DriveEncoders(AUTO_SPEED,Left,17.7));
+		AddSequential(new DriveEncoders(AUTO_SPEED,Forward,12));
+		AddParallel(new TRexArmGotoPosition(TREX_ARM_HIGH));
+		AddSequential(new ClawOuttake());
+	}
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());

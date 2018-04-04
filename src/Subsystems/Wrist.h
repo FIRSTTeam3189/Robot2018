@@ -42,6 +42,7 @@ public:
 	void PistonThingyExtend();
 	void PistonThingyRetract();
 	void PistonThingyToggle();
+	void UpdateStatus();
 };
 
 #endif  // Wrist_H

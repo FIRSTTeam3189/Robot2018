@@ -5,6 +5,7 @@
 #include "ctre/phoenix/MotorControl/FeedbackDevice.h"
 #include "Commands/TankDriveWithJoystick.h"
 #include "RobotMap.h"
+#include "Constants.h"
 
 Drivetrain::Drivetrain() :
 	frc::Subsystem("Drivetrain") {
@@ -38,6 +39,22 @@ void Drivetrain::Drive(double left, double right) {
 	frontRight->Set(ControlMode::PercentOutput, right);
 }
 
+void Drivetrain::DriveEncoders(double power,enum DriveDirection dir){
+	if(dir == Forward){
+	frontLeft->Set(ControlMode::Velocity,power);
+	frontRight->Set(ControlMode::Velocity, power);
+	} else if(dir == Backward){
+		frontLeft->Set(ControlMode::Velocity,-power);
+		frontRight->Set(ControlMode::Velocity,-power);
+	} else if(dir == Left){
+		frontLeft->Set(ControlMode::Velocity, -power);
+		frontRight->Set(ControlMode::Velocity, power);
+	} else if(dir == Right){
+		frontLeft->Set(ControlMode::Velocity, power);
+		frontRight->Set(ControlMode::Velocity, -power);
+	}
+}
+
 void Drivetrain::Stop(){
 	Drive(0, 0);
 }
@@ -58,6 +75,10 @@ void Drivetrain::Reset() {
 double Drivetrain::GetDistance() {
 
 	return (rearRight->GetSelectedSensorPosition(0) + frontLeft->GetSelectedSensorPosition(0)) / 2;
+}
+
+double Drivetrain::GetDistanceInInches(){
+	return (rearRight->GetSelectedSensorPosition(0) + frontLeft->GetSelectedSensorPosition(0)) /2 / ENCODER_TICKS_PER_INCH;
 }
 
 double Drivetrain::GetRightEncoderDistance(){

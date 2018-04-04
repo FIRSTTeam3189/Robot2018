@@ -17,7 +17,7 @@ void Robot::RobotInit() {
 	CommandBase::drivetrain->InitHardware();
 	CommandBase::arm->InitHardware();
 	CommandBase::claw->InitHardware();
-	//CommandBase::wrist->InitHardware();
+	CommandBase::wrist->InitHardware();
 	CommandBase::oi->InitilizeOI();
 
 	c = new Compressor(0);
@@ -107,6 +107,7 @@ void Robot::TestPeriodic() {
 void Robot::UpdateStatus(){
 	CommandBase::arm->UpdateStatus();
 	SmartDashboard::PutData("claw", CommandBase::arm.get());
+	CommandBase::wrist->UpdateStatus();
 }
 
 START_ROBOT_CLASS(Robot)

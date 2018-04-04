@@ -8,10 +8,11 @@
 #include <Commands/JoystickArmControl.h>
 
 Arm::Arm() :
-		PIDSubsystem("arm", 2.0, 0.01, 0.01) {
-	SetInputRange(69, 180);
+		PIDSubsystem("arm", 0.3, 0.0005, 0.00) {
+	SetInputRange(0, 180);
 	GetPIDController()->SetContinuous(false);
-	GetPIDController()->SetAbsoluteTolerance(1);
+	GetPIDController()->SetAbsoluteTolerance(5);
+	//GetPIDController()->Disable();
 }
 
 void Arm::InitDefaultCommand() {
@@ -198,14 +199,14 @@ bool Arm::GotoPot(double position){
 
 	//std::cout << "High: " << high << " Low: " << low << " pot: " << pot << "\n";
 	//These magic numbers are the Lowest and highest values of the AnalogPotentiometer
-	if(pot < 0 || pot > POT_RANGE) {
+	if(pot < 70 || pot > POT_RANGE) {
 		ControlShoulder(0);
 		return true;
 	}  else if (pot > position + SHOULDER_POT_RANGE) {
-		ControlShoulder(pot > TREX_ARM_HIGH ? -ARM_SHOULDER_SPEED: -ARM_SHOULDER_SPEED * 0.5);
+		ControlShoulder(pot > TREX_ARM_HIGH ? ARM_SHOULDER_SPEED : ARM_SHOULDER_SPEED * 0.5);
 		return false;
 	} else if (pot < position - SHOULDER_POT_RANGE) {
-		ControlShoulder(ARM_SHOULDER_SPEED);
+		ControlShoulder(-ARM_SHOULDER_SPEED);
 		return false;
 	} else {
 		ControlShoulder(0);
@@ -218,8 +219,12 @@ double Arm::ReturnPIDInput() {
 }
 
 void Arm::UsePIDOutput(double output) {
-	//shoulderMotor->Set(ControlMode::PercentOutput, output);
-	SmartDashboard::PutNumber("PIDOutput", output);
+	auto asdf = GetSetpoint();
+	//if(GetShoulderPot() > asdf+5 || GetShoulderPot() < asdf-5){
+		shoulderMotor->Set(ControlMode::PercentOutput, -output * 0.35);
+		SmartDashboard::PutNumber("PIDOutput", -output);
+	//}
+
 }
 
 void Arm::SetPIDPoint(double amount){
