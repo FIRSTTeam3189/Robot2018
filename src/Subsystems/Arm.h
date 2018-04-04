@@ -2,7 +2,7 @@
 #define Arm_H
 //#define ONE_PORT
 
-#include <Commands/Subsystem.h>
+#include <Commands/PIDSubsystem.h>
 #include <ctre/phoenix/MotorControl/CAN/TalonSRX.h>
 #include <ctre/phoenix/MotorControl/ControlMode.h>
 #include <SmartDashboard/SmartDashboard.h>
@@ -18,7 +18,7 @@ using Pot = AnalogPotentiometer;
 
 
 
-class Arm: public frc::Subsystem {
+class Arm: public PIDSubsystem {
 private:
 
 	CANTalon* shoulderMotor;
@@ -99,6 +99,10 @@ public:
 	void UpdateStatus();
 	bool isNearPot(double position);
 	bool GotoPot(double pot);
+
+	double ReturnPIDInput();
+	void UsePIDOutput(double output);
+	void SetPIDPoint(double amount);
 };
 
 

@@ -2,7 +2,6 @@
 #define Wrist_H
 
 #include <Commands/Subsystem.h>
-#include <Commands/Subsystem.h>
 #include <ctre/phoenix/MotorControl/CAN/TalonSRX.h>
 #include <ctre/phoenix/MotorControl/ControlMode.h>
 #include <SmartDashboard/SmartDashboard.h>
@@ -43,9 +42,6 @@ public:
 	void PistonThingyExtend();
 	void PistonThingyRetract();
 	void PistonThingyToggle();
-
-
-
 };
 
 #endif  // Wrist_H

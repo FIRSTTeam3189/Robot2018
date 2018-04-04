@@ -17,6 +17,7 @@
 #include "Commands/TRexArmGotoPositionLock.h"
 #include "Commands/ClawIntakeClosed.h"
 #include "Constants.h"
+#include "Commands/ShoulderPIDGoto.h"
 
 OI::OI() {
 
@@ -60,11 +61,14 @@ void OI::InitilizeOI(){
 	copilot_6->WhenPressed(new ClawOpen());
 	copilot_11->WhenPressed(new ClawClose());
 
-	copilot_7->WhenPressed(new TRexArmGotoPosition(TREX_ARM_LOW));
-	copilot_8->WhenPressed(new TRexArmGotoPosition(TREX_ARM_MIDDLE));
-	copilot_9->WhenPressed(new TRexArmGotoPositionLock(TREX_ARM_HIGH));
-	copilot_10->WhenPressed(new TRexArmGotoPosition(TREX_ARM_START));
-	//copilot_4->WhenPressed(new JoystickArmControl());
+	//copilot_7->WhenPressed(new TRexArmGotoPosition(TREX_ARM_LOW));
+	//copilot_8->WhenPressed(new TRexArmGotoPosition(TREX_ARM_MIDDLE));
+	//copilot_9->WhenPressed(new TRexArmGotoPositionLock(TREX_ARM_HIGH));
+	//copilot_10->WhenPressed(new TRexArmGotoPosition(TREX_ARM_START));
+
+	copilot_7->WhenPressed(new ShoulderPIDGoto(90));
+
+	copilot_4->WhenPressed(new JoystickArmControl());
 
 }
 bool OI::GetRight1Button(){

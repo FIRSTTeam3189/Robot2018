@@ -8,8 +8,10 @@
 #include <Commands/JoystickArmControl.h>
 
 Arm::Arm() :
-		Subsystem("arm") {
-
+		PIDSubsystem("arm", 2.0, 0.01, 0.01) {
+	SetInputRange(69, 180);
+	GetPIDController()->SetContinuous(false);
+	GetPIDController()->SetAbsoluteTolerance(1);
 }
 
 void Arm::InitDefaultCommand() {
@@ -209,4 +211,17 @@ bool Arm::GotoPot(double position){
 		ControlShoulder(0);
 		return true;
 	}
+}
+
+double Arm::ReturnPIDInput() {
+	shoulderPot->Get();
+}
+
+void Arm::UsePIDOutput(double output) {
+	//shoulderMotor->Set(ControlMode::PercentOutput, output);
+	SmartDashboard::PutNumber("PIDOutput", output);
+}
+
+void Arm::SetPIDPoint(double amount){
+	SetSetpoint(amount);
 }
