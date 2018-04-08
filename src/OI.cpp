@@ -1,4 +1,4 @@
-#include "OI.h"
+	#include "OI.h"
 
 #include <SmartDashboard/SmartDashboard.h>
 
@@ -19,7 +19,8 @@
 #include "Commands/WristJoystickControl.h"
 #include "Constants.h"
 #include "Commands/ShoulderPIDGoto.h"
-
+#include "Commands/EngageDrivetrain.h"
+#include "Commands/WinchEngage.h"
 OI::OI() {
 
 }
@@ -52,28 +53,35 @@ void OI::InitilizeOI(){
 	copilot_10 = new JoystickButton(&copilot, 10);
 	copilot_11 = new JoystickButton(&copilot, 11);
 	right_1 = new JoystickButton(&right, 1);
+	right_2 = new JoystickButton(&right, 2);
+	right_3 = new JoystickButton(&right, 3);
+	right_7 = new JoystickButton(&right, 7);
 	right_8 = new JoystickButton(&right, 8);
 	right_9 = new JoystickButton(&right, 9);
+	right_10 = new JoystickButton(&right, 10);
 
-	copilot_3->WhileHeld(new ClawIntake());
-	copilot_2->WhileHeld(new ClawIntakeClosed());
-	copilot_1->WhileHeld(new ClawOuttake());
+
 
 	//copilot_6->WhenPressed(new ClawOpen());
 	//copilot_11->WhenPressed(new ClawClose());
+	//copilot_6->WhileHeld(new JoystickArmControl());
+
+	right_3->WhileHeld(new ClawIntake());
+	right_2->WhileHeld(new ClawIntakeClosed());
+	right_1->WhileHeld(new ClawOuttake(CLAW_OUTAKE_POWER));
+	right_7->WhenPressed(new ShoulderPIDGoto(TREX_ARM_LOW));
+	right_8->WhenPressed(new ShoulderPIDGoto(TREX_ARM_MIDDLE));
+	right_9->WhenPressed(new ShoulderPIDGoto(TREX_ARM_HIGH));
+	right_10->WhenPressed(new ShoulderPIDGoto(TREX_ARM_START));
+
+	copilot_3->WhileHeld(new ClawIntake());
+	copilot_2->WhileHeld(new ClawIntakeClosed());
+	copilot_1->WhileHeld(new ClawOuttake(CLAW_OUTAKE_POWER));
+	copilot_7->WhenPressed(new ShoulderPIDGoto(TREX_ARM_LOW));
+	copilot_8->WhenPressed(new ShoulderPIDGoto(TREX_ARM_MIDDLE));
+	copilot_9->WhenPressed(new ShoulderPIDGoto(TREX_ARM_HIGH));
+	copilot_10->WhenPressed(new ShoulderPIDGoto(TREX_ARM_START));
 	copilot_11->WhileHeld(new WinchJoystickControl());
-	copilot_6->WhileHeld(new JoystickArmControl());
-
-	//copilot_7->WhenPressed(new TRexArmGotoPosition(TREX_ARM_LOW));
-	//copilot_8->WhenPressed(new TRexArmGotoPosition(TREX_ARM_MIDDLE));
-	//copilot_9->WhenPressed(new TRexArmGotoPositionLock(TREX_ARM_HIGH));
-	//copilot_10->WhenPressed(new TRexArmGotoPosition(TREX_ARM_START));
-
-	copilot_7->WhenPressed(new ShoulderPIDGoto(140));
-	copilot_8->WhenPressed(new ShoulderPIDGoto(130));
-	copilot_9->WhenPressed(new ShoulderPIDGoto(91));
-	copilot_10->WhenPressed(new ShoulderPIDGoto(29));
-
 }
 bool OI::GetRight1Button(){
 return	right_1->Get();

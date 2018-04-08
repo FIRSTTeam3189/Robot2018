@@ -13,6 +13,7 @@ public:
 	void Interrupted();
 private:
 	char side;
+	bool willFinish;
 };
 
 #endif  // HaltIfOnWrongSide_H

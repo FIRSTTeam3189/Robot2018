@@ -3,15 +3,17 @@
 #include "../RobotMap.h"
 #include <math.h>
 #include <iostream>
+#include <algorithm>
 #include "Commands/JoystickArmControl.h"
 #include <SmartDashboard/SmartDashboard.h>
 #include <Commands/JoystickArmControl.h>
 
 Arm::Arm() :
-		PIDSubsystem("arm", 0.3, 0.0005, 0.00) {
+	//PIDSubsystem("arm", 0.26, 0.0014, 0.015) {
+	PIDSubsystem("arm", 0.19, 0.0005, 0.000) { // Known GOOD
 	SetInputRange(0, 180);
 	GetPIDController()->SetContinuous(false);
-	GetPIDController()->SetAbsoluteTolerance(5);
+	GetPIDController()->SetAbsoluteTolerance(16);
 	//GetPIDController()->Disable();
 }
 
@@ -31,6 +33,7 @@ void Arm::ControlElbow(double power) {
 
 double Arm::GetShoulderPot() {
 //	return ((shoulderPot->GetAverageVoltage() - VOLTAGE_LOW) / VOLTAGE_RANGE) * POT_RANGE;
+
 	return shoulderPot->Get();
 }
 double Arm::GetElbowPot() {
@@ -215,13 +218,22 @@ bool Arm::GotoPot(double position){
 }
 
 double Arm::ReturnPIDInput() {
-	shoulderPot->Get();
+
+	return shoulderPot->Get();
+
 }
 
 void Arm::UsePIDOutput(double output) {
-	auto asdf = GetSetpoint();
+	//auto asdf = GetSetpoint();
 	//if(GetShoulderPot() > asdf+5 || GetShoulderPot() < asdf-5){
-		shoulderMotor->Set(ControlMode::PercentOutput, -output * 0.35);
+	if (ReturnPIDInput() > 78 && GetSetpoint() > ReturnPIDInput()) {
+		output *= .5;
+	}
+	// Slow down if coming to start position
+	if (ReturnPIDInput() < 78 && GetSetpoint() < ReturnPIDInput()) {
+		output *= .4;
+	}
+		shoulderMotor->Set(ControlMode::PercentOutput, -output * ARM_SPEED_LIMMIT);
 		SmartDashboard::PutNumber("PIDOutput", -output);
 	//}
 

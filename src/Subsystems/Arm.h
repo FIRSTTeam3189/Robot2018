@@ -8,26 +8,25 @@
 #include <SmartDashboard/SmartDashboard.h>
 #include <AnalogPotentiometer.h>
 #include <AnalogInput.h>
+#include <deque>
 #include "Utils/Piston.h"
 #include "RobotMap.h"
 #include "Utils/Point.h"
+#include <deque>
 
 using CANTalon = ctre::phoenix::motorcontrol::can::TalonSRX;
 using ControlMode = ctre::phoenix::motorcontrol::ControlMode;
 using Pot = AnalogPotentiometer;
 
-
-
 class Arm: public PIDSubsystem {
 private:
-
 	CANTalon* shoulderMotor;
 	//CANTalon* shoulderMotor2;
 	//CANTalon* elbowMotor;
 	//Pot* elbowPot; //= Pot(ELBOW_POT, 359, 0);
 	Pot* shoulderPot; // = Pot(SHOULDER_POT, 359, 0);
 	//PistonSingle* ElbowBrakePiston;
-
+	std::deque<double> PotQueue;
 
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities

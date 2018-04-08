@@ -25,10 +25,10 @@ constexpr int ELBOW_POT_MIN = 0;
 constexpr int WRIST_POT_MIN = 0;
 constexpr int WRIST_POT_MAX = 0;
 
-constexpr int TREX_ARM_START = 80;
-constexpr int TREX_ARM_HIGH = 140;
-constexpr int TREX_ARM_MIDDLE = 180;
-constexpr int TREX_ARM_LOW = 180;
+constexpr int TREX_ARM_START = 30;
+constexpr int TREX_ARM_HIGH = 100;
+constexpr int TREX_ARM_MIDDLE = 120;
+constexpr int TREX_ARM_LOW = 150;
 
 constexpr double SHOULDER_ANGLE_MIN = 0;
 constexpr double SHOULDER_ANGLE_MAX = 0;
@@ -49,6 +49,11 @@ constexpr double VOLTAGE_LOW = 4.733886234;
 constexpr double VOLTAGE_HIGH = 4.893798327;
 constexpr double VOLTAGE_RANGE = VOLTAGE_HIGH - VOLTAGE_LOW;
 
+constexpr int AMOUNT_OF_POT_QUEUE = 5;
+
+constexpr double ARM_SPEED_LIMMIT = 0.45;
+//constexpr double ARM_SPEED_LIMMIT = 0.50;
+
 
 constexpr double ARM_ANGLE_RANGE = 0.052;
 constexpr double ARM_SWITCH = 15;
@@ -60,5 +65,9 @@ constexpr double WHEEL_CIRCUMFERENCE= 0;
 constexpr int SIGNALS_PER_REVOLUTION = 2;
 constexpr int ENCODER_TICKS_PER_INCH = 160;
 constexpr double AUTO_SPEED = 0.5;
+
+constexpr double AUTO_DISTANCE_TURN = 15;
+constexpr double AUTO_DISTANCE_FORWARD = 126;
+constexpr double AUTO_AFTER_TURN = 2;
 
 #endif /* SRC_CONSTANTS_H_ */

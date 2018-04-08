@@ -2,22 +2,25 @@
 #include <iostream>
 #include <DriverStation.h>
 #include "Constants.h"
-#include "Commands/TRexArmGotoPosition.h"
+#include "Commands/ShoulderPIDGoto.h"
 #include "Commands/ClawOuttake.h"
 #include "AutonomousCommands/GoForwardWithEncoders.h"
 #include "AutonomousCommands/AutoEncoderTurn.h"
+#include "AutoForwardTime.h"
 #include "DriveEncoders.h"
+#include "HaltIfOnWrongSide.h"
 AutoRight::AutoRight() {
 
-	std::string state = DriverStation::GetInstance().GetGameSpecificMessage();
-	if(state[0] == 'R'){
-		AddSequential(new DriveEncoders(AUTO_SPEED,Forward,102.5));
-		AddParallel(new TRexArmGotoPosition(TREX_ARM_HIGH));
+		AddParallel(new ShoulderPIDGoto(TREX_ARM_HIGH));
+		AddSequential(new DriveEncoders(AUTO_SPEED,Forward,AUTO_DISTANCE_FORWARD));
+		AddSequential(new HaltIfOnWrongSide('R'));
+		AddSequential(new DriveEncoders(AUTO_SPEED,Left,AUTO_DISTANCE_TURN));
+		AddSequential(new AutoForwardTime(AUTO_SPEED, 1));
+		AddSequential(new WaitCommand(1));
 		AddSequential(new ClawOuttake());
 
 
-	}else{
-
+	/*
 		AddSequential(new DriveEncoders(AUTO_SPEED,Forward,24));
 		AddSequential(new DriveEncoders(AUTO_SPEED,Right,17.7));
 		AddSequential(new DriveEncoders(AUTO_SPEED,Forward,40));
@@ -29,7 +32,8 @@ AutoRight::AutoRight() {
 		AddSequential(new DriveEncoders(AUTO_SPEED,Forward,12));
 		AddParallel(new TRexArmGotoPosition(TREX_ARM_HIGH));
 		AddSequential(new ClawOuttake());
-	}
+		*/
+
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());

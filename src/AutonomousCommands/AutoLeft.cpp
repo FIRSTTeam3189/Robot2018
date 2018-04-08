@@ -2,27 +2,29 @@
 #include <iostream>
 #include <DriverStation.h>
 #include "Constants.h"
-#include "Commands/TRexArmGotoPosition.h"
+#include "Commands/ShoulderPIDGoto.h"
 #include "Commands/ClawOuttake.h"
 #include "AutonomousCommands/GoForwardWithEncoders.h"
 #include "AutonomousCommands/AutoEncoderTurn.h"
 #include "AutonomousCommands/DriveEncoders.h"
+#include "AutoForwardTime.h"
+#include "HaltIfOnWrongSide.h"
 /**
  * I know we were going to do some stuff combining left and right and
  * clever logic, but it's competition and I don't want to mess with choosers.
  * -Nate
  */
 AutoLeft::AutoLeft() {
-
-	std::string state = DriverStation::GetInstance().GetGameSpecificMessage();
-
-		if(state[0] == 'L'){
-			AddSequential(new DriveEncoders(AUTO_SPEED,Forward,102.5));
-			AddParallel(new TRexArmGotoPosition(TREX_ARM_HIGH));
+			AddParallel(new ShoulderPIDGoto(TREX_ARM_HIGH));
+			AddSequential(new DriveEncoders(AUTO_SPEED,Forward,AUTO_DISTANCE_FORWARD));
+			AddSequential(new HaltIfOnWrongSide('L'));
+			AddSequential(new DriveEncoders(AUTO_SPEED,Right,AUTO_DISTANCE_TURN));
+			AddSequential(new AutoForwardTime(AUTO_SPEED, 1));
+			AddSequential(new WaitCommand(1));
 			AddSequential(new ClawOuttake());
 
-		}else{
 
+/*
 			AddSequential(new DriveEncoders(AUTO_SPEED,Forward,24));
 			AddSequential(new DriveEncoders(AUTO_SPEED,Left,17.7));
 			AddSequential(new DriveEncoders(AUTO_SPEED,Forward,40));
@@ -35,6 +37,7 @@ AutoLeft::AutoLeft() {
 			AddParallel(new TRexArmGotoPosition(TREX_ARM_HIGH));
 			AddSequential(new ClawOuttake());
 
+*/
 			// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
@@ -51,4 +54,4 @@ AutoLeft::AutoLeft() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-}}
+}

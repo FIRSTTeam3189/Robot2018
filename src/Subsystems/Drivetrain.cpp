@@ -6,6 +6,7 @@
 #include "Commands/TankDriveWithJoystick.h"
 #include "RobotMap.h"
 #include "Constants.h"
+#include <math.h>
 
 Drivetrain::Drivetrain() :
 	frc::Subsystem("Drivetrain") {
@@ -26,6 +27,7 @@ void Drivetrain::InitDefaultCommand() {
 void Drivetrain::Log() {
 	SmartDashboard::PutNumber("Left Speed", frontLeft->GetMotorOutputPercent());
 	SmartDashboard::PutNumber("Right Speed", frontRight->GetMotorOutputPercent());
+	SmartDashboard::PutNumber("encoders", GetDistanceInInches());
 
 }
 
@@ -41,17 +43,17 @@ void Drivetrain::Drive(double left, double right) {
 
 void Drivetrain::DriveEncoders(double power,enum DriveDirection dir){
 	if(dir == Forward){
-	frontLeft->Set(ControlMode::Velocity,power);
-	frontRight->Set(ControlMode::Velocity, power);
+		frontLeft->Set(ControlMode::PercentOutput, power);
+		frontRight->Set(ControlMode::PercentOutput, power);
 	} else if(dir == Backward){
-		frontLeft->Set(ControlMode::Velocity,-power);
-		frontRight->Set(ControlMode::Velocity,-power);
+		frontLeft->Set(ControlMode::PercentOutput,-power);
+		frontRight->Set(ControlMode::PercentOutput,-power);
 	} else if(dir == Left){
-		frontLeft->Set(ControlMode::Velocity, -power);
-		frontRight->Set(ControlMode::Velocity, power);
+		frontLeft->Set(ControlMode::PercentOutput, -power);
+		frontRight->Set(ControlMode::PercentOutput, power);
 	} else if(dir == Right){
-		frontLeft->Set(ControlMode::Velocity, power);
-		frontRight->Set(ControlMode::Velocity, -power);
+		frontLeft->Set(ControlMode::PercentOutput, power);
+		frontRight->Set(ControlMode::PercentOutput, -power);
 	}
 }
 
@@ -65,11 +67,8 @@ double Drivetrain::GetHeading() {
 }
 
 void Drivetrain::Reset() {
-	/*gyro.Reset();
-	leftEncoder.Reset();
-	rightEncoder.Reset();*/
-	//leftEncoder->Reset();
-	//rightEncoder->Reset();
+	frontLeft->SetSelectedSensorPosition(0, 0, 0);
+	rearRight->SetSelectedSensorPosition(0, 0, 0);
 }
 
 double Drivetrain::GetDistance() {
@@ -78,7 +77,7 @@ double Drivetrain::GetDistance() {
 }
 
 double Drivetrain::GetDistanceInInches(){
-	return (rearRight->GetSelectedSensorPosition(0) + frontLeft->GetSelectedSensorPosition(0)) /2 / ENCODER_TICKS_PER_INCH;
+	return (fabs(rearRight->GetSelectedSensorPosition(0)) + fabs(frontLeft->GetSelectedSensorPosition(0))) / 2 / ENCODER_TICKS_PER_INCH;
 }
 
 double Drivetrain::GetRightEncoderDistance(){
@@ -89,7 +88,12 @@ double Drivetrain::GetLeftEncoderDistance(){
 	return frontLeft->GetSelectedSensorPosition(0);
 }
 void Drivetrain::EngageWinch(){
-	winchPiston->Extend();
+	winchGearboxPiston->Extend();
+	winchShaftPiston->Extend();
+}
+void Drivetrain::EngageDrivetrain(){
+	winchGearboxPiston->Retract();
+	winchShaftPiston->Retract();
 }
 
 double Drivetrain::GetDistanceToObstacle() {
@@ -100,8 +104,8 @@ double Drivetrain::GetDistanceToObstacle() {
 void Drivetrain::InitHardware(){
 	frontLeft = new CANTalon(DRIVE_LEFT_FRONT);
 	rearLeft = new CANTalon(DRIVE_LEFT_BACK);
-	frontRight = new CANTalon(DRIVE_RIGHT_BACK);
-	rearRight = new CANTalon(DRIVE_RIGHT_FRONT);//TODO fix this on real bot(the rights are reversed)
+	frontRight = new CANTalon(DRIVE_RIGHT_FRONT);
+	rearRight = new CANTalon(DRIVE_RIGHT_BACK);
 
 	frontRight->SetInverted(true);
 	rearRight->SetInverted(true);
@@ -114,7 +118,8 @@ void Drivetrain::InitHardware(){
 	rearLeft->Set(ControlMode::Follower, frontLeft->GetDeviceID());
 	rearRight->Set(ControlMode::Follower, frontRight->GetDeviceID());
 
-	winchPiston = new PistonDouble(DRIVETRAIN_PISTON);
+	winchGearboxPiston = new PistonDouble(DRIVETRAIN_PISTON);
+	winchShaftPiston = new PistonDouble(WINCH_PISTON);
 
 	rearRight->ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::QuadEncoder, 0, 0);
 	rearRight->SetSensorPhase(false);

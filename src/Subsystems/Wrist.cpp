@@ -45,5 +45,5 @@ void Wrist::PistonThingyToggle(){
 }
 
 void Wrist::UpdateStatus(){
-
+	SmartDashboard::PutBoolean("limit switch", !wristMotor->GetSensorCollection().IsFwdLimitSwitchClosed());
 }

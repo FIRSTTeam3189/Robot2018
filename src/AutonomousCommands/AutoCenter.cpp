@@ -3,20 +3,17 @@
 #include <DriverStation.h>
 #include "GoForwardWithEncoders.h"
 #include "AutoEncoderTurn.h"
-#include "Commands/TRexArmGotoPosition.h"
+#include "Commands/ShoulderPIDGoto.h"
 #include "Commands/ClawOuttake.h"
 #include "Constants.h"
 #include "DriveEncoders.h"
 AutoCenter::AutoCenter() {
-	std::string state = DriverStation::GetInstance().GetGameSpecificMessage();
-	DriveDirection side = state[0] == 'L' ? Left : Right;
-
+	AddParallel(new ShoulderPIDGoto(TREX_ARM_HIGH));
 	AddSequential(new DriveEncoders(AUTO_SPEED,Forward,12));
-	AddSequential(new DriveEncoders(AUTO_SPEED,side,17.7));
+	AddSequential(new DriveEncoders(AUTO_SPEED,AutoTurn,AUTO_DISTANCE_TURN));
 	AddSequential(new DriveEncoders(AUTO_SPEED,Forward,90));
-	AddSequential(new DriveEncoders(AUTO_SPEED,side,-17.7));
+	AddSequential(new DriveEncoders(AUTO_SPEED,AutoTurn,-AUTO_DISTANCE_TURN));
 	AddSequential(new DriveEncoders(AUTO_SPEED,Forward,90.5));
-	AddParallel(new TRexArmGotoPosition(TREX_ARM_HIGH));
 	AddSequential(new ClawOuttake());
 /*
 	AddSequential(new GoForwardWithEncoders(12));

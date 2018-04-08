@@ -20,7 +20,8 @@ enum DriveDirection{
 	Forward,
 	Left,
 	Right,
-	Backward
+	Backward,
+	AutoTurn
 };
 
 /**
@@ -59,6 +60,8 @@ public:
 	void DriveEncoders(double power, DriveDirection dir);
 	//starts the winch
 	void EngageWinch();
+
+	void EngageDrivetrain();
 	/**
 	 * Stops all motors
 	 */
@@ -96,7 +99,8 @@ private:
 	CANTalon* rearLeft;
 	CANTalon* frontRight;
 	CANTalon* rearRight;
-	Piston* winchPiston;
+	Piston* winchGearboxPiston;
+	Piston* winchShaftPiston;
 	//Encoder* leftEncoder;
 	//Encoder* rightEncoder;
 

@@ -1,15 +1,15 @@
 #include "ClawOuttake.h"
-#include "Constants.h"
 
-ClawOuttake::ClawOuttake() {
+ClawOuttake::ClawOuttake(double speed) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(CommandBase::claw.get());
+	this->speed = speed;
 }
 
 // Called just before this Command runs the first time
 void ClawOuttake::Initialize() {
-	claw->SetPower(CLAW_OUTAKE_POWER);
+	claw->SetPower(speed);
 	claw->ClawClose();
 	SetTimeout(2);
 }

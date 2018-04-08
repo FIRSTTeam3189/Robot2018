@@ -16,7 +16,6 @@ void AutoForwardTime::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AutoForwardTime::Execute() {
-	std::cout << "Running Execute" << "\n";
 	CommandBase::drivetrain->Drive(speed_);
 }
 
