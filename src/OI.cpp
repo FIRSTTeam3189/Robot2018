@@ -52,6 +52,7 @@ void OI::InitilizeOI(){
 	copilot_9 = new JoystickButton(&copilot, 9);
 	copilot_10 = new JoystickButton(&copilot, 10);
 	copilot_11 = new JoystickButton(&copilot, 11);
+	left_1 = new JoystickButton(&left, 1);
 	right_1 = new JoystickButton(&right, 1);
 	right_2 = new JoystickButton(&right, 2);
 	right_3 = new JoystickButton(&right, 3);
@@ -84,7 +85,7 @@ void OI::InitilizeOI(){
 	copilot_11->WhileHeld(new WinchJoystickControl());
 }
 bool OI::GetRight1Button(){
-return	right_1->Get();
+return	left_1->Get();
 }
 
 void OI::CheckMath() {

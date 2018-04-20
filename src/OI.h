@@ -31,6 +31,7 @@ private:
 	frc::JoystickButton* copilot_9;
 	frc::JoystickButton* copilot_10;
 	frc::JoystickButton* copilot_11;
+	frc::JoystickButton* left_1;
 	frc::JoystickButton* right_1;
 	frc::JoystickButton* right_2;
 	frc::JoystickButton* right_3;
