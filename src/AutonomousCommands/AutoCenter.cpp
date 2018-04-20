@@ -7,13 +7,15 @@
 #include "Commands/ClawOuttake.h"
 #include "Constants.h"
 #include "DriveEncoders.h"
+#include "AutoForwardTime.h"
+
 AutoCenter::AutoCenter() {
 	AddParallel(new ShoulderPIDGoto(TREX_ARM_HIGH));
 	AddSequential(new DriveEncoders(AUTO_SPEED,Forward,12));
 	AddSequential(new DriveEncoders(AUTO_SPEED,AutoTurn,AUTO_DISTANCE_TURN));
-	AddSequential(new DriveEncoders(AUTO_SPEED,Forward,90));
+	AddSequential(new DriveEncoders(AUTO_SPEED,Forward,45));
 	AddSequential(new DriveEncoders(AUTO_SPEED,AutoTurn,-AUTO_DISTANCE_TURN));
-	AddSequential(new DriveEncoders(AUTO_SPEED,Forward,90.5));
+	AddSequential(new AutoForwardTime(3, AUTO_SPEED));
 	AddSequential(new ClawOuttake());
 /*
 	AddSequential(new GoForwardWithEncoders(12));
@@ -23,7 +25,7 @@ AutoCenter::AutoCenter() {
 	AddSequential(new GoForwardWithEncoders(90.5));
 	AddSequential(new TRexArmGotoPosition(TREX_ARM_HIGH));
 	AddSequential(new ClawOuttake());
-
+	// Comments here, Comments there, look at all the errors EVERYWHERE
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());

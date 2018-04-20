@@ -10,7 +10,7 @@ DriveEncoders::DriveEncoders(double _power, enum DriveDirection _dir, double _di
 	dir = _dir;
 	distance = _distance;
 }
-
+//TODO explain this to progs
 // Called just before this Command runs the first time
 void DriveEncoders::Initialize() {
 	drivetrain->Reset();
@@ -18,12 +18,20 @@ void DriveEncoders::Initialize() {
 		std::string state = DriverStation::GetInstance().GetGameSpecificMessage();
 		DriveDirection side = state[0] == 'L' ? Left : Right;
 
+		if(distance<0){
+			if(side==Left){
+				side=Right;
+			}
+			else{
+				side=Left;
+			}
+		}
+
 		// Drive the encoders in the proper direction
 		dir = side;
 	}
 	SetTimeout(1);
 }
-
 // Called repeatedly when this Command is scheduled to run
 void DriveEncoders::Execute() {
 	if (IsTimedOut()) drivetrain->DriveEncoders(power, dir);
@@ -38,7 +46,7 @@ bool DriveEncoders::IsFinished() {
 		std::cout << "DriveEncouters has gone " << drivetrain->GetDistanceInInches() << " Inches...\n";
 	}
 
-	return IsTimedOut() && distance <= fabs(drivetrain->GetDistanceInInches());// ? true : false;
+	return IsTimedOut() && fabs(distance) <= fabs(drivetrain->GetDistanceInInches());// ? true : false;
 }
 
 // Called once after isFinished returns true

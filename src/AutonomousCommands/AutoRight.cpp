@@ -15,7 +15,7 @@ AutoRight::AutoRight() {
 		AddSequential(new DriveEncoders(AUTO_SPEED,Forward,AUTO_DISTANCE_FORWARD));
 		AddSequential(new HaltIfOnWrongSide('R'));
 		AddSequential(new DriveEncoders(AUTO_SPEED,Left,AUTO_DISTANCE_TURN));
-		AddSequential(new AutoForwardTime(AUTO_SPEED, 1));
+		AddSequential(new AutoForwardTime(AUTO_SPEED, AUTO_AFTER_TURN_TIME));
 		AddSequential(new WaitCommand(1));
 		AddSequential(new ClawOuttake());
 
